@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Арифметический тренажер</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="freddie">
+  </div>
+  <audio src="./media/audio.mp3" controls></audio>
+  
+  <div class="page">
+
+    <div class="simulator">
+      <h1 class="simulator__title">Арифметический тренажер</h1>
+  
+      <div class="simulator__body">
+
+        <div class="simulator__info">
+          <div class="simulator__question">2 &times; 2 = ?</div>
+          <!-- <div class="simulator__question">2 &divide; 2 = ?</div> -->
+          <!-- <div class="simulator__question">2 &minus; 2 = ?</div> -->
+          <!-- <div class="simulator__question">2 + 2 = ?</div> -->
+
+          <div class="simulator__answer-block">
+            <div class="simulator__answer"></div>
+            <!-- <div class="simulator__answer simulator__answer_good">Правильно!</div> -->
+            <!-- <div class="simulator__answer simulator__answer_bad active">
+              Правильный ответ: <span>4</span>
+            </div> -->
+            <!-- <div class="simulator__answer simulator__answer_bad active">На 0 делить нельзя!</div> -->
+          </div>
+          
+          <div class="simulator__statistic statistic">
+            <span class="statistic__item statistic__item_good">
+              Правильно: <span>0</span> из 5
+            </span>
+            <span class="statistic__item statistic__item_bad">
+              Не правильно: <span>0</span> из 5
+            </span>
+          </div>
+        </div>
+
+        <div class="simulator__actions">
+          <div class="simulator__field">
+            <!-- <label for="answere">Введите ответ</label> -->
+            <input type="number" id="answere" placeholder="Ваш ответ" class="simulator__input">
+          </div>
+  
+          <button type="button" class="simulator__button">Ответить</button>
+        </div>
+  
+        
+      </div>
+    </div>
+    
+  </div>
+  
+  <script src="js/script.js"></script>
+</body>
+</html>
