@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('audio').play();
         answerElem.innerHTML = `You Are The Champion!`;
       } else {
-        answerElem.innerHTML = `Game Over!`;
+        answerElem.innerHTML = `Ты проиграл!`;
       }
     }
     
