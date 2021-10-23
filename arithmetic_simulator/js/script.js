@@ -18,17 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
     result = resultObj.result;
 
     if ( result.toFixed(2) == answer.toFixed(2) ) {
-      answerElem.classList.add('active');
       answerElem.classList.remove('simulator__answer_bad');
-      answerElem.classList.add('simulator__answer_good');
+      answerElem.classList.add('active', 'simulator__answer_good');
       answerElem.textContent = 'Правильно!';
       good++;
       statisticGoodElem.textContent = good;
       init();
     } else {
-      answerElem.classList.add('active');
       answerElem.classList.remove('simulator__answer_good');
-      answerElem.classList.add('simulator__answer_bad');
+      answerElem.classList.add('active', 'simulator__answer_bad');
       if (parseInt(result) == result) {
         answerElem.innerHTML = `Не правильно! ${a} ${resultObj.operator} ${b} = <span>${result}</span>`;
       } else {
