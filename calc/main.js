@@ -6,10 +6,10 @@ const div  = (a, b) => a / b;
 const getErrorMessage = (message) => `Error text: ${message}`;
 
 function checkData(a, b, operator) {
-  const isNotValidOperator = !operator;
   const isNotValidNumbers = ( typeof a !== 'number' || typeof b !== 'number' );
+  const isNotValidOperator = !operator;
   
-  return isNotValidOperator || isNotValidNumbers;
+  return isNotValidNumbers || isNotValidOperator;
 }
 
 function calc(a, b, operator) {
@@ -33,4 +33,27 @@ function calc(a, b, operator) {
   }
 }
 
-console.log( calc(2, 3, 'sum') );
+
+console.log( calc(2, 3, 'sum ') );
+console.log( calc(2, 3, ' sum ') );
+console.log( calc(2, 3, 'some operator') );
+console.log( calc(2, 3) );
+console.log( calc(2, 3, '') );
+
+console.log( calc('', 3, 'sum') );
+console.log( calc(3, '', 'sum') );
+
+console.log( calc('some string', 3, 'sum') );
+console.log( calc(3, 'some string', 'sub') );
+console.log( calc('0', '3', 'sum') );
+console.log( calc( 1, '3', 'sum') );
+console.log( calc( '3', 1, 'sum') );
+console.log( calc( 3, undefined, 'sum') );
+console.log( calc( undefined, 3, 'sum') );
+console.log( calc( 3, null, 'sum') );
+console.log( calc( null, 3, 'sum') );
+
+console.log( calc(3, 2, 'sum') );
+console.log( calc(2, 3, 'sub') );
+console.log( calc(3, 4, 'mult') );
+console.log( calc(6, 0, 'div') );
