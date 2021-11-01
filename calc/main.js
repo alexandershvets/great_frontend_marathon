@@ -1,6 +1,3 @@
-
-const getErrorMessage = (message) => `Error text: ${message}`;
-
 function checkData(a, b, operator) {
   const isNotValidNumbers = ( typeof a !== 'number' || typeof b !== 'number' || isNaN(a) || isNaN(b) );
   const isNotValidOperator = !operator;
@@ -10,10 +7,8 @@ function checkData(a, b, operator) {
 
 function calc(a, b, operator) {
   if ( checkData(a, b, operator) ) {
-    return getErrorMessage('error');
+    return 'error';
   }
-  
-  operator = operator.trim().toLowerCase();
   
   switch (operator) {
     case 'sum':
@@ -24,11 +19,11 @@ function calc(a, b, operator) {
       return a * b;
     case 'div':
       if (b === 0) {
-        return getErrorMessage('You cannot divide by 0!');
+        return 'You cannot divide by 0!';
       }
       return a / b;
     default:
-      return getErrorMessage('unknown operation');
+      return 'unknown operation';
   }
 }
 
