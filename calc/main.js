@@ -23,6 +23,9 @@ function calc(a, b, operator) {
     case 'mult':
       return a * b;
     case 'div':
+      if (b === 0) {
+        return getErrorMessage('You cannot divide by 0!');
+      }
       return a / b;
     default:
       return getErrorMessage('unknown operation');
