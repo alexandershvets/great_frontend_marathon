@@ -28,16 +28,17 @@ function showList() {
 
   for (let task in list) {
     const status = list[task];
+    const strWithTasks = ' "' + task + '",\n';
 
     switch (status) {
       case 'To Do':
-        resultObj[status] += ' "' + task + '",\n';
+        resultObj[status] += strWithTasks;
         break;
       case 'In Progress':
-        resultObj[status] += ' "' + task + '",\n';
+        resultObj[status] += strWithTasks;
         break;
       case 'Done':
-        resultObj[status] += ' "' + task + '",\n';
+        resultObj[status] += strWithTasks;
         break;
     }
   }
