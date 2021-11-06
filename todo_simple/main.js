@@ -20,38 +20,34 @@ function deleteTask(task) {
 
 function showList(list) {
   const resultObj = {};
-  let todo = '';
-  let progress = '';
-  let done = '';
+  let strTodo = '';
+  let strProgress = '';
+  let strDone = '';
 
   for (let task in list) {
     const status = list[task];
 
     switch (status) {
       case 'To Do':
-        todo += ' "' + task + '",' + '\n';
+        strTodo += ' "' + task + '",\n';
         break;
       case 'In Progress':
-        progress += ' "' + task + '",' + '\n';
+        strProgress += ' "' + task + '",\n';
         break;
       case 'Done':
-        done += ' "' + task + '",' + '\n';
+        strDone += ' "' + task + '",\n';
         break;
     }
   }
 
-  resultObj['To Do'] = todo;
-  resultObj['In Progress'] = progress;
-  resultObj['Done'] = done;
+  resultObj['To Do'] = strTodo;
+  resultObj['In Progress'] = strProgress;
+  resultObj['Done'] = strDone;
 
-  if (!resultObj['To Do']) {
-    resultObj['To Do'] = ' -\n';
-  }
-  if (!resultObj['In Progress']) {
-    resultObj['In Progress'] = ' -\n';
-  }
-  if (!resultObj['Done']) {
-    resultObj['Done'] = ' -\n';
+  for (let key in resultObj) {
+    if (!resultObj[key]) {
+      resultObj[key] = ' -\n';
+    }
   }
 
   let result = '';
