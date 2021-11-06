@@ -7,18 +7,22 @@ const list = {
 };
 
 function changeStatus(task, status) {
-  list[task] = status;
+  const isTaskExist = task in list;
+
+  if (isTaskExist) list[task] = status;
 }
 
 function addTask(task) {
-  list[task] = 'To Do';
+  list[task] = null;
 }
 
 function deleteTask(task) {
-  delete list[task];
+  const isTaskExist = task in list;
+  
+  if (isTaskExist) delete list[task];
 }
 
-function showList(list) {
+function showList() {
   const resultObj = {
     'To Do': '',
     'In Progress': '',
@@ -52,7 +56,14 @@ function showList(list) {
   console.log( result.trim() );
 }
 
-// changeStatus('create a task', 'Done');
-// addTask('have a walk');
-// deleteTask('have a walk');
-showList(list);
+
+addTask('have a walk');
+addTask('some task');
+
+changeStatus('have a walk', 'To Do');
+changeStatus('some task', 'In Progress');
+changeStatus('create a task', 'Done');
+
+deleteTask('have a walk');
+
+showList();
