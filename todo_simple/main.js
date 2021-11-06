@@ -60,7 +60,7 @@ function showList(list) {
     result += key + ':\n' + resultObj[key];
   }
 
-  console.log(result.trim());
+  console.log( result.trim() );
 }
 
 changeStatus('create a task', 'Done');
