@@ -1,12 +1,9 @@
 'use strict';
 
 const list = {
-  // "create a task": "In Progress",
-  // "create a tasks": "In Progress",
-  // "make a bed": "Done",
-  // "make a beds": "Done",
-  // "write a post": "To Do",
-  // "write a posts": "To Do",
+  "create a task": "In Progress",
+  "make a bed": "Done",
+  "write a post": "To Do",
 };
 
 function changeStatus(task, status) {
@@ -56,6 +53,6 @@ function showList(list) {
 }
 
 // changeStatus('create a task', 'Done');
-addTask('have a walk');
+// addTask('have a walk');
 // deleteTask('have a walk');
 showList(list);
