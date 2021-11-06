@@ -7,9 +7,8 @@ const list = {
 };
 
 function changeStatus(task, status) {
-  const isTaskExist = task in list;
-
-  if (isTaskExist) list[task] = status;
+  if (task in list)
+    list[task] = status;
 }
 
 function addTask(task) {
@@ -17,9 +16,7 @@ function addTask(task) {
 }
 
 function deleteTask(task) {
-  const isTaskExist = task in list;
-  
-  if (isTaskExist) delete list[task];
+  delete list[task];
 }
 
 function showList() {
@@ -45,15 +42,17 @@ function showList() {
     }
   }
 
-  let result = '';
+  let output = '';
   
   for (let key in resultObj) {
-    result += (resultObj[key]) ?
-      key + ':\n' + resultObj[key] :
-      key + ':\n -\n';
+    const value = resultObj[key];
+    const strWithTasks = key + ':\n' + value;
+    const strWithoutTasks = key + ':\n -\n';
+    
+    output += (value) ? strWithTasks : strWithoutTasks;
   }
 
-  console.log( result.trim() );
+  console.log( output.trim() );
 }
 
 
