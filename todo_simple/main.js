@@ -1,68 +1,77 @@
 'use strict';
 
-const list = {
-  "create a task": "In Progress",
-  "make a bed": "Done",
-  "write a post": "To Do",
-};
+const STATUS_IN_PROGRESS = 'In Progress';
+const STATUS_DONE = 'Done';
+const STATUS_TO_DO = 'To Do';
 
-function changeStatus(task, status) {
-  if (task in list)
+const list = {};
+
+function changeStatus(task, status = STATUS_TO_DO) {
+  if ( isTaskInList(task) )
     list[task] = status;
 }
 
 function addTask(task) {
-  list[task] = null;
+  list[task] = undefined;
+  changeStatus(task);
 }
 
 function deleteTask(task) {
-  delete list[task];
+  if ( isTaskInList(task) )
+    delete list[task];
 }
 
 function showList() {
-  const resultObj = {
-    'To Do': '',
-    'In Progress': '',
-    'Done': '',
+  const result = {
+    [STATUS_TO_DO]: '',
+    [STATUS_IN_PROGRESS]: '',
+    [STATUS_DONE]: '',
   };
 
   for (let task in list) {
     const status = list[task];
-    const strWithTasks = ' "' + task + '",\n';
+    const tasksMessage = ` "${task}",\n`;
 
     switch (status) {
-      case 'To Do':
-        resultObj[status] += strWithTasks;
+      case STATUS_TO_DO:
+        result[status] += tasksMessage;
         break;
-      case 'In Progress':
-        resultObj[status] += strWithTasks;
+      case STATUS_IN_PROGRESS:
+        result[status] += tasksMessage;
         break;
-      case 'Done':
-        resultObj[status] += strWithTasks;
+      case STATUS_DONE:
+        result[status] += tasksMessage;
         break;
     }
   }
 
   let output = '';
   
-  for (let key in resultObj) {
-    const value = resultObj[key];
-    const strWithTasks = key + ':\n' + value;
-    const strWithoutTasks = key + ':\n -\n';
+  for (let key in result) {
+    const isHaveTask = result[key];
+    const messageWithTasks = `${key}:\n${isHaveTask}`;
+    const messageWithoutTasks = `${key}:\n -\n`;
     
-    output += (value) ? strWithTasks : strWithoutTasks;
+    output += (isHaveTask) ? messageWithTasks : messageWithoutTasks;
   }
 
   console.log( output.trim() );
 }
 
+function isTaskInList(task) {
+  return task in list;
+}
 
+
+addTask('create a task');
+addTask('make a bed');
+addTask('write a post');
 addTask('have a walk');
-addTask('some task');
 
-changeStatus('have a walk', 'To Do');
-changeStatus('some task', 'In Progress');
-changeStatus('create a task', 'Done');
+changeStatus('create a task', 'In Progress');
+changeStatus('make a bed', 'Done');
+changeStatus('write a post', 'To Do');
+changeStatus('have a walk', 'In Progress');
 
 deleteTask('have a walk');
 
