@@ -1,5 +1,3 @@
-'use strict';
-
 const STATUS_IN_PROGRESS = 'In Progress';
 const STATUS_DONE = 'Done';
 const STATUS_TO_DO = 'To Do';
