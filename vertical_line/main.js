@@ -33,7 +33,7 @@ showVerticalMessage('марафон');
 // showVerticalMessage('мармышка');
 // showVerticalMessage('синхрофазатрон');
 
-showVerticalMessage('');
-showVerticalMessage(0);
-showVerticalMessage(123);
-showVerticalMessage();
+// showVerticalMessage('');
+// showVerticalMessage(0);
+// showVerticalMessage(123);
+// showVerticalMessage();
