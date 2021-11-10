@@ -6,26 +6,21 @@ function showVerticalMessage(str, maxlength = 10) {
     return;
   }
   
-  let output = '';
-  
   if ( str.startsWith('м') ) {
-    const uppercaseFirstChar = str[0].toUpperCase();
-
-    output = `${uppercaseFirstChar}\n`;
-    str = str.slice(1);
+    str = str[0].toUpperCase() + str.slice(1);
   }
+
+  let output = '';
 
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
 
-    if (i > (maxlength - 1)) break;
+    if ( i > (maxlength - 1) ) break;
 
     output += `${char}\n`;
   }
-  
-  output = output.trim();
 
-  console.log(output);
+  console.log( output.trim() );
 }
 
 showVerticalMessage('марафон');
@@ -34,6 +29,7 @@ showVerticalMessage('марафон');
 // showVerticalMessage('синхрофазатрон');
 
 // showVerticalMessage('');
+// showVerticalMessage(' ');
 // showVerticalMessage(0);
 // showVerticalMessage(123);
 // showVerticalMessage();
