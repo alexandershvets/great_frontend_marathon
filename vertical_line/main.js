@@ -5,7 +5,7 @@ function showVerticalMessage(str) {
   if (firstChar === 'м') {
     const uppercaseFirstChar = firstChar.toUpperCase();
 
-    output += `${uppercaseFirstChar}\n`;
+    output = `${uppercaseFirstChar}\n`;
     str = str.slice(1);
   }
 
