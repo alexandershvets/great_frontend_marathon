@@ -16,8 +16,10 @@ function showVerticalMessage(str) {
 
     output += `${char}\n`;
   }
+  
+  output = output.trim() || 'Вы ввели некорректные данные!';
 
-  console.log( output.trim() );
+  console.log(output);
 }
 
 showVerticalMessage('марафон');
