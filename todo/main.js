@@ -96,5 +96,5 @@ changePriority('write a post', 'low');
 
 deleteTask('have a walk');
 
-showBy('status');
-// showBy('priority');
+// showBy('status');
+showBy('priority');
