@@ -58,18 +58,19 @@ function showBy(param) {
 
 function showList(params, value) {
   const sortedList = sortList(params, value);
-  let output = '';
 
-  for (let key in sortedList) {
-    const tasks = sortedList[key];
+  for (let status in sortedList) {
+    const taskNames = sortedList[status];
+    const isEmptyTaskNames = !taskNames.length;
 
-    const messageWithTasks = `${key}:\n "${tasks.join('",\n "')}"\n`;
-    const messageWithoutTasks = `${key}:\n -\n`;
-    
-    output += (tasks.length) ? messageWithTasks : messageWithoutTasks;
+    console.log(status);
+
+    if (isEmptyTaskNames) console.log(' -');
+
+    taskNames.forEach(function (task) {
+      console.log(` "${task}",`);
+    });
   }
-
-  console.log( output.trim() );
 }
 
 function sortList(params, value) {
@@ -115,5 +116,5 @@ changePriority('create a task', 'low');
 
 deleteTask('have a walk');
 
-showBy('status');
-// showBy('priority');
+// showBy('status');
+showBy('priority');
