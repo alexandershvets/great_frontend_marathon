@@ -1,35 +1,23 @@
-function showVerticalMessage(str, maxlength = 10) {
-  const isNotValid = !str || isFinite(str);
-  
-  if ( isNotValid ) {
-    console.log('Вы ввели некорректные данные!');
-    return;
-  }
-  
-  if ( str.startsWith('м') ) {
-    str = str[0].toUpperCase() + str.slice(1);
+function showVerticalMessage(str) {
+  const FIRST_UPPER_CASE_LETTER = 'м';
+  const MAX_LENGTH = 10;
+
+  let resultText = '';
+
+  if ( str.startsWith(FIRST_UPPER_CASE_LETTER) ) {
+    resultText = str[0].toUpperCase() + str.slice(1);
   }
 
-  let output = '';
-
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-
-    if ( i > (maxlength - 1) ) break;
-
-    output += `${char}\n`;
+  if (str.length > MAX_LENGTH) {
+    resultText = str.slice(0, MAX_LENGTH);
   }
 
-  console.log( output.trim() );
+  for (let char of resultText) {
+    console.log(char);
+  }
 }
 
 showVerticalMessage('марафон');
 // showVerticalMessage('Марафон');
 // showVerticalMessage('мармышка');
 // showVerticalMessage('синхрофазатрон');
-
-// showVerticalMessage('');
-// showVerticalMessage(' ');
-// showVerticalMessage(0);
-// showVerticalMessage(123);
-// showVerticalMessage();
