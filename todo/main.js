@@ -1,7 +1,7 @@
 const STATUSES_LIST = ['In Progress', 'To Do', 'Done'];
 const PRIORITY_LIST = ['high', 'low'];
 
-let countTaskID = 0;
+let counterTaskID = 0;
 
 const list = [];
 
@@ -27,7 +27,7 @@ function changePriority(task, priority = PRIORITY_LIST[0]) {
 
 function addTask(task) {
   list.push({
-    id: ++countTaskID,
+    id: ++counterTaskID,
     name: task,
     status: undefined,
     priority: undefined
