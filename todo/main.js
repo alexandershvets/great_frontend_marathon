@@ -58,16 +58,18 @@ function showBy(param) {
 
 function showList(params, value) {
   const sortedList = sortList(params, value);
+  let output = '';
 
   for (let key in sortedList) {
     const tasks = sortedList[key];
 
-    console.log(key);
-
-    tasks.forEach(function (task) {
-      console.log(` "${task}",`);
-    });
+    const messageWithTasks = `${key}:\n "${tasks.join('",\n "')}"\n`;
+    const messageWithoutTasks = `${key}:\n -\n`;
+    
+    output += (tasks.length) ? messageWithTasks : messageWithoutTasks;
   }
+
+  console.log( output.trim() );
 }
 
 function sortList(params, value) {
@@ -113,5 +115,5 @@ changePriority('create a task', 'low');
 
 deleteTask('have a walk');
 
-// showBy('status');
-showBy('priority');
+showBy('status');
+// showBy('priority');
