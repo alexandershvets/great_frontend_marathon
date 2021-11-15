@@ -58,18 +58,16 @@ function showBy(param) {
 
 function showList(params, value) {
   const sortedList = sortList(params, value);
-  let output = '';
 
   for (let key in sortedList) {
     const tasks = sortedList[key];
 
-    const messageWithTasks = `${key}:\n "${tasks.join('",\n "')}"\n`;
-    const messageWithoutTasks = `${key}:\n -\n`;
-    
-    output += (tasks.length) ? messageWithTasks : messageWithoutTasks;
-  }
+    console.log(key);
 
-  console.log( output.trim() );
+    tasks.forEach(function (task) {
+      console.log(` "${task}",`);
+    });
+  }
 }
 
 function sortList(params, value) {
@@ -117,3 +115,104 @@ deleteTask('have a walk');
 
 // showBy('status');
 showBy('priority');
+
+
+
+//===================================================================
+
+// const STATUS_IN_PROGRESS = "In Progress";
+// const STATUS_DONE = "Done";
+// const STATUS_TO_DO = "To Do";
+
+// const PRIORITY_LOW = "low";
+// const PRIORITY_HIGH = "high";
+
+// const list = [ 
+// { 
+//     id: 1,
+//     name: 'create a post',
+//     status: STATUS_TO_DO,
+//     priority: PRIORITY_LOW  
+// }, 
+// { 
+//     id: 2,
+//     name: 'make a bed',
+//     status: STATUS_DONE,
+//     priority: PRIORITY_HIGH  
+// },
+// {
+//     id: 3,
+//     name: "create a task",
+//     status: STATUS_IN_PROGRESS,
+//     priority: PRIORITY_HIGH 
+// } 
+// ] 
+
+
+// function changeStatus (nameOfTask, statusOfTask = STATUS_TO_DO) { 
+//     list.find ( function (item) {
+//         if (item.name == nameOfTask) { return item.status = statusOfTask }
+//     } );   
+// };
+
+
+// function addTask (name, priority = " ") {
+//     list.push ({
+//         id: list.length + 1,
+//         name: name,
+//         status: STATUS_TO_DO,
+//         priority: priority,
+//     })   
+// };
+
+// function deleteTask (nameOfTask) { 
+//     let indexOfTask = list.findIndex ( function (item) {
+//         return item.name == nameOfTask; 
+//     });
+
+//     list.splice(indexOfTask, 1); 
+    
+//     list.forEach ( function (item, index) {
+//         return item.id = index + 1;           // to change id after delete
+//     })  
+// };
+
+// function choiceOfKey (key) {
+//     let count = false;
+
+//     console.log (key + ":");
+//     list.filter (function (item) {
+//     const choisePriorityOrStatus = item.priority === key || item.status === key;
+
+// 	if ( choisePriorityOrStatus ) {
+//         console.log (" " + item.name);
+//         count = true;
+//         } 
+//     })
+
+//     if (!count) { 
+//         console.log (" -") 
+//     };
+//     count = false;
+// }
+
+// function showList (group) {
+    
+//     switch (group) {
+//         case "status":
+//             choiceOfKey (STATUS_TO_DO);
+//             choiceOfKey (STATUS_IN_PROGRESS);
+//             choiceOfKey (STATUS_DONE);
+//         break;
+
+//         case "priority":
+//             choiceOfKey (PRIORITY_HIGH);
+//             choiceOfKey (PRIORITY_LOW);
+//         break;
+//         default: console.log ("Выберите группу: priority или status")
+//     }
+              
+// }
+
+// // showList("priority")
+// showList("status")
