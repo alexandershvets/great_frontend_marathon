@@ -6,18 +6,18 @@ let counterTaskID = 0;
 const list = [];
 
 function changeStatus(task, status = STATUSES_LIST[1]) {
-  todoWithFoundTaskInlist(task, function (item) {
-    item.status = status;
+  todoWithFoundTaskInlist(task, function (task) {
+    task.status = status;
 
-    const isDoneTask = (item.status === STATUSES_LIST[2]);
+    const isDoneTask = (task.status === STATUSES_LIST[2]);
 
-    if (isDoneTask) delete item.priority;
+    if (isDoneTask) delete task.priority;
   });
 }
 
 function changePriority(task, priority = PRIORITY_LIST[0]) {
-  todoWithFoundTaskInlist(task, function (item) {
-    item.priority = priority;
+  todoWithFoundTaskInlist(task, function (task) {
+    task.priority = priority;
   });
 }
 
@@ -34,7 +34,7 @@ function addTask(task) {
 }
 
 function deleteTask(task) {
-  todoWithFoundTaskInlist(task, function (item, index) {
+  todoWithFoundTaskInlist(task, function (task, index) {
     list.splice(index, 1);
   });
 }
