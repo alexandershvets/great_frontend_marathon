@@ -6,8 +6,6 @@ let counterTaskID = 0;
 const list = [];
 
 function changeStatus(task, status = STATUSES_LIST[1]) {
-  if ( !checkParameterInTask(status) ) return 'Error';
-  
   todoWithFoundTaskInlist(task, function (item) {
     item.status = status;
 
@@ -18,8 +16,6 @@ function changeStatus(task, status = STATUSES_LIST[1]) {
 }
 
 function changePriority(task, priority = PRIORITY_LIST[0]) {
-  if ( !checkParameterInTask(priority) ) return 'Error';
-  
   todoWithFoundTaskInlist(task, function (item) {
     item.priority = priority;
   });
@@ -59,11 +55,11 @@ function showBy(param) {
 function showList(params, value) {
   const sortedList = sortList(params, value);
 
-  for (let status in sortedList) {
-    const taskNames = sortedList[status];
+  for (let key in sortedList) {
+    const taskNames = sortedList[key];
     const isEmptyTaskNames = !taskNames.length;
 
-    console.log(status);
+    console.log(key);
 
     if (isEmptyTaskNames) console.log(' -');
 
@@ -89,10 +85,6 @@ function sortList(params, value) {
   return sortedList;
 }
 
-function checkParameterInTask(param) {
-  return ( STATUSES_LIST.includes(param) || PRIORITY_LIST.includes(param) );
-}
-
 function todoWithFoundTaskInlist(task, callback) {
   list.forEach(function (item, index) {
     if (item.name === task) callback(item, index);
@@ -111,8 +103,6 @@ changeStatus('have a walk', 'In Progress');
 changeStatus('write TODO', 'Done');
 
 changePriority('create a task', 'low');
-// changeStatus('write a post', 'blablablabla');
-// changePriority('have a walk', 'blablablabla');
 
 deleteTask('have a walk');
 
