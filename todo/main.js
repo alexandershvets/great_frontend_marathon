@@ -22,12 +22,14 @@ function changePriority(task, priority = PRIORITY_LIST[0]) {
 }
 
 function addTask(task) {
-  list.push({
+  const taskItem = {
     id: ++counterTaskID,
     name: task,
     status: undefined,
     priority: undefined
-  });
+  };
+
+  list.push(taskItem);
   
   changeStatus(task);
   changePriority(task);
