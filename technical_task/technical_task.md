@@ -92,4 +92,3 @@ Cобрать всех (водителей попуток, попутчиков,
 - [team2.travel](https://www.team2.travel/)
 - [mahnem.ru](https://mahnem.ru/)
 - [nashaplaneta.net](https://nashaplaneta.net/companions/)
-
