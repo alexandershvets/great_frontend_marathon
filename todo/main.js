@@ -25,14 +25,14 @@ function addTask(task) {
   const taskItem = {
     id: ++counterTaskID,
     name: task,
-    status: undefined,
-    priority: undefined
+    status: changeStatus(task),
+    priority: changePriority(task)
   };
 
   list.push(taskItem);
   
-  changeStatus(task);
-  changePriority(task);
+  // changeStatus(task);
+  // changePriority(task);
 }
 
 function deleteTask(task) {
