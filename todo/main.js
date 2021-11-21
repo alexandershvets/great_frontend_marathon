@@ -6,19 +6,23 @@ let counterTaskID = 0;
 const list = [];
 
 function changeStatus(task, status = STATUSES_LIST[1]) {
-  todoWithFoundTaskInlist(task, function (task) {
-    task.status = status;
-
-    const isDoneTask = (task.status === STATUSES_LIST[2]);
-
-    if (isDoneTask) delete task.priority;
+  const foundTask = list.find(function (item) {
+    return item.name === task;
   });
+
+  foundTask.status = status;
+
+  const isDoneTask = (foundTask.status === STATUSES_LIST[2]);
+
+  if (isDoneTask) delete foundTask.priority;
 }
 
 function changePriority(task, priority = PRIORITY_LIST[0]) {
-  todoWithFoundTaskInlist(task, function (task) {
-    task.priority = priority;
+  const foundTask = list.find(function (item) {
+    return item.name === task;
   });
+
+  foundTask.priority = priority;
 }
 
 function addTask(task) {
@@ -35,10 +39,12 @@ function addTask(task) {
   changePriority(task);
 }
 
-function deleteTask(task) {
-  todoWithFoundTaskInlist(task, function (task, index) {
-    list.splice(index, 1);
+function deleteTask(id) {
+  const taskIndexInList = list.findIndex(function (item) {
+    return item.id === id;
   });
+
+  list.splice(taskIndexInList, 1);
 }
 
 function showBy(param) {
@@ -87,12 +93,6 @@ function sortList(params, value) {
   return sortedList;
 }
 
-function todoWithFoundTaskInlist(task, callback) {
-  list.forEach(function (item, index) {
-    if (item.name === task) callback(item, index);
-  });
-}
-
 
 addTask('create a task');
 addTask('make a bed');
@@ -106,7 +106,7 @@ changeStatus('write TODO', 'Done');
 
 changePriority('create a task', 'low');
 
-deleteTask('have a walk');
+deleteTask(4);
 
 // showBy('status');
 showBy('priority');
