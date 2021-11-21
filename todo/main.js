@@ -1,67 +1,59 @@
-const STATUSES_LIST = ['In Progress', 'To Do', 'Done'];
-const PRIORITY_LIST = ['high', 'low'];
+const STATUS = {
+  IN_PROGRESS: 'In Progress',
+  TO_DO: 'To Do',
+  DONE: 'Done'
+};
 
-let counterTaskID = 0;
+const PRIORITY = {
+  HIGHT: 'high',
+  LOW: 'low'
+};
 
-const list = [];
+let id = 0;
 
-function changeStatus(task, status = STATUSES_LIST[1]) {
-  const foundTask = list.find(function (item) {
-    return item.name === task;
-  });
+let list = [];
 
-  foundTask.status = status;
-
-  const isDoneTask = (foundTask.status === STATUSES_LIST[2]);
-
-  if (isDoneTask) delete foundTask.priority;
+function changeStatus(id, status = STATUS.TO_DO) {
+  getTask(id).status = status;
 }
 
-function changePriority(task, priority = PRIORITY_LIST[0]) {
-  const foundTask = list.find(function (item) {
-    return item.name === task;
-  });
-
-  foundTask.priority = priority;
+function changePriority(id, priority = PRIORITY.HIGHT) {
+  getTask(id).priority = priority;
 }
 
-function addTask(task) {
-  const taskItem = {
-    id: ++counterTaskID,
-    name: task,
+function addTask(name) {
+  id++;
+  
+  list.push({
+    id,
+    name,
     status: undefined,
     priority: undefined
-  };
+  });
 
-  list.push(taskItem);
-
-  changeStatus(task);
-  changePriority(task);
+  changeStatus(id);
+  changePriority(id);
 }
 
 function deleteTask(id) {
-  const taskIndexInList = list.findIndex(function (item) {
-    return item.id === id;
-  });
-
-  list.splice(taskIndexInList, 1);
+  list = list.filter(task => task.id !== id);
 }
 
-function showBy(param) {
-  switch (param) {
+function showBy(typeSort) {
+  switch (typeSort) {
     case 'status':
-      showList(STATUSES_LIST, param);
+      showList(STATUS, typeSort);
       break;
     case 'priority':
-      showList(PRIORITY_LIST, param);
+      showList(PRIORITY, typeSort);
       break;
     default:
       return 'Error';
   }
 }
 
-function showList(params, value) {
-  const sortedList = sortList(params, value);
+function showList(params, typeSort) {
+  const sortedList = sortList(params, typeSort);
 
   for (let key in sortedList) {
     const taskNames = sortedList[key];
@@ -71,26 +63,24 @@ function showList(params, value) {
 
     if (isEmptyTaskNames) console.log(' -');
 
-    taskNames.forEach(function (task) {
-      console.log(` "${task}",`);
-    });
+    taskNames.forEach(task => console.log(` "${task}",`));
   }
 }
 
-function sortList(params, value) {
+function sortList(params, typeSort) {
   const sortedList = {};
 
-  params.forEach(function (param) {
-    sortedList[param] = list
-      .filter(function (task) {
-        return task[value] === param;
-      })
-      .map(function (task) {
-        return task.name;
-      });
-  });
+  for (let key in params) {
+    sortedList[params[key]] = list
+      .filter(task => task[typeSort] === params[key])
+      .map(task => task.name);
+  }
 
   return sortedList;
+}
+
+function getTask(id) {
+  return list.find(task => task.id === id);
 }
 
 
@@ -100,11 +90,11 @@ addTask('write a post');
 addTask('have a walk');
 addTask('write TODO');
 
-changeStatus('create a task', 'In Progress');
-changeStatus('have a walk', 'In Progress');
-changeStatus('write TODO', 'Done');
+changeStatus(1, 'In Progress');
+changeStatus(4, 'In Progress');
+changeStatus(5, 'Done');
 
-changePriority('create a task', 'low');
+changePriority(1, 'low');
 
 deleteTask(4);
 
