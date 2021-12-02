@@ -1,5 +1,5 @@
 function checkData(a, b, operator) {
-  const isNotValidNumbers = ( typeof a !== 'number' || typeof b !== 'number' || isNaN(a) || isNaN(b) );
+  const isNotValidNumbers = ( typeof a !== 'number' || typeof b !== 'number' || isNaN(a) || isNaN(b) || !isFinite(a) || !isFinite(b) );
   const isNotValidOperator = !operator;
   
   return isNotValidNumbers || isNotValidOperator;
@@ -55,3 +55,4 @@ console.log( calc(6, 0, 'div') );
 
 console.log( calc(NaN, 0, 'div') );
 console.log( calc(1, NaN, 'sum') );
+console.log( calc(1, Infinity, 'sum') );
