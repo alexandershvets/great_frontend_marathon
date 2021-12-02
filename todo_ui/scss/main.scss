@@ -28,7 +28,6 @@ $palette_placeholder:  $color_silver;
 
 body {
   background-color: rgba($palette_dark_bg, .1);
-  // background-color: $palette_light_bg;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -179,7 +178,8 @@ body {
   transition: background-color .2s ease 0s;
   @media (any-hover: hover) {
     &:hover {
-      background-color: rgba($palette_task_bg, 0.4);
+      // background-color: rgba($palette_task_bg, 0.4);
+      background-color: rgba($palette_dark_bg, .1)
     }
   }
   // .task__checkbox
