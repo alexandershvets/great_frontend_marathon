@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:regular&display=swap&subset=cyrillic-ext');
 
-// @import "fonts";
 @import "null";
 
 // COLORS
@@ -178,8 +177,7 @@ body {
   transition: background-color .2s ease 0s;
   @media (any-hover: hover) {
     &:hover {
-      // background-color: rgba($palette_task_bg, 0.4);
-      background-color: rgba($palette_dark_bg, .1)
+      background-color: rgba($palette_dark_bg, .2)
     }
   }
   // .task__checkbox

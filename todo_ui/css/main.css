@@ -222,7 +222,7 @@ body {
 
 @media (any-hover: hover) {
   .task:hover {
-    background-color: rgba(229, 229, 229, 0.1);
+    background-color: rgba(229, 229, 229, 0.2);
   }
 }
 
