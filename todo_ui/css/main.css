@@ -43,7 +43,7 @@ button {
 }
 
 body {
-  background-color: #E5E5E5;
+  background-color: rgba(229, 229, 229, 0.1);
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -143,6 +143,8 @@ body {
   padding: 25px 12px;
   border-radius: 12px;
   background-color: #ffffff;
+  -webkit-box-shadow: 5px 6px 19px -14px rgba(34, 60, 80, 0.19);
+          box-shadow: 5px 6px 19px -14px rgba(34, 60, 80, 0.19);
 }
 
 .todo__row:not(:last-child) {

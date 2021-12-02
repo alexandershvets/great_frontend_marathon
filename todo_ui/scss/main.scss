@@ -27,7 +27,8 @@ $palette_placeholder:  $color_silver;
 }
 
 body {
-  background-color: $palette_dark_bg;
+  background-color: rgba($palette_dark_bg, .1);
+  // background-color: $palette_light_bg;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -117,6 +118,7 @@ body {
   padding: 25px 12px;
   border-radius: 12px;
   background-color: $palette_light_bg;
+  box-shadow: 5px 6px 19px -14px rgba(34, 60, 80, 0.19);
   // .todo__row
   &__row {
     &:not(:last-child) {
