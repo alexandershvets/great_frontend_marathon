@@ -1,86 +1,115 @@
-const calculator = document.querySelector('.calc');
-const btns = calculator.querySelectorAll('.actions-calc__button');
-const out = calculator.querySelector('.info-calc__result');
-const outHistory = calculator.querySelector('.info-calc__history');
-
-let a = '';
-let b = '';
-let operator = '';
-
-const operations = {
-  sum: 'sum',
-  sub: 'sub',
-  mult: 'mult',
-  div: 'div'
+const UI_ELEMENTS = {
+  NUMBER_BUTTONS: document.querySelectorAll('.actions-calc__button_number'),
+  OPERATOR_BUTTONS: document.querySelectorAll('.actions-calc__button_operator'),
+  RESET_BUTTON: document.getElementById('reset'),
+  BACKSPACE_BUTTON: document.getElementById('backspace'),
+  EQUAL_BUTTON: document.getElementById('equal'),
+  OUT_RESULT: document.getElementById('result'),
+  OUT_HISTORY: document.getElementById('history')
 };
 
-calculator.addEventListener('click', function (e) {
-  const target = e.target;
+const expression = {
+  operandA: '',
+  operandB: '',
+  operator: undefined
+};
 
-  if (target && target.tagName === 'BUTTON') {
-    const value = target.value;
-    const isNumber = isFinite(value);
+let finish = false;
 
-    if (isNumber) {
-      b += value;
-      out.textContent = b;
+UI_ELEMENTS.RESET_BUTTON.addEventListener('click', clearState);
+UI_ELEMENTS.BACKSPACE_BUTTON.addEventListener('click', removeLastSymbol);
+
+UI_ELEMENTS.NUMBER_BUTTONS.forEach(function (numberBtn) {
+  numberBtn.addEventListener('click', function () {
+    const number = this.textContent;
+    const isEmptyOperandB = (expression.operandB === '' && expression.operator === undefined);
+    const expressionWasEval = (expression.operandA !== '' && expression.operandB !== '' && finish);
+
+    if (isEmptyOperandB) {
+      expression.operandA += number;
+      UI_ELEMENTS.OUT_RESULT.textContent = expression.operandA;
+    } else if (expressionWasEval) {
+      expression.operandB = number;
+      finish = false;
+      UI_ELEMENTS.OUT_RESULT.textContent = expression.operandB;
+    } else {
+      expression.operandB += number;
+      UI_ELEMENTS.OUT_RESULT.textContent = expression.operandB;
     }
 
-    const isValidOperator = (value in operations);
-
-    if (isValidOperator) {
-      a = b;
-
-      operator = value;
-
-      out.textContent = b;
-      b = '';
-    }
-
-    if (value === 'equals') {
-      outHistory.textContent = `${changeHistory(operator)} ${b} =`;
-      
-      a = calc(+a, +b, operator);
-      out.textContent = a;
-    }
-
-    if (value === 'reset') reset();
-    if (value === 'backspace') removeLastNumber();
-  }
-
+    showHistory(expression.operandA, expression.operandB, expression.operator);
+  });
 });
 
-function changeHistory() {
+UI_ELEMENTS.OPERATOR_BUTTONS.forEach(function (operatorBtn) {
+  operatorBtn.addEventListener('click', function() {
+    const operator = this.value;
+
+    expression.operator = operator;
+
+    showHistory(expression.operandA, expression.operandB, expression.operator);
+  });
+});
+
+UI_ELEMENTS.EQUAL_BUTTON.addEventListener('click', function () {
+  if (expression.operandB === '') {
+    expression.operandB = expression.operandA;
+  }
+
+  const operandA = expression.operandA;
+  const operandB = expression.operandB;
+  const operator = expression.operator;
+
+  const result = calc(operandA, operandB, operator);
+
+  finish = true;
+  UI_ELEMENTS.OUT_RESULT.textContent = result;
+
+  showHistory(operandA, operandB, operator, '=');
+  
+  expression.operandA = result;
+});
+
+function showHistory(a, b, operator = '', equal = '') {
   switch (operator) {
-    case operations.div:
-      return `${a} /`;
-    case operations.mult:
-      return `${a} *`;
-    case operations.sub:
-      return `${a} -`;
-    case operations.sum:
-      return `${a} +`;
+    case 'sum':
+      operator = '+';
+      break;
+    case 'sub':
+      operator = '-';
+      break;
+    case 'mult':
+      operator = '×';
+      break;
+    case 'div':
+      operator = '÷';
+      break;
   }
+
+  let result = `${a} ${operator} ${b} ${equal}`;
+
+  UI_ELEMENTS.OUT_HISTORY.textContent = result;
 }
 
-function reset() {
-  a = '';
-  b = '';
-  operator = '';
-  outHistory.textContent = '';
-
-  out.textContent = 0;
+function clearState() {
+  expression.operandA = '';
+  expression.operandB = '';
+  expression.operator = undefined;
+  UI_ELEMENTS.OUT_RESULT.textContent = 0;
+  UI_ELEMENTS.OUT_HISTORY.textContent = '';
+  finish = false;
 }
 
-function removeLastNumber() {
-  if (b.length > 1) {
-    b = b.slice(0, b.length - 1);
-    out.textContent = b;
+function removeLastSymbol() {
+  let operator = (!expression.operator) ? 'operandA' : 'operandB';
+
+  if (UI_ELEMENTS.OUT_RESULT.textContent.length > 1) {
+    UI_ELEMENTS.OUT_RESULT.textContent = UI_ELEMENTS.OUT_RESULT.textContent.slice(0, -1);
+    expression[operator] = UI_ELEMENTS.OUT_RESULT.textContent;
   } else {
-    b = '';
-    out.textContent = 0;
+    UI_ELEMENTS.OUT_RESULT.textContent = 0;
+    expression[operator] = '';
   }
-
 }
 
 function checkData(a, b, operator) {
@@ -91,23 +120,21 @@ function checkData(a, b, operator) {
 }
 
 function calc(a, b, operator) {
+  a = +a;
+  b = +b;
+
   if ( checkData(a, b, operator) ) {
     return 'error';
   }
-  
+
   switch (operator) {
-    case operations.sum:
+    case 'sum':
       return a + b;
-    case operations.sub:
+    case 'sub':
       return a - b;
-    case operations.mult:
+    case 'mult':
       return a * b;
-    case operations.div:
-      if (b === 0) {
-        return 'You cannot divide by 0!';
-      }
+    case 'div':
       return a / b;
-    default:
-      return 'unknown operation';
   }
 }

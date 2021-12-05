@@ -14,32 +14,34 @@
    
     <div class="calc">
       <div class="calc__info info-calc">
-        <div class="info-calc__history"></div>
-        <div class="info-calc__result">0</div>
+        <div id="history" class="info-calc__history"></div>
+        <div id="result" class="info-calc__result">0</div>
       </div>
 
       <div class="calc__actions actions-calc">
-        <button type="button" class="actions-calc__button actions-calc__button_col-2" value="reset">C</button>
-        <button type="button" class="actions-calc__button" value="backspace">⌫</button>
-        <button type="button" class="actions-calc__button actions-calc__button_bg" value="div">&divide;</button>
+        <button id="reset" type="button" class="actions-calc__button actions-calc__button_col-2">C</button>
+        <button id="backspace" type="button" class="actions-calc__button">⌫</button>
 
-        <button type="button" class="actions-calc__button" value="7">7</button>
-        <button type="button" class="actions-calc__button" value="8">8</button>
-        <button type="button" class="actions-calc__button" value="9">9</button>
-        <button type="button" class="actions-calc__button actions-calc__button_bg" value="mult">&times;</button>
+        <button type="button" class="actions-calc__button actions-calc__button_operator actions-calc__button_bg" value="div">&divide;</button>
 
-        <button type="button" class="actions-calc__button" value="4">4</button>
-        <button type="button" class="actions-calc__button" value="5">5</button>
-        <button type="button" class="actions-calc__button" value="6">6</button>
-        <button type="button" class="actions-calc__button actions-calc__button_bg" value="sub">&minus;</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">7</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">8</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">9</button>
+        <button type="button" class="actions-calc__button actions-calc__button_operator actions-calc__button_bg" value="mult">&times;</button>
 
-        <button type="button" class="actions-calc__button" value="1">1</button>
-        <button type="button" class="actions-calc__button" value="2">2</button>
-        <button type="button" class="actions-calc__button" value="3">3</button>
-        <button type="button" class="actions-calc__button actions-calc__button_bg" value="sum">+</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">4</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">5</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">6</button>
+        <button type="button" class="actions-calc__button actions-calc__button_operator actions-calc__button_bg" value="sub">&minus;</button>
 
-        <button type="button" class="actions-calc__button actions-calc__button_col-3" value="0">0</button>
-        <button type="button" class="actions-calc__button actions-calc__button_bg" value="equals">=</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">1</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">2</button>
+        <button type="button" class="actions-calc__button actions-calc__button_number">3</button>
+        <button type="button" class="actions-calc__button actions-calc__button_operator actions-calc__button_bg" value="sum">+</button>
+
+        <button type="button" class="actions-calc__button actions-calc__button_number actions-calc__button_col-3">0</button>
+
+        <button id="equal" type="button" class="actions-calc__button actions-calc__button_bg">=</button>
       </div>
     </div>
     
