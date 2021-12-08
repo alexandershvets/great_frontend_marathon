@@ -14,9 +14,9 @@ showUsersInfo();
 
 function getListUsersName() {
   const json = JSON.stringify(data, ['users', 'firstName', 'lastName']);
-  const users = JSON.parse(json);
+  const users = JSON.parse(json).users;
 
-  return users.users;
+  return users;
 }
 
 console.log( getListUsersName() );
