@@ -46,7 +46,7 @@ function showWeather(url) {
 
         UI_ELEMENTS.TEMP.textContent = weatherInCity.temp;
         UI_ELEMENTS.SITY_NAME.textContent = weatherInCity.cityName;
-        UI_ELEMENTS.WEATHER_ICON.src = `http://openweathermap.org/img/wn/${weatherInCity.icon}@2x.png`;
+        UI_ELEMENTS.WEATHER_ICON.src = `http://openweathermap.org/img/wn/${weatherInCity.icon}@4x.png`;
 
         if ( checkCityInList(weatherInCity.cityName) ) {
           UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');

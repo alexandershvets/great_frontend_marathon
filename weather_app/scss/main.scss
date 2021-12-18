@@ -217,16 +217,11 @@ body {
     align-items: center;
     justify-content: center;
     flex: 1 1 auto;
-    padding: 20px 0;
     font-size: 78px;
+    overflow: hidden;
     img {
       max-width: 100%;
-      // width: 120px;
-      // height: 120px;
     }
-    // &::before {
-    //   margin-top: -19px;
-    // }
   }
   // .now-item__info
   &__info {
