@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <title>Weather</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <main class="page">
+      <div class="page__container _container">
+        
+        <div class="page__weather weather">
+          <form class="weather__form-search search-form-weather">
+            <div class="search-form-weather__line">
+              <input type="text" placeholder="Enter city name" class="search-form-weather__input">
+              <button type="submit" class="search-form-weather__search-btn">
+                <svg fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path opacity="0.54" fill-rule="evenodd" clip-rule="evenodd" d="M19.3775 17.5H18.385L18.04 17.1575C19.2588 15.7363 20 13.8938 20 11.875C20 7.38752 16.3625 3.75002 11.875 3.75002C7.3875 3.75002 3.75 7.38752 3.75 11.875C3.75 16.3625 7.3875 20 11.875 20C13.8938 20 15.735 19.26 17.1563 18.0425L17.5013 18.385V19.375L23.7488 25.6138L25.6125 23.75L19.3775 17.5ZM11.875 17.5C8.76751 17.5 6.25001 14.9825 6.25001 11.875C6.25001 8.76877 8.76751 6.25002 11.875 6.25002C14.9813 6.25002 17.5 8.76877 17.5 11.875C17.5 14.9825 14.9813 17.5 11.875 17.5Z" fill="none"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <div class="weather__body">
+            <div class="weather__info info-weather">
+              <div class="info-weather__body">
+
+                <div class="info-weather__item now active">
+                  <div class="now-item">
+                    <div class="now-item__temperature _deg"></div>
+                    <span class="now-item__icon">
+                      <img src="http://openweathermap.org/img/wn/04n@2x.png" alt="Icon Weather">
+                    </span>
+                    <div class="now-item__info">
+                      <div class="now-item__town title"></div>
+                      <form class="now-item__form">
+                        <button type="submit" class="now-item__like">
+                          <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.8398 2.39496C13.013 -0.169205 10.2871 2.03882 9.27755 3.46336C8.26797 2.03882 5.54163 -0.169205 2.71481 2.39496C-0.112011 4.95912 1.87349 8.80536 3.2196 10.408C4.22918 11.6544 6.85456 14.361  9.27755 15.2158C11.7005 14.361 14.3254 11.6544 15.335 10.408C16.6811 8.80536 18.6666 4.95912 15.8398 2.39496Z" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="info-weather__item details">
+                  <div class="details-item">
+                    <div class="details-item__town title">Aktobe</div>
+
+                    <ul class="details-item__params">
+                      <li class="details-item__param">
+                        <span class="details-item__param-name">Temperature: </span>
+                        <span class="details-item__param-value _deg">14</span>
+                      </li>
+                      <li class="details-item__param">
+                        <span class="details-item__param-name">Feels like: </span>
+                        <span class="details-item__param-value _deg">10</span>
+                      </li>
+                      <li class="details-item__param">
+                        <span class="details-item__param-name">Weather: </span>
+                        <span class="details-item__param-value">Clouds</span>
+                      </li>
+                      <li class="details-item__param">
+                        <span class="details-item__param-name">Sunrise: </span>
+                        <span class="details-item__param-value">03:21</span>
+                      </li>
+                      <li class="details-item__param">
+                        <span class="details-item__param-name">Sunset: </span>
+                        <span class="details-item__param-value">18:54</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="info-weather__item forecast">
+                  <div class="forecast-item">
+                    <!-- Forecast asdasdasdasda -->
+                  </div>
+                </div>
+                
+              </div>
+
+              <nav class="info-weather__tabs">
+                <button type="button" data-tab="now" class="info-weather__tab active">Now</button>
+                <button type="button" data-tab="details" class="info-weather__tab">Details</button>
+                <button type="button" data-tab="forecast" class="info-weather__tab">Forecast</button>
+              </nav>
+            </div>
+
+            <form class="weather__locations locations-form-weather">
+              <div class="locations-form-weather__header">
+                Added Locations:
+              </div>
+
+              <input type="hidden" class="locations-form-weather__input">
+
+              <ul class="locations-form-weather__list">
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Amur</button>
+                </li>
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Samara</button>
+                </li>
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Bali</button>
+                </li>
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Dane</button>
+                </li>
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Kilo</button>
+                </li>
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Nur-Sultan</button>
+                </li>
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Bali</button>
+                </li>
+                <li class="locations-form-weather__item">
+                  <button class="locations-form-weather__button">Dane</button>
+                </li>
+              </ul>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </main>
+   
+  </div>
+  
+  <script src="js/main.js" type="module"></script>
+</body>
+</html>
