@@ -94,7 +94,7 @@ function addSityInList() {
 }
 
 function removeSityFromList() {
-  this.closest('.locations-form-weather__item').remove();
+  this.parentElement.remove();
 
   const cityName = this.previousElementSibling.textContent;
 
