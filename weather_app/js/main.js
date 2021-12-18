@@ -6,7 +6,7 @@ const API = {
 };
 
 const url = getUrl('Saint Petersburg');
-showWeather(url);
+formHandler(url);
 
 UI_ELEMENTS.FORMS.forEach(form => {
   form.addEventListener('submit', function (e) {
@@ -14,14 +14,20 @@ UI_ELEMENTS.FORMS.forEach(form => {
 
     const url = getUrl( getCityName(e) );
 
-    showWeather(url);
+    formHandler(url);
     
     this.reset();
   });
 });
 
-function showWeather(url) {
-  fetch(url)
+function formHandler(url) {
+  getJson(url)
+    .then(data => showWeather(data))
+    .catch(error => errorHandler(error));
+}
+
+function getJson(url) {
+  return fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -34,32 +40,34 @@ function showWeather(url) {
       if (response.status === 404) {
         throw new Error('City not found');
       }
-    })
-    .then(data => {
-      return new Promise((resolve, reject) => {
-        const weatherInCity = {
-          cityName: data.name,
-          temp: Math.round(data.main.temp),
-          descr: data.weather[0].main,
-          icon: data.weather[0].icon
-        };
-
-        UI_ELEMENTS.TEMP.textContent = weatherInCity.temp;
-        UI_ELEMENTS.SITY_NAME.textContent = weatherInCity.cityName;
-        UI_ELEMENTS.WEATHER_ICON.src = `http://openweathermap.org/img/wn/${weatherInCity.icon}@4x.png`;
-
-        if ( checkCityInList(weatherInCity.cityName) ) {
-          UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
-        } else {
-          UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
-        }
-
-        resolve(weatherInCity);
-      });
-    })
-    .catch(error => {
-      alert(error.message);
     });
+}
+
+function showWeather(data) {
+  return new Promise((resolve, reject) => {
+    const weatherInCity = {
+      cityName: data.name,
+      temp: Math.round(data.main.temp),
+      descr: data.weather[0].main,
+      icon: data.weather[0].icon
+    };
+
+    UI_ELEMENTS.TEMP.textContent = weatherInCity.temp;
+    UI_ELEMENTS.SITY_NAME.textContent = weatherInCity.cityName;
+    UI_ELEMENTS.WEATHER_ICON.src = `http://openweathermap.org/img/wn/${weatherInCity.icon}@4x.png`;
+
+    if ( checkCityInList(weatherInCity.cityName) ) {
+      UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
+    } else {
+      UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
+    }
+
+    resolve(weatherInCity);
+  });
+}
+
+function errorHandler(error) {
+  alert(error.message);
 }
 
 function getCityName(e) {
