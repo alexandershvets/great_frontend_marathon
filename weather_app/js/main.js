@@ -87,8 +87,8 @@ function addSityInList() {
     return;
   }
 
-  UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
   UI_ELEMENTS.CITIES_LIST.insertAdjacentHTML('afterbegin', elem);
+  UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
 
   getDeleteButtons();
 }
