@@ -21,12 +21,6 @@ UI_ELEMENTS.FORMS.forEach(form => {
   });
 });
 
-function getCityName(e) {
-  const isListForm = e.target.classList.contains('locations-form-weather');
-  
-  return (isListForm) ? e.submitter.textContent : UI_ELEMENTS.SERACH_INPUT.value;
-}
-
 function showWeather(url) {
   fetch(url)
     .then(response => {
@@ -67,6 +61,11 @@ function showWeather(url) {
     .catch(error => {
       alert(error.message);
     });
+}
+
+function getCityName(e) {
+  const isListForm = e.target.classList.contains('locations-form-weather');
+  return (isListForm) ? e.submitter.textContent : UI_ELEMENTS.SERACH_INPUT.value;
 }
 
 function getUrl(param) {
