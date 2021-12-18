@@ -12,8 +12,7 @@ UI_ELEMENTS.FORMS.forEach(form => {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const sityName = getCityName(e);
-    const url = getUrl(sityName);
+    const url = getUrl( getCityName(e) );
 
     showWeather(url);
     
