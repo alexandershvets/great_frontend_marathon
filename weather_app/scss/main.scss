@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:regular&display=swap&subset=cyrillic-ext');
 
+@import 'icons';
+
 @import "null";
 
 // COLORS
 $color_dark: #000000;
 $color_white: #ffffff;
-$color_blue: #4B5EFC;
+$color_blue: #EC6E4C;
 $color_grey: #696969;
 $color_periwinkle_gray: #C0C4E5;
 
@@ -123,24 +125,18 @@ body {
     right: 16px;
     width: 30px;
     height: 30px;
+    font-size: 30px;
+    color: $accent;
     transform: translateY(-50%);
     cursor: pointer;
     transition: color .25s ease 0s;
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-    path {
-      fill: $palette_average;
-      fill: darken($accent, 15%);
-      transition: fill .3s ease 0s;
-    }
     @media (any-hover: hover) {
       &:hover {
-        path {
-          fill: $palette_dark_bg;
-        }
+        color: $palette_dark_bg;
       }
+    }
+    @media (any-hover: none) {
+      color: $palette_dark_bg;
     }
   }
 }
@@ -223,9 +219,14 @@ body {
     flex: 1 1 auto;
     padding: 20px 0;
     font-size: 78px;
-    &::before {
-      margin-top: -19px;
+    img {
+      max-width: 100%;
+      // width: 120px;
+      // height: 120px;
     }
+    // &::before {
+    //   margin-top: -19px;
+    // }
   }
   // .now-item__info
   &__info {
@@ -237,12 +238,6 @@ body {
   &__town {
     font-size: 24px;
     line-height: 116%;
-  }
-  // .now-item__form
-  &__form {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
   }
   // .now-item__like
   &__like {
@@ -258,7 +253,7 @@ body {
       stroke-width: 2px;
       stroke: $palette_dark_bg;
     }
-    &._active {
+    &.active {
       svg {
         fill: $palette_dark_bg;
       }
@@ -306,9 +301,6 @@ body {
       padding-top: 12px;
     }
   }
-  // .locations-form-weather__input
-  &__input {
-  }
   // .locations-form-weather__list
   &__list {
     padding: 26px 18px 36px 18px;
@@ -320,14 +312,33 @@ body {
   }
   // .locations-form-weather__item
   &__item {
-    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     &:not(:last-child) {
       margin-bottom: 20px;
     }
   }
   // .locations-form-weather__button
   &__button {
+    padding: 0 12px 0 0;
     font-size: 24px;
     line-height: 110%;
+  }
+  // .locations-form-weather__delete
+  &__delete {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    color: $accent;
+    transition: color .2s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        color: $palette_dark_bg;
+      }
+    }
+    @media (any-hover: none) {
+      color: $palette_dark_bg;
+    }
   }
 }

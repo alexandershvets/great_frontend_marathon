@@ -1,5 +1,39 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Roboto:regular&display=swap&subset=cyrillic-ext");
+@font-face {
+  font-family: "icons";
+  font-display: swap;
+  src: url("../fonts/icons.woff") format("woff"), url("../fonts/icons.woff2#icons") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="_icon-"]::before,
+[class*=" _icon-"]::before {
+  font-family: "icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="_icon-"]::before,
+[class*=" _icon-"]::before {
+  display: block;
+}
+
+._icon-delete:before {
+  content: "\e900";
+}
+
+._icon-search:before {
+  content: "\e901";
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -40,12 +74,12 @@ button {
 }
 
 ::-moz-selection {
-  background-color: #4B5EFC;
+  background-color: #EC6E4C;
   color: #fff;
 }
 
 ::selection {
-  background-color: #4B5EFC;
+  background-color: #EC6E4C;
   color: #fff;
 }
 
@@ -207,6 +241,8 @@ body {
   right: 16px;
   width: 30px;
   height: 30px;
+  font-size: 30px;
+  color: #C0C4E5;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -216,22 +252,15 @@ body {
   transition: color .25s ease 0s;
 }
 
-.search-form-weather__search-btn svg {
-  width: 100%;
-  height: 100%;
-}
-
-.search-form-weather__search-btn path {
-  fill: #696969;
-  fill: #8a91cf;
-  -webkit-transition: fill .3s ease 0s;
-  -o-transition: fill .3s ease 0s;
-  transition: fill .3s ease 0s;
-}
-
 @media (any-hover: hover) {
-  .search-form-weather__search-btn:hover path {
-    fill: #000000;
+  .search-form-weather__search-btn:hover {
+    color: #000000;
+  }
+}
+
+@media (any-hover: none) {
+  .search-form-weather__search-btn {
+    color: #000000;
   }
 }
 
@@ -358,8 +387,8 @@ body {
   font-size: 78px;
 }
 
-.now-item__icon::before {
-  margin-top: -19px;
+.now-item__icon img {
+  max-width: 100%;
 }
 
 .now-item__info {
@@ -377,18 +406,6 @@ body {
 .now-item__town {
   font-size: 24px;
   line-height: 116%;
-}
-
-.now-item__form {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .now-item__like {
@@ -410,7 +427,7 @@ body {
   stroke: #000000;
 }
 
-.now-item__like._active svg {
+.now-item__like.active svg {
   fill: #000000;
 }
 
@@ -457,7 +474,15 @@ body {
 }
 
 .locations-form-weather__item {
-  font-size: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .locations-form-weather__item:not(:last-child) {
@@ -465,6 +490,29 @@ body {
 }
 
 .locations-form-weather__button {
+  padding: 0 12px 0 0;
   font-size: 24px;
   line-height: 110%;
+}
+
+.locations-form-weather__delete {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  color: #C0C4E5;
+  -webkit-transition: color .2s ease 0s;
+  -o-transition: color .2s ease 0s;
+  transition: color .2s ease 0s;
+}
+
+@media (any-hover: hover) {
+  .locations-form-weather__delete:hover {
+    color: #000000;
+  }
+}
+
+@media (any-hover: none) {
+  .locations-form-weather__delete {
+    color: #000000;
+  }
 }

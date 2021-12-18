@@ -8,16 +8,24 @@ const API = {
 const url = getUrl('Amur');
 showWeather(url);
 
-UI_ELEMENTS.SEARCH_FORM.addEventListener('submit', function (e) {
-  e.preventDefault();
+UI_ELEMENTS.FORMS.forEach(form => {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-  const cityName = UI_ELEMENTS.SERACH_INPUT.value;
-  const url = getUrl(cityName);
+    const sityName = getCityName(e);
+    const url = getUrl(sityName);
 
-  showWeather(url);
-  
-  this.reset();
+    showWeather(url);
+    
+    this.reset();
+  });
 });
+
+function getCityName(e) {
+  const isListForm = e.target.classList.contains('locations-form-weather');
+  
+  return (isListForm) ? e.submitter.textContent : UI_ELEMENTS.SERACH_INPUT.value;
+}
 
 function showWeather(url) {
   fetch(url)
@@ -36,18 +44,24 @@ function showWeather(url) {
     })
     .then(data => {
       return new Promise((resolve, reject) => {
-        const weatherInSity = {
+        const weatherInCity = {
           cityName: data.name,
           temp: Math.round(data.main.temp),
           descr: data.weather[0].main,
           icon: data.weather[0].icon
         };
 
-        UI_ELEMENTS.TEMP.textContent = weatherInSity.temp;
-        UI_ELEMENTS.SITY_NAME.textContent = weatherInSity.cityName;
-        UI_ELEMENTS.WEATHER_ICON.src = `http://openweathermap.org/img/wn/${weatherInSity.icon}@2x.png`;
+        UI_ELEMENTS.TEMP.textContent = weatherInCity.temp;
+        UI_ELEMENTS.SITY_NAME.textContent = weatherInCity.cityName;
+        UI_ELEMENTS.WEATHER_ICON.src = `http://openweathermap.org/img/wn/${weatherInCity.icon}@2x.png`;
 
-        resolve(weatherInSity);
+        if ( checkCityInList(weatherInCity.cityName) ) {
+          UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
+        } else {
+          UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
+        }
+
+        resolve(weatherInCity);
       });
     })
     .catch(error => {
@@ -59,23 +73,82 @@ function getUrl(param) {
   return `${API.SERVER_URL}?q=${param}&units=metric&appid=${API.KEY}`;
 }
 
+UI_ELEMENTS.ADD_SITY_BTN.addEventListener('click', addSityInList);
 
-UI_ELEMENTS.TAB_BUTTONS.forEach( tabBtn => {
+function addSityInList() {
+  const cityName = UI_ELEMENTS.SITY_NAME.textContent;
 
-  tabBtn.addEventListener('click', function () {
-    UI_ELEMENTS.TAB_BUTTONS.forEach( el => el.classList.remove('active') );
+  const elem = `
+    <li class="locations-form-weather__item">
+      <button type="submit" class="locations-form-weather__button">${cityName}</button>
+      <button type="button" class="locations-form-weather__delete _icon-delete"></button>
+    </li>
+  `;
 
-    this.classList.add('active');
+  if (checkCityInList(cityName)) {
+    return;
+  }
 
-    const attrTabBtn = this.dataset.tab;
+  UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
+  UI_ELEMENTS.CITIES_LIST.insertAdjacentHTML('afterbegin', elem);
 
-    UI_ELEMENTS.CONTENT_ITEMS.forEach( tabItem => {
-      tabItem.classList.remove('active');
+  getDeleteButtons();
+}
 
-      if ( tabItem.classList.contains(attrTabBtn) ) {
-        tabItem.classList.add('active');
-      }
-    });
+function removeSityFromList() {
+  this.closest('.locations-form-weather__item').remove();
+
+  const cityName = this.previousElementSibling.textContent;
+
+  if (cityName === UI_ELEMENTS.SITY_NAME.textContent) {
+    UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
+  }
+}
+
+function getDeleteButtons() {
+  const deleteBtns = document.querySelectorAll('.locations-form-weather__delete');
+  
+  deleteBtns.forEach(deleteBtn => {
+    deleteBtn.addEventListener('click', removeSityFromList);
+  });
+}
+getDeleteButtons();
+
+function checkCityInList(cityName) {
+  const btns = document.querySelectorAll('.locations-form-weather__button');
+  let result = false;
+
+  btns.forEach(btn => {
+    if (cityName === btn.textContent) result = true;
   });
 
-});
+  return result;
+}
+
+
+tabInit(UI_ELEMENTS.TAB);
+
+function tabInit(tab) {
+  const btns = tab.querySelectorAll('.tab__btn');
+  const items = tab.querySelectorAll('.tab__item');
+  
+  btns.forEach( tabBtn => {
+
+    tabBtn.addEventListener('click', function () {
+      btns.forEach( el => el.classList.remove('active') );
+  
+      this.classList.add('active');
+  
+      const attrTabBtn = this.dataset.tab;
+  
+      items.forEach( tabItem => {
+        tabItem.classList.remove('active');
+  
+        if ( tabItem.classList.contains(attrTabBtn) ) {
+          tabItem.classList.add('active');
+        }
+      });
+    });
+    
+  });
+}
