@@ -5,7 +5,7 @@ const API = {
   KEY: 'f660a2fb1e4bad108d6160b7f58c555f'
 };
 
-const url = getUrl('Amur');
+const url = getUrl('Saint Petersburg');
 showWeather(url);
 
 UI_ELEMENTS.FORMS.forEach(form => {
@@ -64,7 +64,7 @@ function showWeather(url) {
 
 function getCityName(e) {
   const isListForm = e.target.classList.contains('locations-form-weather');
-  return (isListForm) ? e.submitter.textContent : UI_ELEMENTS.SERACH_INPUT.value;
+  return (isListForm) ? e.submitter.textContent : UI_ELEMENTS.SERACH_INPUT.value.trim();
 }
 
 function getUrl(param) {
