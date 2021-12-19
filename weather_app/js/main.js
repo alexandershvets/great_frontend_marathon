@@ -1,4 +1,4 @@
-import { UI_ELEMENTS } from './view.js';
+import { UI_ELEMENTS, tabInit } from './view.js';
 
 const API = {
   SERVER_URL: 'http://api.openweathermap.org/data/2.5/weather',
@@ -22,8 +22,8 @@ UI_ELEMENTS.FORMS.forEach(form => {
 
 function formHandler(url) {
   getJson(url)
-    .then(data => showWeather(data))
-    .catch(error => errorHandler(error));
+    .then(showWeather)
+    .catch(errorHandler);
 }
 
 function getJson(url) {
@@ -84,16 +84,16 @@ UI_ELEMENTS.ADD_SITY_BTN.addEventListener('click', addSityInList);
 function addSityInList() {
   const cityName = UI_ELEMENTS.SITY_NAME.textContent;
 
+  if (checkCityInList(cityName)) {
+    return;
+  }
+
   const elem = `
     <li class="locations-form-weather__item">
       <button type="submit" class="locations-form-weather__button">${cityName}</button>
       <button type="button" class="locations-form-weather__delete _icon-delete"></button>
     </li>
   `;
-
-  if (checkCityInList(cityName)) {
-    return;
-  }
 
   UI_ELEMENTS.CITIES_LIST.insertAdjacentHTML('afterbegin', elem);
   UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
@@ -122,39 +122,15 @@ getDeleteButtons();
 
 function checkCityInList(cityName) {
   const btns = document.querySelectorAll('.locations-form-weather__button');
-  let result = false;
 
-  btns.forEach(btn => {
-    if (cityName === btn.textContent) result = true;
+  const result = Array.from(btns).filter(item => {
+    return cityName === item.textContent;
   });
 
-  return result;
+  if (result.length) return true;
+
+  return false;
 }
 
 
 tabInit(UI_ELEMENTS.TAB);
-
-function tabInit(tab) {
-  const btns = tab.querySelectorAll('.tab__btn');
-  const items = tab.querySelectorAll('.tab__item');
-  
-  btns.forEach( tabBtn => {
-
-    tabBtn.addEventListener('click', function () {
-      btns.forEach( el => el.classList.remove('active') );
-  
-      this.classList.add('active');
-  
-      const attrTabBtn = this.dataset.tab;
-  
-      items.forEach( tabItem => {
-        tabItem.classList.remove('active');
-  
-        if ( tabItem.classList.contains(attrTabBtn) ) {
-          tabItem.classList.add('active');
-        }
-      });
-    });
-    
-  });
-}
