@@ -27,11 +27,11 @@
             <div class="weather__info info-weather tab">
               <div class="info-weather__body">
 
-                <div class="info-weather__item tab__item now active">
+                <div class="info-weather__item tab__item now">
                   <div class="now-item">
                     <div class="now-item__temperature _deg"></div>
                     <span class="now-item__icon">
-                      <img src="http://openweathermap.org/img/wn/04n@2x.png" alt="Icon Weather">
+                      <img src="http://openweathermap.org/img/wn/04n@4x.png" alt="Icon Weather">
                     </span>
                     <div class="now-item__info">
                       <div class="now-item__town title"></div>
@@ -46,45 +46,117 @@
 
                 <div class="info-weather__item tab__item details">
                   <div class="details-item">
-                    <div class="details-item__town title">Aktobe</div>
+                    <div id="details-city-name" class="details-item__town title">Aktobe</div>
 
                     <ul class="details-item__params">
                       <li class="details-item__param">
                         <span class="details-item__param-name">Temperature: </span>
-                        <span class="details-item__param-value _deg">14</span>
+                        <span id="details-temp" class="details-item__param-value _deg"></span>
                       </li>
                       <li class="details-item__param">
                         <span class="details-item__param-name">Feels like: </span>
-                        <span class="details-item__param-value _deg">10</span>
+                        <span id="details-feels-like" class="details-item__param-value _deg"></span>
                       </li>
                       <li class="details-item__param">
                         <span class="details-item__param-name">Weather: </span>
-                        <span class="details-item__param-value">Clouds</span>
+                        <span id="details-descr" class="details-item__param-value"></span>
                       </li>
                       <li class="details-item__param">
                         <span class="details-item__param-name">Sunrise: </span>
-                        <span class="details-item__param-value">03:21</span>
+                        <span id="details-sunrise" class="details-item__param-value"></span>
                       </li>
                       <li class="details-item__param">
                         <span class="details-item__param-name">Sunset: </span>
-                        <span class="details-item__param-value">18:54</span>
+                        <span id="details-sunset" class="details-item__param-value"></span>
                       </li>
                     </ul>
                   </div>
                 </div>
 
-                <div class="info-weather__item tab__item forecast">
-                  <div class="forecast-item">
-                    <!-- Forecast asdasdasdasda -->
-                  </div>
+                <div class="info-weather__item tab__item forecast active">
+                  <div class="forecast__town">Actobe</div>
+
+                  <ul class="forecast__list">
+                    <li class="forecast-item__item forecast-item">
+                      <div class="forecast-item__top">
+                        <div class="forecast-item__date">17 May</div>
+                        <div class="forecast-item__time">12:00</div>
+                      </div>
+
+                      <div class="forecast-item__bottom">
+                        <div class="forecast-item__temp">
+                          <div class="forecast-item__temp-current">
+                            Temperature: <span class="_deg">13</span>
+                          </div>
+                          <div class="forecast-item__temp-feels-like">
+                            Feels like: <span class="_deg">10</span>
+                          </div>
+                        </div>
+                        <div class="forecast-item__icon">
+                          <span class="forecast-item__icon-descr">Rain</span>
+                          <div class="forecast-item__icon-image">
+                            <img src="http://openweathermap.org/img/wn/04n.png" alt="Icon Weather">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="forecast-item__item forecast-item">
+                      <div class="forecast-item__top">
+                        <div class="forecast-item__date">17 May</div>
+                        <div class="forecast-item__time">12:00</div>
+                      </div>
+
+                      <div class="forecast-item__bottom">
+                        <div class="forecast-item__temp">
+                          <div class="forecast-item__temp-current">
+                            Temperature: <span class="_deg">13</span>
+                          </div>
+                          <div class="forecast-item__temp-feels-like">
+                            Feels like: <span class="_deg">10</span>
+                          </div>
+                        </div>
+                        <div class="forecast-item__icon">
+                          <span class="forecast-item__icon-descr">Rain</span>
+                          <div class="forecast-item__icon-image">
+                            <img src="http://openweathermap.org/img/wn/04n.png" alt="Icon Weather">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="forecast-item__item forecast-item">
+                      <div class="forecast-item__top">
+                        <div class="forecast-item__date">17 May</div>
+                        <div class="forecast-item__time">12:00</div>
+                      </div>
+
+                      <div class="forecast-item__bottom">
+                        <div class="forecast-item__temp">
+                          <div class="forecast-item__temp-current">
+                            Temperature: <span class="_deg">13</span>
+                          </div>
+                          <div class="forecast-item__temp-feels-like">
+                            Feels like: <span class="_deg">10</span>
+                          </div>
+                        </div>
+                        <div class="forecast-item__icon">
+                          <span class="forecast-item__icon-descr">Rain</span>
+                          <div class="forecast-item__icon-image">
+                            <img src="http://openweathermap.org/img/wn/04n.png" alt="Icon Weather">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
                 
               </div>
 
               <nav class="info-weather__tabs">
-                <button type="button" data-tab="now" class="info-weather__tab tab__btn active">Now</button>
+                <button type="button" data-tab="now" class="info-weather__tab tab__btn">Now</button>
                 <button type="button" data-tab="details" class="info-weather__tab tab__btn">Details</button>
-                <button type="button" data-tab="forecast" class="info-weather__tab tab__btn">Forecast</button>
+                <button type="button" data-tab="forecast" class="info-weather__tab tab__btn active">Forecast</button>
               </nav>
             </div>
 
@@ -93,24 +165,7 @@
                 Added Locations:
               </div>
 
-              <ul class="locations-form-weather__list">
-                <li class="locations-form-weather__item">
-                  <button type="submit" class="locations-form-weather__button">Moscow</button>
-                  <button type="button" class="locations-form-weather__delete _icon-delete"></button>
-                </li>
-                <li class="locations-form-weather__item">
-                  <button type="submit" class="locations-form-weather__button">Sochi</button>
-                  <button type="button" class="locations-form-weather__delete _icon-delete"></button>
-                </li>
-                <li class="locations-form-weather__item">
-                  <button type="submit" class="locations-form-weather__button">Tokyo</button>
-                  <button type="button" class="locations-form-weather__delete _icon-delete"></button>
-                </li>
-                <li class="locations-form-weather__item">
-                  <button type="submit" class="locations-form-weather__button">Saint Petersburg</button>
-                  <button type="button" class="locations-form-weather__delete _icon-delete"></button>
-                </li>
-              </ul>
+              <ul class="locations-form-weather__list"></ul>
             </form>
           </div>
         </div>

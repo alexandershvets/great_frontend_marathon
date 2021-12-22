@@ -19,14 +19,14 @@ $palette_average:          $color_grey;
 $palette_text:             $color_dark;
 $palette_text_placeholder: $color_grey;
 $palette_border:           $color_dark;
-$palette_placeholder:      $color_blue;
+$palette_selection:        $color_blue;
 
 // SIZE
 $radius: 4px;
 $border_width: 1px;
 
 ::selection {
-  background-color: $palette_placeholder;
+  background-color: $palette_selection;
   color: #fff;
 }
 
@@ -156,14 +156,15 @@ body {
   // .info-weather__item
   &__item {
     display: none;
-    // height: 100%; // !!!!!!!!
-    height: 343px; // !!!!!!!!!!
+    height: 343px;
     &.active {
       display: block;
     }
   }
   // .info-weather__tabs
   &__tabs {
+    position: relative;
+    z-index: 5;
     display: flex;
     border-top: $border_width solid $palette_border;
     @media (max-width: 560px) {
@@ -200,6 +201,8 @@ body {
     }
   }
 }
+
+// Now
 
 .now-item {
   display: flex;
@@ -256,6 +259,8 @@ body {
   }
 }
 
+// Details
+
 .details-item {
   height: 100%;
   padding: 33px 15px 15px;
@@ -282,9 +287,6 @@ body {
   }
 }
 
-.forecast-item {
-}
-
 .locations-form-weather{
   // .locations-form-weather__header
   &__header {
@@ -298,34 +300,54 @@ body {
   }
   // .locations-form-weather__list
   &__list {
-    padding: 26px 18px 36px 18px;
-    // max-height: 320px;
+    // padding: 26px 0 36px;
+    max-height: 320px;
     overflow: auto;
     @media (min-width: 561px) {
-      max-height: 320px;
+      // max-height: 320px;
+      // padding: 16px 0 36px;
     }
   }
   // .locations-form-weather__item
   &__item {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    &:not(:last-child) {
-      margin-bottom: 20px;
+    transition: background-color .1s ease 0s;
+    &:nth-child(odd) {
+      // background-color: #F2F2F2;
+      .locations-form-weather__button {
+        background-color: lighten($accent, 16%);
+      }
     }
+    
   }
   // .locations-form-weather__button
   &__button {
-    padding: 0 12px 0 0;
+    width: 100%;
+    padding: 10px 18px;
     font-size: 24px;
     line-height: 110%;
+    text-align: left;
+    cursor: pointer;
+    // @media (any-hover: hover) {
+    //   &:hover {
+    //     background-color: lighten($accent, 10%) !important;
+    //   }
+    // }
   }
   // .locations-form-weather__delete
   &__delete {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
     width: 18px;
     height: 18px;
     font-size: 18px;
-    color: $accent;
+    // color: $accent;
+    color: lighten(#48484A, 15%);
     transition: color .2s ease 0s;
     @media (any-hover: hover) {
       &:hover {
@@ -334,6 +356,97 @@ body {
     }
     @media (any-hover: none) {
       color: $palette_dark_bg;
+    }
+  }
+}
+
+// Details
+
+.forecast {
+  padding: 33px 0;
+  @media (max-width: 560px) {
+    padding: 10px 0 10px;
+  }
+  // .forecast__town
+  &__town {
+    margin-bottom: 7px;
+    padding: 0 18px;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  // .forecast__list
+  &__list {
+    max-height: 275px;
+    padding: 0 18px;
+    overflow: auto;
+    @media (max-width: 560px) {
+      max-height: 302px;
+    }
+  }
+}
+
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  padding: 10px 10px 0px;
+  border: $border_width solid $palette_border;
+  font-size: 18px;
+  line-height: 21px;
+  // border-radius: $radius;
+  margin-bottom: 9px;
+  @media (max-width: 560px) {
+    &:last-child {
+      margin-bottom: 15px;
+    }
+  }
+  // .forecast-item__item
+  &__item {
+  }
+  // .forecast-item__top
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+  // .forecast-item__date
+  &__date {
+  }
+  // .forecast-item__time
+  &__time {
+  }
+  // .forecast-item__bottom
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  // .forecast-item__temp
+  &__temp {
+  }
+  // .forecast-item__temp-current
+  &__temp-current {
+  }
+  // .forecast-item__temp-feels-like
+  &__temp-feels-like {
+  }
+  // .forecast-item__icon
+  &__icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  // .forecast-item__icon-descr
+  &__icon-descr {
+  }
+  // .forecast-item__icon-image
+  &__icon-image {
+    width: 50px;
+    height: 31px;
+    overflow: hidden;
+    img {
+      margin-top: -13px;
+      max-width: 114%;
+      height: auto;
     }
   }
 }
