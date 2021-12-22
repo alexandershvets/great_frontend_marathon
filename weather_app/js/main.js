@@ -96,6 +96,8 @@ function renderUIDetails(weatherInCity) {
   UI_ELEMENTS.DETAILS_FEELS_LIKE.textContent = weatherInCity.feelsLike;
   UI_ELEMENTS.DETAILS_SUNRISE.textContent = getTime(weatherInCity.sunrise);
   UI_ELEMENTS.DETAILS_SUNSET.textContent = getTime(weatherInCity.sunset);
+
+  return weatherInCity;
 }
 
 function getCityName(e) {
