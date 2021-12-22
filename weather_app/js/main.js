@@ -1,6 +1,6 @@
-import { UI_ELEMENTS } from './view.js';
+import { UI_ELEMENTS, tabInit } from './view.js';
 import { storage } from './storage.js';
-import { tabInit } from './tab.js';
+import { convertTime } from './hellp.js';
 
 const API = {
   SERVER_URL: 'https://api.openweathermap.org/data/2.5/weather',
@@ -94,8 +94,8 @@ function renderUIDetails(weatherInCity) {
   UI_ELEMENTS.DETAILS_TEMP.textContent = weatherInCity.temp;
   UI_ELEMENTS.DETAILS_DESCR.textContent = weatherInCity.descr;
   UI_ELEMENTS.DETAILS_FEELS_LIKE.textContent = weatherInCity.feelsLike;
-  UI_ELEMENTS.DETAILS_SUNRISE.textContent = getTime(weatherInCity.sunrise);
-  UI_ELEMENTS.DETAILS_SUNSET.textContent = getTime(weatherInCity.sunset);
+  UI_ELEMENTS.DETAILS_SUNRISE.textContent = convertTime(weatherInCity.sunrise);
+  UI_ELEMENTS.DETAILS_SUNSET.textContent = convertTime(weatherInCity.sunset);
 
   return weatherInCity;
 }
@@ -156,15 +156,6 @@ function removeSityFromList() {
   if (cityName === weatherInCity.cityName) {
     UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
   }
-}
-
-function getTime(timestamp) {
-  const date = new Date(timestamp * 1000);
-  const hours = date.getHours();
-  const minutes = "0" + date.getMinutes();
-  const formattedTime = hours + ':' + minutes.slice(-2);
-
-  return formattedTime;
 }
 
 tabInit(UI_ELEMENTS.TAB);
