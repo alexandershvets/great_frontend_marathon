@@ -66,8 +66,6 @@ function collectWeatherInCity(data) {
   weatherInCity.sunrise = data.sys.sunrise;
   weatherInCity.sunset = data.sys.sunset;
 
-  console.log(weatherInCity);
-
   return weatherInCity;
 }
 
