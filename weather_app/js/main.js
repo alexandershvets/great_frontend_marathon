@@ -3,7 +3,7 @@ import { storage } from './storage.js';
 import { tabInit } from './tab.js';
 
 const API = {
-  SERVER_URL: 'http://api.openweathermap.org/data/2.5/weather',
+  SERVER_URL: 'https://api.openweathermap.org/data/2.5/weather',
   KEY: 'f660a2fb1e4bad108d6160b7f58c555f'
 };
 
