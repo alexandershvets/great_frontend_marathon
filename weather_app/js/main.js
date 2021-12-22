@@ -73,7 +73,7 @@ function errorHandler(error) {
   alert(error.message);
 }
 
-function renderUINow(weatherInCity) {
+function renderUINow() {
   UI_ELEMENTS.NOW_TEMP.textContent = weatherInCity.temp;
   UI_ELEMENTS.NOW_CITY_NAME.textContent = weatherInCity.cityName;
   UI_ELEMENTS.NOW_WEATHER_ICON.src = `http://openweathermap.org/img/wn/${weatherInCity.icon}@4x.png`;
@@ -85,19 +85,15 @@ function renderUINow(weatherInCity) {
   } else {
     UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
   }
-
-  return weatherInCity;
 }
 
-function renderUIDetails(weatherInCity) {
+function renderUIDetails() {
   UI_ELEMENTS.DETAILS_SITY_NAME.textContent = weatherInCity.cityName;
   UI_ELEMENTS.DETAILS_TEMP.textContent = weatherInCity.temp;
   UI_ELEMENTS.DETAILS_DESCR.textContent = weatherInCity.descr;
   UI_ELEMENTS.DETAILS_FEELS_LIKE.textContent = weatherInCity.feelsLike;
   UI_ELEMENTS.DETAILS_SUNRISE.textContent = convertTime(weatherInCity.sunrise);
   UI_ELEMENTS.DETAILS_SUNSET.textContent = convertTime(weatherInCity.sunset);
-
-  return weatherInCity;
 }
 
 function getCityName(e) {
