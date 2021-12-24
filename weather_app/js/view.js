@@ -27,15 +27,15 @@ export const UI_ELEMENTS = {
 
 export const render = {
   renderNow() {
-    const weatherInCity = weatherData.weatherInCity;
+    const { temp, cityName, icon } = weatherData.weatherInCity;
   
-    UI_ELEMENTS.NOW_TEMP.textContent = weatherInCity.temp;
-    UI_ELEMENTS.NOW_CITY_NAME.textContent = weatherInCity.cityName;
-    UI_ELEMENTS.NOW_WEATHER_ICON.src = getUrl(null, 'icons', weatherInCity.icon, '@4x');
+    UI_ELEMENTS.NOW_TEMP.textContent = temp;
+    UI_ELEMENTS.NOW_CITY_NAME.textContent = cityName;
+    UI_ELEMENTS.NOW_WEATHER_ICON.src = getUrl(null, 'icons', icon, '@4x');
   
-    storage.saveCurrentCity(weatherInCity.cityName);
+    storage.saveCurrentCity(cityName);
     
-    if ( weatherData.favoriteCities.includes(weatherInCity.cityName) ) {
+    if ( weatherData.favoriteCities.includes(cityName) ) {
       UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
     } else {
       UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
@@ -43,25 +43,25 @@ export const render = {
   },
   
   renderDetails() {
-    const weatherInCity = weatherData.weatherInCity;
+    const { cityName, temp, descr, feelsLike, sunrise, sunset } = weatherData.weatherInCity;
   
-    UI_ELEMENTS.DETAILS_SITY_NAME.textContent = weatherInCity.cityName;
-    UI_ELEMENTS.DETAILS_TEMP.textContent = weatherInCity.temp;
-    UI_ELEMENTS.DETAILS_DESCR.textContent = weatherInCity.descr;
-    UI_ELEMENTS.DETAILS_FEELS_LIKE.textContent = weatherInCity.feelsLike;
-    UI_ELEMENTS.DETAILS_SUNRISE.textContent = weatherInCity.sunrise;
-    UI_ELEMENTS.DETAILS_SUNSET.textContent = weatherInCity.sunset;
+    UI_ELEMENTS.DETAILS_SITY_NAME.textContent = cityName;
+    UI_ELEMENTS.DETAILS_TEMP.textContent = temp;
+    UI_ELEMENTS.DETAILS_DESCR.textContent = descr;
+    UI_ELEMENTS.DETAILS_FEELS_LIKE.textContent = feelsLike;
+    UI_ELEMENTS.DETAILS_SUNRISE.textContent = sunrise;
+    UI_ELEMENTS.DETAILS_SUNSET.textContent = sunset;
   },
   
   renderForecast() {
-    const weatherInCity = weatherData.weatherInCity;
+    const { cityName, forecast } = weatherData.weatherInCity;
   
-    UI_ELEMENTS.FORECAST_CITY_NAME.textContent = weatherInCity.cityName;
+    UI_ELEMENTS.FORECAST_CITY_NAME.textContent = cityName;
   
     let result = '';
     UI_ELEMENTS.FORECAST_LIST.textContent = result;
   
-    weatherInCity.forecast.forEach(item => {
+    forecast.forEach(item => {
       const elem = `
         <li class="forecast-item__item forecast-item">
           <div class="forecast-item__top">
@@ -135,12 +135,13 @@ export const render = {
 export const actions = {
   addCityInFavoriteList() {
     const cityName = weatherData.weatherInCity.cityName;
+    const favoriteCities = weatherData.favoriteCities;
   
-    if ( weatherData.favoriteCities.includes(cityName) ) return;
+    if ( favoriteCities.includes(cityName) ) return;
     
-    weatherData.favoriteCities.push(cityName);
+    favoriteCities.push(cityName);
   
-    storage.saveFavoriteCities(weatherData.favoriteCities);
+    storage.saveFavoriteCities(favoriteCities);
     render.renderFavoriteList(cityName);
     actions.getDeleteButtons();
   },
@@ -159,10 +160,11 @@ export const actions = {
 
 function removeCityFromList() {
   const cityName = this.previousElementSibling.textContent;
+  let favoriteCities = weatherData.favoriteCities;
   
   this.parentElement.remove();
-  weatherData.favoriteCities = weatherData.favoriteCities.filter(item => item !== cityName);
-  storage.saveFavoriteCities(weatherData.favoriteCities);
+  favoriteCities = favoriteCities.filter(item => item !== cityName);
+  storage.saveFavoriteCities(favoriteCities);
 
   if (cityName === weatherData.weatherInCity.cityName) {
     UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
