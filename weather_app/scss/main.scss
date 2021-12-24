@@ -7,7 +7,7 @@
 // COLORS
 $color_dark: #000000;
 $color_white: #ffffff;
-$color_blue: #EC6E4C;
+$color_orange: #EC6E4C;
 $color_grey: #696969;
 $color_periwinkle_gray: #C0C4E5;
 
@@ -19,7 +19,8 @@ $palette_average:          $color_grey;
 $palette_text:             $color_dark;
 $palette_text_placeholder: $color_grey;
 $palette_border:           $color_dark;
-$palette_selection:        $color_blue;
+$palette_button_active:    $color_orange;
+$palette_selection:        $color_orange;
 
 // SIZE
 $radius: 4px;
@@ -273,6 +274,7 @@ body {
   }
   // .details-item__param
   &__param {
+    display: flex;
     font-size: 24px;
     line-height: 116%;
     &:not(:last-child) {
@@ -281,9 +283,12 @@ body {
   }
   // .details-item__param-name
   &__param-name {
+    flex: 1 1 auto;
   }
   // .details-item__param-value
   &__param-value {
+    flex: 0 0 60px;
+    text-align: right;
   }
 }
 
@@ -300,13 +305,8 @@ body {
   }
   // .locations-form-weather__list
   &__list {
-    // padding: 26px 0 36px;
     max-height: 320px;
     overflow: auto;
-    @media (min-width: 561px) {
-      // max-height: 320px;
-      // padding: 16px 0 36px;
-    }
   }
   // .locations-form-weather__item
   &__item {
@@ -316,7 +316,6 @@ body {
     justify-content: space-between;
     transition: background-color .1s ease 0s;
     &:nth-child(odd) {
-      // background-color: #F2F2F2;
       .locations-form-weather__button {
         background-color: lighten($accent, 16%);
       }
@@ -331,11 +330,6 @@ body {
     line-height: 110%;
     text-align: left;
     cursor: pointer;
-    // @media (any-hover: hover) {
-    //   &:hover {
-    //     background-color: lighten($accent, 10%) !important;
-    //   }
-    // }
   }
   // .locations-form-weather__delete
   &__delete {
@@ -346,7 +340,6 @@ body {
     width: 18px;
     height: 18px;
     font-size: 18px;
-    // color: $accent;
     color: lighten(#48484A, 15%);
     transition: color .2s ease 0s;
     @media (any-hover: hover) {
@@ -394,7 +387,6 @@ body {
   border: $border_width solid $palette_border;
   font-size: 18px;
   line-height: 21px;
-  // border-radius: $radius;
   margin-bottom: 9px;
   @media (max-width: 560px) {
     &:last-child {

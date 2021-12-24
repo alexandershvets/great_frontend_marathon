@@ -17,7 +17,7 @@ export const weatherData = {
     sunset: null,
     forecast: null
   },
-
+  
   favoriteCities: storage.getFavoriteCities() || [],
   currentCity: storage.getCurrentCity() || 'Saint Petersburg',
 
@@ -72,7 +72,7 @@ export function getUrl(cityName, sought = 'weather', icon = '4n', sizeIcon = '')
   if (sought === 'icons') {
     return `${API.SERVER_ICONS_URL}${icon}${sizeIcon}.png`;
   }
-  
+
   return `${API.SERVER_URL}${sought}?q=${cityName}&units=metric&appid=${API.KEY}`;
 }
 
