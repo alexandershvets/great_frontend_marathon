@@ -27,6 +27,7 @@ function sendRequest(url) {
 }
 
 UI_ELEMENTS.ADD_SITY_BTN.addEventListener('click', actions.addCityInFavoriteList);
+
 weatherData.favoriteCities.forEach(favoriteCity => render.renderFavoriteList(favoriteCity));
 
 actions.getDeleteButtons();
