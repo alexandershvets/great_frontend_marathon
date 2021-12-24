@@ -3,9 +3,9 @@ import { weatherData, getWeatherJson, errorHandler, getUrl } from './data.js';
 
 sendRequest( getUrl(weatherData.currentCity) );
 
-UI_ELEMENTS.FORMS.forEach(form => form.addEventListener('submit', formHundler));
+UI_ELEMENTS.FORMS.forEach(form => form.addEventListener('submit', formHandler));
 
-function formHundler(e) {
+function formHandler(e) {
   e.preventDefault();
 
   sendRequest( getUrl( actions.getCityName(e) ) );
