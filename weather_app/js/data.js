@@ -3,7 +3,7 @@ import { storage } from './storage.js';
 export const API = {
   SERVER_URL: 'https://api.openweathermap.org/data/2.5/',
   SERVER_ICONS_URL: 'https://openweathermap.org/img/wn/',
-  KEY: 'f660a2fb1e4bad108d6160b7f58c555f'
+  KEY: '8d205e2f51d2fa2c11b2c460a8bba879'
 };
 
 export const weatherData = {
