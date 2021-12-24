@@ -545,7 +545,7 @@ body {
 
 .forecast__list {
   max-height: 275px;
-  padding: 0 18px;
+  padding: 0 12px 0 18px;
   overflow: auto;
 }
 

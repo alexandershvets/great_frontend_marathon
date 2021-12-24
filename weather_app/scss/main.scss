@@ -377,7 +377,7 @@ body {
   // .forecast__list
   &__list {
     max-height: 275px;
-    padding: 0 18px;
+    padding: 0 12px 0 18px;
     overflow: auto;
     @media (max-width: 560px) {
       max-height: 302px;
