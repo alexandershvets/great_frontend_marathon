@@ -1,5 +1,5 @@
-import { weatherData, getWeatherJson, errorHandler, getUrl } from './data.js';
 import { UI_ELEMENTS, render, actions } from './view.js';
+import { weatherData, getWeatherJson, errorHandler, getUrl } from './data.js';
 
 sendRequest( getUrl(weatherData.currentCity) );
 
