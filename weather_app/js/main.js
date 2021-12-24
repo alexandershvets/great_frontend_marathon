@@ -15,12 +15,12 @@ function formHandler(e) {
 
 function sendRequest(url) {
   getWeatherJson(url)
-    .then(weatherData.collectWeather)
+    .then(weatherData.collectDataWeather)
     .then(render.renderNow)
     .then(render.renderDetails)
     .then(() => {
       getWeatherJson( getUrl(weatherData.weatherInCity.cityName, 'forecast') )
-        .then(weatherData.collectForecastWeather)
+        .then(weatherData.collectDataForecastWeather)
         .then(render.renderForecast);
     })
     .catch(errorHandler);

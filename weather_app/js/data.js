@@ -21,7 +21,7 @@ export const weatherData = {
   favoriteCities: storage.getFavoriteCities() || [],
   currentCity: storage.getCurrentCity() || 'Cape Town',
 
-  collectWeather(data) {
+  collectDataWeather(data) {
     weatherData.weatherInCity.cityName = data.name;
     weatherData.weatherInCity.temp = Math.round(data.main.temp);
     weatherData.weatherInCity.descr = data.weather[0].main;
@@ -31,7 +31,7 @@ export const weatherData = {
     weatherData.weatherInCity.sunset = convertTime(data.sys.sunset);
   },
 
-  collectForecastWeather(response) {
+  collectDataForecastWeather(response) {
     weatherData.weatherInCity.forecast = [];
   
     response.list.forEach(item => {
