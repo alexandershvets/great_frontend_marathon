@@ -17,9 +17,9 @@ export const weatherData = {
     sunset: null,
     forecast: null
   },
-  
+
   favoriteCities: storage.getFavoriteCities() || [],
-  currentCity: storage.getCurrentCity() || 'Saint Petersburg',
+  currentCity: storage.getCurrentCity() || 'Cape Town',
 
   collectWeather(data) {
     weatherData.weatherInCity.cityName = data.name;
