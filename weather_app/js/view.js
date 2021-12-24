@@ -135,12 +135,13 @@ export const render = {
 export const actions = {
   addCityInFavoriteList() {
     const cityName = weatherData.weatherInCity.cityName;
+    const favoriteCities = weatherData.favoriteCities;
   
-    if ( weatherData.favoriteCities.includes(cityName) ) return;
+    if ( favoriteCities.includes(cityName) ) return;
     
-    weatherData.favoriteCities.push(cityName);
+    favoriteCities.push(cityName);
   
-    storage.saveFavoriteCities(weatherData.favoriteCities);
+    storage.saveFavoriteCities(favoriteCities);
     render.renderFavoriteList(cityName);
     actions.getDeleteButtons();
   },
@@ -159,10 +160,11 @@ export const actions = {
 
 function removeCityFromList() {
   const cityName = this.previousElementSibling.textContent;
+  let favoriteCities = weatherData.favoriteCities;
   
   this.parentElement.remove();
-  weatherData.favoriteCities = weatherData.favoriteCities.filter(item => item !== cityName);
-  storage.saveFavoriteCities(weatherData.favoriteCities);
+  favoriteCities = favoriteCities.filter(item => item !== cityName);
+  storage.saveFavoriteCities(favoriteCities);
 
   if (cityName === weatherData.weatherInCity.cityName) {
     UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
