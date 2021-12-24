@@ -36,7 +36,7 @@ export const weatherData = {
   
     response.list.forEach(item => {
       weatherData.weatherInCity.forecast.push({
-        date: convertTime(item.dt),
+        date: convertDate(item.dt),
         time: convertTime(item.dt),
         temp: Math.round(item.main.temp),
         feelsLike: Math.round(item.main.feels_like),
@@ -76,11 +76,21 @@ export function getUrl(cityName, sought = 'weather', icon = '4n', sizeIcon = '')
   return `${API.SERVER_URL}${sought}?q=${cityName}&units=metric&appid=${API.KEY}`;
 }
 
-export function convertTime(timestamp) {
+function convertTime(timestamp) {
   const date = new Date(timestamp * 1000);
   const hours = date.getHours();
   const minutes = "0" + date.getMinutes();
   const formattedTime = hours + ':' + minutes.slice(-2);
 
   return formattedTime;
+}
+
+function convertDate(timestamp) {
+  const date = new Date(timestamp * 1000);
+  const day = date.toLocaleString('en-US', { day: "numeric" });
+  const month = date.toLocaleString('en-US', { month: "short" });
+
+  const formattedDate = `${day} ${month}`;
+
+  return formattedDate;
 }
