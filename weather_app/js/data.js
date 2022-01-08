@@ -22,26 +22,30 @@ export const weatherData = {
   currentCity: storage.getCurrentCity() || 'Cape Town',
 
   collectDataWeather(data) {
-    weatherData.weatherInCity.cityName = data.name;
-    weatherData.weatherInCity.temp = Math.round(data.main.temp);
-    weatherData.weatherInCity.descr = data.weather[0].main;
-    weatherData.weatherInCity.icon = data.weather[0].icon;
-    weatherData.weatherInCity.feelsLike = Math.round(data.main.feels_like);
-    weatherData.weatherInCity.sunrise = convertTime(data.sys.sunrise);
-    weatherData.weatherInCity.sunset = convertTime(data.sys.sunset);
+    const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = data;
+
+    weatherData.weatherInCity.cityName = name;
+    weatherData.weatherInCity.temp = Math.round(temp);
+    weatherData.weatherInCity.descr = weather[0].main;
+    weatherData.weatherInCity.icon = weather[0].icon;
+    weatherData.weatherInCity.feelsLike = Math.round(feels_like);
+    weatherData.weatherInCity.sunrise = convertTime(sunrise);
+    weatherData.weatherInCity.sunset = convertTime(sunset);
   },
 
   collectDataForecastWeather(response) {
     weatherData.weatherInCity.forecast = [];
   
     response.list.forEach(item => {
+      const { dt, main: {temp, feels_like}, weather } = item;
+      
       weatherData.weatherInCity.forecast.push({
-        date: convertDate(item.dt),
-        time: convertTime(item.dt),
-        temp: Math.round(item.main.temp),
-        feelsLike: Math.round(item.main.feels_like),
-        descr: item.weather[0].main,
-        icon: item.weather[0].icon,
+        date: convertDate(dt),
+        time: convertTime(dt),
+        temp: Math.round(temp),
+        feelsLike: Math.round(feels_like),
+        descr: weather[0].main,
+        icon: weather[0].icon,
       });
     });
   }

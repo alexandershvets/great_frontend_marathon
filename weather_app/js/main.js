@@ -7,9 +7,9 @@ UI_ELEMENTS.FORMS.forEach(form => form.addEventListener('submit', formHandler));
 
 function formHandler(e) {
   e.preventDefault();
-
-  sendRequest( getUrl( actions.getCityName(e) ) );
   
+  sendRequest( getUrl( actions.getCityName(e) ) );
+
   this.reset();
 }
 
@@ -18,11 +18,9 @@ function sendRequest(url) {
     .then(weatherData.collectDataWeather)
     .then(render.renderNow)
     .then(render.renderDetails)
-    .then(() => {
-      getWeatherJson( getUrl(weatherData.weatherInCity.cityName, 'forecast') )
-        .then(weatherData.collectDataForecastWeather)
-        .then(render.renderForecast);
-    })
+    .then(() => getWeatherJson( getUrl(weatherData.weatherInCity.cityName, 'forecast') ))
+    .then(weatherData.collectDataForecastWeather)
+    .then(render.renderForecast)
     .catch(errorHandler);
 }
 
