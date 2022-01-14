@@ -8,19 +8,25 @@ export const UI_ELEMENTS = {
   CITIES_LIST: document.querySelector('.locations-form-weather__list'),
   ADD_SITY_BTN: document.querySelector('.now-item__like'),
 
-  NOW_TEMP: document.querySelector('.now-item__temperature'),
-  NOW_CITY_NAME: document.querySelector('.now-item__town'),
-  NOW_WEATHER_ICON: document.querySelector('.now-item__icon img'),
-
-  DETAILS_SITY_NAME: document.getElementById('details-city-name'),
-  DETAILS_TEMP: document.getElementById('details-temp'),
-  DETAILS_DESCR: document.getElementById('details-descr'),
-  DETAILS_FEELS_LIKE: document.getElementById('details-feels-like'),
-  DETAILS_SUNRISE: document.getElementById('details-sunrise'),
-  DETAILS_SUNSET: document.getElementById('details-sunset'),
-
-  FORECAST_CITY_NAME: document.querySelector('.forecast__town'),
-  FORECAST_LIST: document.querySelector('.forecast__list'),
+  NOW: {
+    TEMP: document.querySelector('.now-item__temperature'),
+    CITY_NAME: document.querySelector('.now-item__town'),
+    WEATHER_ICON: document.querySelector('.now-item__icon img'),
+  },
+  
+  DETAILS: {
+    SITY_NAME: document.getElementById('details-city-name'),
+    TEMP: document.getElementById('details-temp'),
+    DESCR: document.getElementById('details-descr'),
+    FEELS_LIKE: document.getElementById('details-feels-like'),
+    SUNRISE: document.getElementById('details-sunrise'),
+    SUNSET: document.getElementById('details-sunset'),
+  },
+  
+  FORECAST: {
+    CITY_NAME: document.querySelector('.forecast__town'),
+    LIST: document.querySelector('.forecast__list'),
+  },
 
   TAB: document.querySelector('.tab')
 };
@@ -29,9 +35,9 @@ export const render = {
   renderNow() {
     const { temp, cityName, icon } = weatherData.weatherInCity;
   
-    UI_ELEMENTS.NOW_TEMP.textContent = temp;
-    UI_ELEMENTS.NOW_CITY_NAME.textContent = cityName;
-    UI_ELEMENTS.NOW_WEATHER_ICON.src = getUrl(null, 'icons', icon, '@4x');
+    UI_ELEMENTS.NOW.TEMP.textContent = temp;
+    UI_ELEMENTS.NOW.CITY_NAME.textContent = cityName;
+    UI_ELEMENTS.NOW.WEATHER_ICON.src = getUrl(null, 'icons', icon, '@4x');
   
     storage.saveCurrentCity(cityName);
     
@@ -45,21 +51,21 @@ export const render = {
   renderDetails() {
     const { cityName, temp, descr, feelsLike, sunrise, sunset } = weatherData.weatherInCity;
   
-    UI_ELEMENTS.DETAILS_SITY_NAME.textContent = cityName;
-    UI_ELEMENTS.DETAILS_TEMP.textContent = temp;
-    UI_ELEMENTS.DETAILS_DESCR.textContent = descr;
-    UI_ELEMENTS.DETAILS_FEELS_LIKE.textContent = feelsLike;
-    UI_ELEMENTS.DETAILS_SUNRISE.textContent = sunrise;
-    UI_ELEMENTS.DETAILS_SUNSET.textContent = sunset;
+    UI_ELEMENTS.DETAILS.SITY_NAME.textContent = cityName;
+    UI_ELEMENTS.DETAILS.TEMP.textContent = temp;
+    UI_ELEMENTS.DETAILS.DESCR.textContent = descr;
+    UI_ELEMENTS.DETAILS.FEELS_LIKE.textContent = feelsLike;
+    UI_ELEMENTS.DETAILS.SUNRISE.textContent = sunrise;
+    UI_ELEMENTS.DETAILS.SUNSET.textContent = sunset;
   },
   
   renderForecast() {
     const { cityName, forecast } = weatherData.weatherInCity;
   
-    UI_ELEMENTS.FORECAST_CITY_NAME.textContent = cityName;
+    UI_ELEMENTS.FORECAST.CITY_NAME.textContent = cityName;
   
     let result = '';
-    UI_ELEMENTS.FORECAST_LIST.textContent = result;
+    UI_ELEMENTS.FORECAST.LIST.textContent = result;
   
     forecast.forEach(item => {
       const elem = `
@@ -91,7 +97,7 @@ export const render = {
       result += elem;
     });
   
-    UI_ELEMENTS.FORECAST_LIST.insertAdjacentHTML('beforeend', result);
+    UI_ELEMENTS.FORECAST.LIST.insertAdjacentHTML('beforeend', result);
   },
 
   renderFavoriteList(cityName) {
