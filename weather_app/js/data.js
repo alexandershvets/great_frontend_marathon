@@ -6,6 +6,8 @@ export const API = {
   KEY: '8d205e2f51d2fa2c11b2c460a8bba879'
 };
 
+const DEFAULT_CITY_NAME = 'Cape Town';
+
 export const weatherData = {
   weatherInCity: {
     cityName: null,
@@ -19,7 +21,7 @@ export const weatherData = {
   },
 
   favoriteCities: storage.getFavoriteCities() || [],
-  currentCity: storage.getCurrentCity() || 'Cape Town',
+  currentCity: storage.getCurrentCity() || DEFAULT_CITY_NAME,
 
   collectDataWeather(data) {
     const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = data;
