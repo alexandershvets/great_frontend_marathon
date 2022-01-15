@@ -24,6 +24,7 @@ export const weatherData = {
   currentCity: storage.getCurrentCity() || DEFAULT_CITY_NAME,
 
   collectDataWeather(data) {
+    console.log(weatherData.weatherInCity);
     const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = data;
 
     weatherData.weatherInCity.cityName = name;
@@ -85,7 +86,7 @@ export function getUrl(cityName, sought = 'weather', icon = '4n', sizeIcon = '')
 function convertTime(timestamp) {
   const date = new Date(timestamp * 1000);
   const hours = date.getHours();
-  const minutes = "0" + date.getMinutes();
+  const minutes = '0' + date.getMinutes();
   const formattedTime = hours + ':' + minutes.slice(-2);
 
   return formattedTime;
