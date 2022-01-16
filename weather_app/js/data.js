@@ -8,32 +8,26 @@ export const API = {
 
 const DEFAULT_CITY_NAME = 'Cape Town';
 
+function WeatherInCity(data) {
+  const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = data;
+
+  this.cityName = name;
+  this.temp = Math.round(temp);
+  this.descr = weather[0].main;
+  this.icon = weather[0].icon;
+  this.feelsLike = Math.round(feels_like);
+  this.sunrise = convertTime(sunrise);
+  this.sunset = convertTime(sunset);
+}
+
 export const weatherData = {
-  weatherInCity: {
-    cityName: null,
-    temp: null,
-    descr: null,
-    icon: null,
-    feelsLike: null,
-    sunrise: null,
-    sunset: null,
-    forecast: null
-  },
+  weatherInCity: undefined,
 
   favoriteCities: storage.getFavoriteCities() || [],
   currentCity: storage.getCurrentCity() || DEFAULT_CITY_NAME,
 
   collectDataWeather(data) {
-    console.log(weatherData.weatherInCity);
-    const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = data;
-
-    weatherData.weatherInCity.cityName = name;
-    weatherData.weatherInCity.temp = Math.round(temp);
-    weatherData.weatherInCity.descr = weather[0].main;
-    weatherData.weatherInCity.icon = weather[0].icon;
-    weatherData.weatherInCity.feelsLike = Math.round(feels_like);
-    weatherData.weatherInCity.sunrise = convertTime(sunrise);
-    weatherData.weatherInCity.sunset = convertTime(sunset);
+    weatherData.weatherInCity = new WeatherInCity(data);
   },
 
   collectDataForecastWeather(response) {
