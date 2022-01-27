@@ -18,10 +18,11 @@ function WeatherInCity(data) {
   this.feelsLike = Math.round(feels_like);
   this.sunrise = convertTime(sunrise);
   this.sunset = convertTime(sunset);
+  this.forecast = [];
 }
 
 export const weatherData = {
-  weatherInCity: undefined,
+  weatherInCity: null,
 
   favoriteCities: storage.getFavoriteCities() || [],
   currentCity: storage.getCurrentCity() || DEFAULT_CITY_NAME,
@@ -31,20 +32,31 @@ export const weatherData = {
   },
 
   collectDataForecastWeather(response) {
-    weatherData.weatherInCity.forecast = [];
-  
-    response.list.forEach(item => {
-      const { dt, main: {temp, feels_like}, weather } = item;
-      
-      weatherData.weatherInCity.forecast.push({
-        date: convertDate(dt),
-        time: convertTime(dt),
-        temp: Math.round(temp),
-        feelsLike: Math.round(feels_like),
-        descr: weather[0].main,
-        icon: weather[0].icon,
-      });
-    });
+    const list = response.list;
+    const length = response.list.length;
+    
+    function iter(list, length) {
+      if (length < 0) return;
+
+      addCityWeatherInForecast(list[length]);
+
+      function addCityWeatherInForecast(city) {
+        const { dt, main: { temp, feels_like }, weather } = city;
+
+        weatherData.weatherInCity.forecast.push({
+          date: convertDate(dt),
+          time: convertTime(dt),
+          temp: Math.round(temp),
+          feelsLike: Math.round(feels_like),
+          descr: weather[0].main,
+          icon: weather[0].icon,
+        });
+      }
+
+      iter(list, length - 1);
+    }
+
+    iter(list, length - 1);
   }
 };
 
