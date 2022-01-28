@@ -1,0 +1,47 @@
+
+.title {
+  font-size: 24px;
+  line-height: 116%;
+}
+
+// Degree
+
+._deg {
+  &::after {
+    content: '°';
+  }
+}
+
+// Custom Scroll
+
+::-webkit-scrollbar-button {
+  background-image: url('');
+  background-repeat: no-repeat;
+  width: 5px;
+  height: 0px
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  background-color: $accent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $accent;
+}
+
+::-webkit-resizer {
+  background-image: url('');
+  background-repeat: no-repeat;
+  width: 6px;
+  height: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}

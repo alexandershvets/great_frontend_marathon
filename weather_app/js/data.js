@@ -1,6 +1,7 @@
-import { storage } from './storage.js';
+import { convertTime, convertDate } from './hellpers.js';
+import * as storage from './storage.js';
 
-export const API = {
+export const WEATHER_API = {
   SERVER_URL: 'https://api.openweathermap.org/data/2.5/',
   SERVER_ICONS_URL: 'https://openweathermap.org/img/wn/',
   KEY: '8d205e2f51d2fa2c11b2c460a8bba879'
@@ -8,8 +9,11 @@ export const API = {
 
 const DEFAULT_CITY_NAME = 'Cape Town';
 
-function WeatherInCity(data) {
-  const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = data;
+export const currentCity = storage.getCurrentCity() || DEFAULT_CITY_NAME;
+let favoriteCities = storage.getFavoriteCities() || new Set();
+
+export function WeatherCityData(weatherData) {
+  const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = weatherData;
 
   this.cityName = name;
   this.temp = Math.round(temp);
@@ -18,92 +22,56 @@ function WeatherInCity(data) {
   this.feelsLike = Math.round(feels_like);
   this.sunrise = convertTime(sunrise);
   this.sunset = convertTime(sunset);
-  this.forecast = [];
+  this.forecast = null;
 }
 
-export const weatherData = {
-  weatherInCity: null,
+function ForecastCityData(forecastItem) {
+  const { dt, main: { temp, feels_like }, weather } = forecastItem;
 
-  favoriteCities: storage.getFavoriteCities() || [],
-  currentCity: storage.getCurrentCity() || DEFAULT_CITY_NAME,
+  this.date = convertDate(dt);
+  this.time = convertTime(dt);
+  this.temp = Math.round(temp);
+  this.feelsLike = Math.round(feels_like);
+  this.descr = weather[0].main;
+  this.icon = weather[0].icon;
+}
 
-  collectDataWeather(data) {
-    weatherData.weatherInCity = new WeatherInCity(data);
-  },
+export function collectForecastInWeatherData(forecastData) {
+  const forecastList = [];
 
-  collectDataForecastWeather(response) {
-    const list = response.list;
-    const length = response.list.length;
+  forecastData.list.forEach(forecastItem => {
+    forecastList.push( new ForecastCityData(forecastItem) );
+  });
+
+  return forecastList;
+}
+
+export async function getWeatherData(url) {
+  try {
+    const response = await fetch(url);
+    const weatherData = await response.json();
+
+    if (response.status === 400) {
+      throw new Error('Nothing to geocode');
+    }
     
-    function iter(list, length) {
-      if (length < 0) return;
-
-      addCityWeatherInForecast(list[length]);
-
-      function addCityWeatherInForecast(city) {
-        const { dt, main: { temp, feels_like }, weather } = city;
-
-        weatherData.weatherInCity.forecast.push({
-          date: convertDate(dt),
-          time: convertTime(dt),
-          temp: Math.round(temp),
-          feelsLike: Math.round(feels_like),
-          descr: weather[0].main,
-          icon: weather[0].icon,
-        });
-      }
-
-      iter(list, length - 1);
+    if (response.status === 404) {
+      throw new Error('City not found');
     }
 
-    iter(list, length - 1);
+    return weatherData;
+
+  } catch(err) {
+    alert(err.message);
   }
-};
-
-export function getWeatherJson(url) {
-  return fetch(url)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-
-      if (response.status === 400) {
-        throw new Error('Nothing to geocode');
-      }
-
-      if (response.status === 404) {
-        throw new Error('City not found');
-      }
-    });
 }
 
-export function errorHandler(error) {
-  alert(error.message);
-}
-
-export function getUrl(cityName, sought = 'weather', icon = '4n', sizeIcon = '') {
-  if (sought === 'icons') {
-    return `${API.SERVER_ICONS_URL}${icon}${sizeIcon}.png`;
+export function addCityInFavoriteList(cityName) {
+  if ( Array.isArray(favoriteCities) ) {
+    favoriteCities = new Set(favoriteCities);
   }
 
-  return `${API.SERVER_URL}${sought}?q=${cityName}&units=metric&appid=${API.KEY}`;
-}
+  favoriteCities.add(cityName);
 
-function convertTime(timestamp) {
-  const date = new Date(timestamp * 1000);
-  const hours = date.getHours();
-  const minutes = '0' + date.getMinutes();
-  const formattedTime = hours + ':' + minutes.slice(-2);
-
-  return formattedTime;
-}
-
-function convertDate(timestamp) {
-  const date = new Date(timestamp * 1000);
-  const day = date.toLocaleString('en-US', { day: "numeric" });
-  const month = date.toLocaleString('en-US', { month: "short" });
-
-  const formattedDate = `${day} ${month}`;
-
-  return formattedDate;
+  storage.saveFavoriteCities([...favoriteCities]);
 }
