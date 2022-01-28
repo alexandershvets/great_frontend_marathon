@@ -10,7 +10,7 @@ export const WEATHER_API = {
 const DEFAULT_CITY_NAME = 'Cape Town';
 
 export const currentCity = storage.getCurrentCity() || DEFAULT_CITY_NAME;
-let favoriteCities = storage.getFavoriteCities() || new Set();
+export let favoriteCities = storage.getFavoriteCities() || new Set();
 
 export function WeatherCityData(weatherData) {
   const { name, main: { temp, feels_like }, weather, sys: { sunrise, sunset } } = weatherData;
@@ -72,6 +72,5 @@ export function addCityInFavoriteList(cityName) {
   }
 
   favoriteCities.add(cityName);
-
   storage.saveFavoriteCities([...favoriteCities]);
 }

@@ -30,37 +30,55 @@ export const UI_ELEMENTS = {
   TAB: document.querySelector('.tab')
 };
 
-export function renderNow(weatherCityData) {
-  const { cityName, icon, temp } = weatherCityData;
+export async function renderNow(weatherCityData) {
+  const { cityName, icon: iconName, temp } = weatherCityData;
+  const NOW = UI_ELEMENTS.NOW;
 
-  UI_ELEMENTS.NOW.TEMP.textContent = temp;
-  UI_ELEMENTS.NOW.CITY_NAME.textContent = cityName;
-  UI_ELEMENTS.NOW.WEATHER_ICON.src = getUrl(null, 'icons', icon, '@4x');
+  NOW.TEMP.textContent = temp;
+  NOW.CITY_NAME.textContent = cityName;
+  NOW.WEATHER_ICON.src = getUrl(null, 'icons', iconName, '@4x');
+
+  const { favoriteCities } = await import('./data.js');
+
+  if ( [...favoriteCities].includes(cityName) ) {
+    UI_ELEMENTS.ADD_SITY_BTN.classList.add('active');
+  } else {
+    UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
+  }
 }
 
 export function renderDetails(weatherCityData) {
   const { cityName, temp, feelsLike, descr, sunrise, sunset } = weatherCityData;
+  const DETAILS = UI_ELEMENTS.DETAILS;
   
-  UI_ELEMENTS.DETAILS.SITY_NAME.textContent = cityName;
-  UI_ELEMENTS.DETAILS.TEMP.textContent = temp;
-  UI_ELEMENTS.DETAILS.FEELS_LIKE.textContent = feelsLike;
-  UI_ELEMENTS.DETAILS.DESCR.textContent = descr;
-  UI_ELEMENTS.DETAILS.SUNRISE.textContent = sunrise;
-  UI_ELEMENTS.DETAILS.SUNSET.textContent = sunset;
+  DETAILS.SITY_NAME.textContent = cityName;
+  DETAILS.TEMP.textContent = temp;
+  DETAILS.FEELS_LIKE.textContent = feelsLike;
+  DETAILS.DESCR.textContent = descr;
+  DETAILS.SUNRISE.textContent = sunrise;
+  DETAILS.SUNSET.textContent = sunset;
 }
 
 export function renderForecast(weatherCityData) {
   const { cityName, forecast } = weatherCityData;
+  const FORECAST = UI_ELEMENTS.FORECAST;
 
-  UI_ELEMENTS.FORECAST.CITY_NAME.textContent = cityName;
+  FORECAST.CITY_NAME.textContent = cityName;
   
   let result = '';
+  FORECAST.LIST.textContent = result;
 
   forecast.forEach(forecastItem => {
     result += getForcastElem(forecastItem);
   });
 
-  UI_ELEMENTS.FORECAST.LIST.insertAdjacentHTML('beforeend', result);
+  FORECAST.LIST.insertAdjacentHTML('beforeend', result);
+}
+
+export function renderFavoriteList(cityName) {
+  const elem = getFavoriteElem(cityName);
+
+  UI_ELEMENTS.CITIES_LIST.insertAdjacentHTML('afterbegin', elem);
 }
 
 function getForcastElem(forecastItem) {
@@ -93,6 +111,33 @@ function getForcastElem(forecastItem) {
   `;
 }
 
-export function renderFavoriteList() {
-  console.log(11);
+function getFavoriteElem(cityName) {
+  return `
+    <li class="locations-form-weather__item">
+      <button type="submit" class="locations-form-weather__button">${cityName}</button>
+      <button type="button" class="locations-form-weather__delete _icon-delete"></button>
+    </li>
+  `;
+}
+
+export function deleteBtnsInit() {
+  const deleteButtons = document.querySelectorAll('.locations-form-weather__delete');
+
+  deleteButtons.forEach(deleteBtn => deleteBtn.addEventListener('click', deleteBtnHundler));
+}
+
+async function deleteBtnHundler() {
+  const cityName = this.previousElementSibling.textContent;
+
+  const storage = await import('./storage.js');
+  console.log('storage: ', storage);
+  
+  const favoriteCities = new Set( storage.getFavoriteCities() );
+  
+  favoriteCities.delete(cityName);
+  storage.saveFavoriteCities([...favoriteCities]);
+  this.parentNode.remove();
+  
+  UI_ELEMENTS.ADD_SITY_BTN.classList.remove('active');
+  console.log('deleteBtn');
 }

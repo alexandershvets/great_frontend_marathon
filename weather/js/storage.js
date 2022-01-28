@@ -1,13 +1,9 @@
-// storage.saveFavoriteCities(favoriteCities)
-// const favoriteCities = storage.getFavoriteCities();
-// const currentCity = storage.getCurrentCity();
-
 function saveFavoriteCities(favoriteCities) {
   localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
 }
 
 function getFavoriteCities() {
-  return JSON.parse( localStorage.getItem('favoriteCities') );
+  return JSON.parse( localStorage.getItem('favoriteCities') ) || [];
 }
 
 function saveCurrentCity(cityName) {
@@ -18,9 +14,4 @@ function getCurrentCity() {
   return localStorage.getItem('currentCity');
 }
 
-export {
-  saveFavoriteCities,
-  getFavoriteCities,
-  saveCurrentCity,
-  getCurrentCity
-};
+export { saveFavoriteCities, getFavoriteCities, saveCurrentCity, getCurrentCity};
