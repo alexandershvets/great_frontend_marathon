@@ -7,9 +7,9 @@ This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript 
 
 [Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather_app)
 
-## Weather App (version 1)
+## Weather (version 1)
 
-[Weather App](https://alexandershvets.github.io/great_frontend_marathon/weather/)
+[Weather](https://alexandershvets.github.io/great_frontend_marathon/weather/)
 
 [Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather)
 
