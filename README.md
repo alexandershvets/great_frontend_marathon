@@ -3,6 +3,8 @@ This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript 
 
 ## Weather (version 2)
 
+(async/await, Set, Dynamic Import, recursion)
+
 [Weather](https://alexandershvets.github.io/great_frontend_marathon/weather/)
 
 [Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather)
