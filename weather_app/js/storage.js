@@ -1,26 +1,17 @@
-// storage.saveFavoriteCities(favoriteCities)
-// const favoriteCities = storage.getFavoriteCities();
-// const currentCity = storage.getCurrentCity();
+export const storage = {
+  saveFavoriteCities(favoriteCities) {
+    localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
+  },
 
-function saveFavoriteCities(favoriteCities) {
-  localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
-}
+  getFavoriteCities() {
+    return JSON.parse( localStorage.getItem('favoriteCities') );
+  },
 
-function getFavoriteCities() {
-  return JSON.parse( localStorage.getItem('favoriteCities') );
-}
+  saveCurrentCity(currentCity) {
+    localStorage.setItem('currentCity', currentCity);
+  },
 
-function saveCurrentCity(cityName) {
-  localStorage.setItem('currentCity', cityName);
-}
-
-function getCurrentCity() {
-  return localStorage.getItem('currentCity');
-}
-
-export {
-  saveFavoriteCities,
-  getFavoriteCities,
-  saveCurrentCity,
-  getCurrentCity
+  getCurrentCity() {
+    return localStorage.getItem('currentCity');
+  }
 };

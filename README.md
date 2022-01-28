@@ -3,15 +3,19 @@ This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript 
 
 ## Weather App (version 2)
 
-[Weather App](https://alexandershvets.github.io/great_frontend_marathon/weather_app/)
+[Weather App](https://alexandershvets.github.io/great_frontend_marathon/weather/)
+
+[Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather)
+
+## Weather App (version 1)
+
+[Weather](https://alexandershvets.github.io/great_frontend_marathon/weather_app/)
 
 [Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather_app)
 
-## Weather (version 1)
+## ToDo
 
-[Weather](https://alexandershvets.github.io/great_frontend_marathon/weather/)
 
-[Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather)
 
 ## Calculator
 
