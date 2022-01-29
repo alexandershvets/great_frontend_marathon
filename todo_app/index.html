@@ -18,109 +18,30 @@
         <div class="page__todo todo">
 
           <div class="todo__row">
-            <h3 class="todo__prioryty">Hight</h3>
+            <h3 class="todo__prioryty">High</h3>
 
-            <div class="todo__field">
-              <input type="text" placeholder="Добавить важных дел" class="todo__input">
+            <form data-priority="high" class="todo__field">
+              <input type="text" placeholder="Добавить важную задачу" class="todo__input">
 
-              <div class="task__cross task__cross_add">
+              <button type="submit" class="task__btn task__btn_add">
                 <span></span>
-              </div>
-            </div>
+              </button>
+            </form>
 
-            <div class="todo__body">
-
-              <div class="todo__task task">
-                <label class="task__checkbox checkbox">
-                  <input type="checkbox" value="" class="checkbox__input">
-                  <div class="checkbox__text"></div>
-                </label>
-
-                <div class="task__text">
-                  Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Ручеек моей предупредила но обеспечивает океана прямо? Языкового, грустный продолжил!
-                </div>
-
-                <button type="button" class="task__cross task__cross_close">
-                  <span></span>
-                </button>
-              </div>
-
-              <div class="todo__task task">
-                <label class="task__checkbox checkbox">
-                  <input type="checkbox" value="" class="checkbox__input">
-                  <div class="checkbox__text"></div>
-                </label>
-
-                <div class="task__text">
-                  Сверстать этот TODO list
-                </div>
-
-                <button type="button" class="task__cross task__cross_close">
-                  <span></span>
-                </button>
-              </div>
-
-              <div class="todo__task task">
-                <label class="task__checkbox checkbox">
-                  <input type="checkbox" value="" class="checkbox__input">
-                  <div class="checkbox__text"></div>
-                </label>
-
-                <div class="task__text">
-                  Начать делать задачу
-                </div>
-
-                <button type="button" class="task__cross task__cross_close">
-                  <span></span>
-                </button>
-              </div>
-
-            </div>
+            <div data-priority="high" class="todo__body"></div>
           </div>
 
           <div class="todo__row">
             <h3 class="todo__prioryty">Low</h3>
 
-            <div class="todo__field">
-              <input type="text" placeholder="Добавить" class="todo__input">
-              <div class="task__cross task__cross_add">
+            <form data-priority="low" class="todo__field">
+              <input type="text" placeholder="Добавить задачу" class="todo__input">
+              <button type="submit" class="task__btn task__btn_add">
                 <span></span>
-              </div>
-            </div>
+              </button>
+            </form>
 
-            <div class="todo__body">
-
-              <div class="todo__task task">
-                <label class="task__checkbox checkbox">
-                  <input type="checkbox" value="" class="checkbox__input">
-                  <div class="checkbox__text"></div>
-                </label>
-
-                <div class="task__text">
-                  Посмотреть ютубчик
-                </div>
-
-                <button type="button" class="task__cross task__cross_close">
-                  <span></span>
-                </button>
-              </div>
-
-              <div class="todo__task task">
-                <label class="task__checkbox checkbox">
-                  <input type="checkbox" value="" class="checkbox__input">
-                  <div class="checkbox__text"></div>
-                </label>
-
-                <div class="task__text">
-                  Начать делать задачу
-                </div>
-
-                <button type="button" class="task__cross task__cross_close">
-                  <span></span>
-                </button>
-              </div>
-
-            </div>
+            <div data-priority="low" class="todo__body"></div>
           </div>
 
         </div>
@@ -130,6 +51,6 @@
    
   </div>
   
-  <script src="js/main.js"></script>
+  <script src="js/main.js" type="module"></script>
 </body>
 </html>

@@ -157,7 +157,7 @@ body {
   overflow: hidden;
 }
 
-.todo__field .task__cross {
+.todo__field .task__btn {
   position: absolute;
   top: 50%;
   right: 14px;
@@ -218,6 +218,10 @@ body {
   }
 }
 
+.task.done {
+  background-color: rgba(229, 229, 229, 0.6);
+}
+
 .task__checkbox {
   margin-top: 3px;
 }
@@ -230,7 +234,7 @@ body {
   overflow: hidden;
 }
 
-.task__cross {
+.task__btn {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -246,7 +250,7 @@ body {
   cursor: pointer;
 }
 
-.task__cross span {
+.task__btn span {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -257,7 +261,7 @@ body {
   transition: background-color .2s ease 0s;
 }
 
-.task__cross span::before {
+.task__btn span::before {
   content: '';
   display: block;
   width: 20px;
@@ -269,35 +273,36 @@ body {
 }
 
 @media (any-hover: hover) {
-  .task__cross:hover span,
-  .task__cross:hover span::before {
+  .task__btn:hover span,
+  .task__btn:hover span::before {
     background-color: rgba(0, 0, 0, 0.8);
   }
 }
 
-.task__cross_add span {
+.task__btn_add span {
   -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
           transform: rotate(90deg);
 }
 
-.task__cross_add span::before {
+.task__btn_add span::before {
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
 
-.task__cross_close {
+.task__btn_close {
   margin-top: 4px;
 }
 
-.task__cross_close span {
+.task__btn_close span {
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
+  pointer-events: none;
 }
 
-.task__cross_close span::before {
+.task__btn_close span::before {
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);

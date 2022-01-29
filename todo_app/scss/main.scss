@@ -135,7 +135,7 @@ body {
     border-radius: 6px;
     border: 1px solid $palette_task_actions;
     overflow: hidden;
-    .task__cross {
+    .task__btn {
       position: absolute;
       top: 50%;
       right: 14px;
@@ -179,6 +179,9 @@ body {
       background-color: rgba($palette_dark_bg, .2);
     }
   }
+  &.done {
+    background-color: rgba($palette_dark_bg, .6);
+  }
   // .task__checkbox
   &__checkbox {
     margin-top: 3px;
@@ -189,8 +192,8 @@ body {
     padding: 4px 18px 0 12px;
     overflow: hidden;
   }
-  // .task__cross
-  &__cross {
+  // .task__btn
+  &__btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -222,7 +225,7 @@ body {
         }
       }
     }
-    // .task__cross_add
+    // .task__btn_add
     &_add {
       span {
         transform: rotate(90deg);
@@ -231,11 +234,12 @@ body {
         }
       }
     }
-    // .task__cross_close
+    // .task__btn_close
     &_close {
       margin-top: 4px;
       span {
         transform: rotate(45deg);
+        pointer-events: none;
         &::before {
           transform: rotate(-90deg);
         }

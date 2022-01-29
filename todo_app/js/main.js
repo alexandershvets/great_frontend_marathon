@@ -1,102 +1,28 @@
-const STATUS = {
-  IN_PROGRESS: 'In Progress',
-  TO_DO: 'To Do',
-  DONE: 'Done'
-};
+import { UI_ELEMENTS, renderTask, showTaskList } from "./view.js";
+import { taskList, Task, addTask } from './data.js';
+import * as storage from './storage.js';
 
-const PRIORITY = {
-  HIGHT: 'high',
-  LOW: 'low'
-};
+showTaskList();
 
-let id = 0;
+export let id = JSON.parse( storage.getTaskId() ) || 0;
 
-let list = [];
+UI_ELEMENTS.FORMS.forEach(form => form.addEventListener('submit', formHundler));
 
-function changeStatus(id, status = STATUS.TO_DO) {
-  getTask(id).status = status;
-}
+function formHundler(e) {
+  e.preventDefault();
 
-function changePriority(id, priority = PRIORITY.HIGHT) {
-  getTask(id).priority = priority;
-}
+  const taskName = this.querySelector('.todo__input').value.trim();
+  const priority = this.dataset.priority;
 
-function addTask(name) {
+  if (taskName === '') return;
+
   id++;
-  
-  list.push({
-    id,
-    name,
-    status: undefined,
-    priority: undefined
-  });
+  storage.setTaskId(id);
+  const task = new Task(id, taskName, priority);
 
-  changeStatus(id);
-  changePriority(id);
+  addTask(task);
+  renderTask(task);
+  storage.setTaskList(taskList);
+
+  this.reset();
 }
-
-function deleteTask(id) {
-  list = list.filter(task => task.id !== id);
-}
-
-function showBy(typeSort) {
-  switch (typeSort) {
-    case 'status':
-      showList(STATUS, typeSort);
-      break;
-    case 'priority':
-      showList(PRIORITY, typeSort);
-      break;
-    default:
-      return 'Error';
-  }
-}
-
-function showList(params, typeSort) {
-  const sortedList = sortList(params, typeSort);
-
-  for (let key in sortedList) {
-    const taskNames = sortedList[key];
-    const isEmptyTaskNames = !taskNames.length;
-
-    console.log(key);
-
-    if (isEmptyTaskNames) console.log(' -');
-
-    taskNames.forEach(task => console.log(` "${task}",`));
-  }
-}
-
-function sortList(params, typeSort) {
-  const sortedList = {};
-
-  for (let key in params) {
-    sortedList[params[key]] = list
-      .filter(task => task[typeSort] === params[key])
-      .map(task => task.name);
-  }
-
-  return sortedList;
-}
-
-function getTask(id) {
-  return list.find(task => task.id === id);
-}
-
-
-addTask('create a task');
-addTask('make a bed');
-addTask('write a post');
-addTask('have a walk');
-addTask('write TODO');
-
-changeStatus(1, 'In Progress');
-changeStatus(4, 'In Progress');
-changeStatus(5, 'Done');
-
-changePriority(1, 'low');
-
-deleteTask(4);
-
-// showBy('status');
-showBy('priority');
