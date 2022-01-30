@@ -1,5 +1,3 @@
-import * as storage from './storage.js';
-
 import { TASK_INFO, changeStatus, getTask, deleteTask } from './data.js';
 import { taskList } from './data.js';
 import * as storage from './storage.js';
