@@ -3,7 +3,7 @@ import * as storage from './storage.js';
 export const TASK_INFO = {
   STATUS: {
     TO_DO: 'todo',
-    DONE: 'Done'
+    DONE: 'done'
   },
   PRIORITY: {
     HIGH: 'high',
@@ -11,6 +11,7 @@ export const TASK_INFO = {
   }
 };
 
+window.id = +storage.getTaskId() || 0;
 export let taskList = JSON.parse( storage.getTaskList() ) || [];
 
 export function addTask(task) {
