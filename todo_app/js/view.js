@@ -1,6 +1,7 @@
-import { TASK_INFO, changeStatus, getTask, deleteTask } from './data.js';
-import { taskList } from './data.js';
-import * as storage from './storage.js';
+import { TASK_INFO, changeStatus, getTask, deleteTask } from './data';
+import { taskList } from './data';
+import * as storage from './storage';
+import { format } from 'date-fns';
 
 export const UI_ELEMENTS = {
   FORMS: document.querySelectorAll('.todo__field'),
@@ -10,7 +11,7 @@ export const UI_ELEMENTS = {
   }
 };
 
-export async function renderTask(task) {
+export function renderTask(task) {
   const { id, name, prioryty, status } = task;
 
   const taskElem = (status === TASK_INFO.STATUS.DONE) ?
@@ -46,6 +47,9 @@ function createTaskElement(id, taskName, className = '', checked = '') {
       <button type="button" class="task__btn task__btn_close">
         <span></span>
       </button>
+      <div class="task__date">
+        ${format(new Date(), 'dd MM yyy')}
+      </div>
     </div>
   `;
 }
@@ -56,7 +60,7 @@ export function getTaskElements() {
   taskElements.forEach(taskElem => taskElem.addEventListener('click', taskHundler));
 }
 
-async function taskHundler(e) {
+function taskHundler(e) {
   const target = e.target;
   
   if (target && target.classList.contains('checkbox__input')) {
@@ -88,6 +92,6 @@ async function taskHundler(e) {
   }
 }
 
-export async function showTaskList() {
+export function showTaskList() {
   taskList.forEach(task => renderTask(task));
 }

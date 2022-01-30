@@ -1,4 +1,4 @@
-import * as storage from './storage.js';
+import * as storage from './storage';
 
 export const TASK_INFO = {
   STATUS: {

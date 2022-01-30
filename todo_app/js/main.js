@@ -1,6 +1,6 @@
-import { UI_ELEMENTS, renderTask, showTaskList } from "./view.js";
-import { taskList, Task, addTask } from './data.js';
-import * as storage from './storage.js';
+import { UI_ELEMENTS, renderTask, showTaskList } from './view';
+import { taskList, Task, addTask } from './data';
+import * as storage from './storage';
 
 showTaskList();
 
@@ -14,10 +14,10 @@ function formHundler(e) {
 
   if (taskName === '') return;
 
-  window.id++;
+  const id = window.id++;
 
-  storage.setTaskId(window.id);
-  const task = new Task(window.id, taskName, priority);
+  storage.setTaskId(id);
+  const task = new Task(id, taskName, priority);
 
   addTask(task);
   renderTask(task);
