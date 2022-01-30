@@ -14,9 +14,10 @@ function formHundler(e) {
 
   if (taskName === '') return;
 
-  id++;
-  storage.setTaskId(id);
-  const task = new Task(id, taskName, priority);
+  window.id++;
+
+  storage.setTaskId(window.id);
+  const task = new Task(window.id, taskName, priority);
 
   addTask(task);
   renderTask(task);
