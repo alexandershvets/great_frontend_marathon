@@ -7,11 +7,11 @@ function getTaskList() {
 }
 
 function setTaskId(id) {
-  localStorage.setItem('id', id);
+  localStorage.setItem('taskId', id);
 }
 
 function getTaskId() {
-  return localStorage.getItem('id');
+  return localStorage.getItem('taskId');
 }
 
 export { setTaskList, getTaskList, setTaskId, getTaskId };

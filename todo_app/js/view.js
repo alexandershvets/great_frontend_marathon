@@ -1,3 +1,5 @@
+import * as storage from './storage.js';
+
 import { TASK_INFO, changeStatus, getTask, deleteTask } from './data.js';
 import { taskList } from './data.js';
 
@@ -70,8 +72,6 @@ async function taskHundler(e) {
       changeStatus(idTargetTask, TASK_INFO.STATUS.TO_DO);
     }
 
-    const storage = await import('./storage.js');
-
     storage.setTaskList(taskList);
     target.closest('.task').classList.toggle('done');
   }
@@ -80,6 +80,7 @@ async function taskHundler(e) {
     const idTargetTask = getIdTargetTask(target);
 
     deleteTask(idTargetTask);
+    storage.setTaskList(taskList);
     target.parentNode.remove();
   }
 

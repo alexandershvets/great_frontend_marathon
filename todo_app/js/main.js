@@ -4,8 +4,6 @@ import * as storage from './storage.js';
 
 showTaskList();
 
-export let id = JSON.parse( storage.getTaskId() ) || 0;
-
 UI_ELEMENTS.FORMS.forEach(form => form.addEventListener('submit', formHundler));
 
 function formHundler(e) {
