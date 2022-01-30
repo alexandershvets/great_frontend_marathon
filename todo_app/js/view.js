@@ -1,5 +1,6 @@
 import { TASK_INFO, changeStatus, getTask, deleteTask } from './data.js';
 import { taskList } from './data.js';
+import * as storage from './storage.js';
 
 export const UI_ELEMENTS = {
   FORMS: document.querySelectorAll('.todo__field'),
@@ -70,8 +71,6 @@ async function taskHundler(e) {
       changeStatus(idTargetTask, TASK_INFO.STATUS.TO_DO);
     }
 
-    const storage = await import('./storage.js');
-
     storage.setTaskList(taskList);
     target.closest('.task').classList.toggle('done');
   }
@@ -80,6 +79,7 @@ async function taskHundler(e) {
     const idTargetTask = getIdTargetTask(target);
 
     deleteTask(idTargetTask);
+    storage.setTaskList(taskList);
     target.parentNode.remove();
   }
 

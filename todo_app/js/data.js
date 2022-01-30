@@ -2,7 +2,7 @@ import * as storage from './storage.js';
 
 export const TASK_INFO = {
   STATUS: {
-    TO_DO: 'To Do',
+    TO_DO: 'todo',
     DONE: 'Done'
   },
   PRIORITY: {
@@ -15,7 +15,6 @@ export let taskList = JSON.parse( storage.getTaskList() ) || [];
 
 export function addTask(task) {
   taskList.push(task);
-  // storage.setTaskList(taskList);
 }
 
 export function Task(id, name, prioryty, status = TASK_INFO.STATUS.TO_DO) {
@@ -35,5 +34,4 @@ export function getTask(id) {
 
 export function deleteTask(id) {
   taskList = taskList.filter(task => task.id !== id);
-  storage.setTaskList(taskList);
 }
