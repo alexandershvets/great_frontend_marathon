@@ -25,7 +25,7 @@ export function convertTime(timestamp) {
 
 export function convertDate(timestamp) {
   const date = new Date(timestamp * 1000);
-  const day = date.toLocaleString('en-US', { day: "numeric" });
+  const day = date.toLocaleString('en-US', { day: 'numeric' });
   const month = date.toLocaleString('en-US', { month: "short" });
 
   const formattedDate = `${day} ${month}`;
