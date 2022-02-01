@@ -1,6 +1,6 @@
-import { TASK_INFO, changeStatus, getTask, deleteTask } from './data';
-import { taskList } from './data';
-import * as storage from './storage';
+import { TASK_INFO, changeStatus, getTask, deleteTask } from './data.js';
+import { taskList } from './data.js';
+import * as storage from './storage.js';
 import { format } from 'date-fns';
 
 export const UI_ELEMENTS = {

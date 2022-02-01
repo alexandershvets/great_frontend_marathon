@@ -1,6 +1,6 @@
-import { UI_ELEMENTS, renderTask, showTaskList } from './view';
-import { taskList, Task, addTask } from './data';
-import * as storage from './storage';
+import { UI_ELEMENTS, renderTask, showTaskList } from './view.js';
+import { taskList, Task, addTask } from './data.js';
+import * as storage from './storage.js';
 
 showTaskList();
 
