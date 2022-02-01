@@ -4,7 +4,7 @@
   "description": "ToDo App",
   "main": "index.js",
   "scripts": {
-    "dev": "npx parcel index.html"
+    "dev": "parcel index.html"
   },
   "author": "",
   "license": "ISC",
