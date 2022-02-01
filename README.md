@@ -17,7 +17,7 @@ This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript 
 
 ## ToDo App (version 1)
 
-[Weather App](https://alexandershvets.github.io/great_frontend_marathon/todo_app/)
+[ToDo App](https://alexandershvets.github.io/great_frontend_marathon/todo_app/)
 
 [Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/todo_app)
 
