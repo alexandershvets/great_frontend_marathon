@@ -1,4 +1,3 @@
-
 class Storage {
   constructor(key, {defaultValue = null, storageType = 'local'} = {}) {
     this.key = key;
