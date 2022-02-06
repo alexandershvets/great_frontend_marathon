@@ -28,7 +28,7 @@ class Storage {
 
   isEmpty() {
     const data = this.getStorage().getItem(this.key);
-    return (data === 'undefined' || data === 'null');
+    return data === 'undefined' || data === 'null';
   }
 
   getStorage() {
@@ -58,7 +58,7 @@ console.log( names.get() );
 console.log( names.isEmpty() );
 
 favorites.set('value2');
-// storage2.set(null);
+// favorites.set(null);
 console.log( favorites.get() );
 // storage2.clear();
 console.log( favorites.isEmpty() );
