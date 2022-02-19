@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular&display=swap&subset=cyrillic-ext');
+// @import 'icons';
+@import "null";
+
+// COLORS
+$color_dark: #23262f;
+$color_white: #FCFCFD;
+$color_grey: #F4F5F6;
+$color_blue: #3B71FE;
+
+// PALETTE COLORS
+$accent: $color_blue;
+$palette_main_bg: $color_white;
+$palette_message_bg: $color_grey;
+$palette_text: $color_dark;
+
+// SIZE
+// $radius: 30px;
+// $border_width: 1px;
+
+::selection {
+  background-color: $accent;
+  color: #fff;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 116%;
+  background-color: $palette_main_bg;
+  color: $palette_text;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+._container {
+  max-width: 644px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.page {
+  // .page__container
+  &__container {
+  }
+}
+
+@import 'ui';
+
+// Chat App
+

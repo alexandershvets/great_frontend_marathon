@@ -1,0 +1,8 @@
+
+// Degree
+
+._deg {
+  &::after {
+    content: '°';
+  }
+}

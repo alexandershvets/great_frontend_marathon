@@ -1,0 +1,24 @@
+{
+  "name": "chat_app",
+  "version": "1.0.0",
+  "description": "Chat",
+  "scripts": {
+    "start": "parcel src/index.html --no-source-maps --open",
+    "build": "parcel build src/index.html --no-source-maps --no-cache --public-url ."
+  },
+  "author": "Alexander Shvets",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.3.2",
+    "parcel": "^2.3.2",
+    "parcel-plugin-clean-easy": "^1.0.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.28.0",
+    "js-cookie": "^3.0.1"
+  },
+  "parcelCleanPaths": [
+    "dist",
+    ".parcel-cache"
+  ]
+}
