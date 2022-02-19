@@ -1,0 +1,61 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:regular&display=swap&subset=cyrillic-ext";
+@charset "UTF-8";
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+*:focus,
+*:active {
+  outline: none;
+}
+html,
+body {
+  min-width: 320px;
+  height: 100%;
+}
+ul {
+  list-style-type: none;
+}
+button {
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+::selection {
+  background-color: #3B71FE;
+  color: #fff;
+}
+body {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 116%;
+  background-color: #FCFCFD;
+  color: #23262f;
+  overflow-x: hidden;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+._container {
+  max-width: 644px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+._deg::after {
+  content: "°";
+}
