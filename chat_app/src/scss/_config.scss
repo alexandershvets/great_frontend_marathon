@@ -1,0 +1,55 @@
+@import 'mixins';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular&display=swap&subset=cyrillic-ext');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700&display=swap&subset=cyrillic-ext');
+// @import 'icons';
+
+// COLORS
+$color_dark: #23262f;
+$color_white: #FCFCFD;
+$color_grey: #F4F5F6;
+$color_blue: #3B71FE;
+$color_red: #ff4271;
+$color_green: #5FB3B3;
+$color_orange: #F99157;
+$color_purple: #7778d1;
+$color_tundora: #24292F;
+$color_darkgrey: #B1B5C3;
+
+// PALETTE COLORS
+$accent:                $color_blue;
+$palette_main_bg:       $color_white;
+$palette_border:        $color_tundora;
+$palette_header_bg:     $color_tundora;
+$palette_footer_bg:     $color_tundora;
+$palette_message_bg:    $color_grey;
+$palette_date:          $color_darkgrey;
+$palette_text_dark:     $color_dark;
+$palette_text_light:    $color_white;
+$palette_button_dark:   $color_dark;
+$palette_button_light:  $color_orange;
+$palette_select:        $color_purple;
+
+// SIZE
+$gap: 10px;
+$radius: 14px;
+$border_width: 2px;
+
+// FONTS
+$fontFamily: Roboto, sans-serif;
+$fontWeight: 400;
+$fontSize: 16px;
+$textColor: $palette_text_dark;
+$lineHeight: 1;
+
+// GRID
+$minWidth: 320px;
+$maxWidth: 1920;
+$maxWidthContainer: 1140;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+@import 'null';
+@import 'ui';

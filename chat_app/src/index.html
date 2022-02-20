@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,59 @@
   <link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon">
   <title>Chat</title>
 </head>
-<body>
 
+<body>
   <div class="wrapper">
 
     <main class="page">
       <div class="page__container _container">
         
-        CHAT
+        <div class="page__chat chat">
+          <div class="chat__actions actions">
+            <a href="#" class="actions__button button actions__button_settings">Настройки</a>
+            <a href="#" class="actions__button button actions__button_come-in">Войти</a>
+          </div>
+
+          <div class="chat__messages-area messages-area">
+            <div class="messages-area__message message">
+              <span class="message__user-name">Alexander Shvets</span>
+              <span class="message__text">Добрый день!</span>
+              <time class="message__time" datetime="18:45">18:45</time>
+            </div>
+
+            <div class="messages-area__message message message_incoming">
+              <span class="message__user-name">Собеседник мой</span>
+              <span class="message__text">Добрый день!</span>
+              <time class="message__time" datetime="18:45">18:45</time>
+            </div>
+
+            <div class="messages-area__message message message_incoming">
+              <span class="message__user-name">Собеседник мой</span>
+              <span class="message__text">А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
+              <time class="message__time" datetime="18:45">18:45</time>
+            </div>
+
+            <div class="messages-area__message message">
+              <span class="message__user-name">Alexander Shvets</span>
+              <span class="message__text">Добрый день!</span>
+              <time class="message__time" datetime="18:45">18:45</time>
+            </div>
+          </div>
+
+          <form class="chat__form-send-message form-send-message">
+            <div class="form-send-message__field">
+              <!-- <input type="text" name="message" placeholder="сообщение" class="form-send-message__input"> -->
+              <textarea name="message" placeholder="Сообщение.." class="form-send-message__textarea"></textarea>
+              <button type="submit" class="form-send-message__send-button">
+                <svg viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g>
+                    <path d="M21.5,11.1l-17.9-9C2.7,1.7,1.7,2.5,2.1,3.4l2.5,6.7L16,12L4.6,13.9l-2.5,6.7c-0.3,0.9,0.6,1.7,1.5,1.2l17.9-9   C22.2,12.5,22.2,11.5,21.5,11.1z"/>
+                  </g>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
         
       </div>
     </main>
