@@ -39,11 +39,11 @@
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 9px;
   border-radius: 9px;
-  background-color: $accent;
+  background-color: $color_dark;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: $accent;
+  background-color: $color_dark;
 }
 
 ::-webkit-resizer {
@@ -55,6 +55,9 @@
 
 ::-webkit-scrollbar {
   width: 6px;
+  @media (max-width: $md4 + px) {
+    display: none;
+  }
 }
 
 .form-send-message__textarea::-webkit-scrollbar {

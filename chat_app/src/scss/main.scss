@@ -98,16 +98,23 @@ body {
 }
 
 .messages-area {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: flex-end;
   flex: 1 1 auto;
   padding: $gap $gap $gap * 2;
   border-left: $border_width solid $palette_border;
   border-right: $border_width solid $palette_border;
   background-color: #fff;
+  overflow: auto;
   @media (max-width: $md4 + px) {
     padding: $gap calc($gap / 2) $gap * 2;
+  }
+  // .messages-area__list
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
   // .messages-area__message
   &__message {
