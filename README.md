@@ -3,10 +3,10 @@ This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript 
 
 ## Chat
 (...)
+
 [Chat](https://alexandershvets.github.io/great_frontend_marathon/chat_app/)
 
 [Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/chat_app)
-
 
 ## Weather (version 2)
 
