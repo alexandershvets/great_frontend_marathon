@@ -37,13 +37,15 @@
   &__content {
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
+    align-items: flex-start;
     flex: 1 1 auto;
     width: 100%;
     min-height: 100%;
   }
   // .popup__body
   &__body {
+    margin-top: 70px;
     padding: 50px;
     width: 100%;
     max-width: 500px;

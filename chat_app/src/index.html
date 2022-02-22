@@ -17,13 +17,31 @@
         
         <div class="page__chat chat">
           <div class="chat__actions actions">
-            <a href="#settings" class="_popup-link actions__button button actions__button_settings">Настройки</a>
-            <a href="#confirmation" class="_popup-link actions__button button actions__button_come-in">Войти</a>
+            <button type="button" data-popup-open="settings" class="_popup-open actions__button button actions__button_settings">Настройки</button>
+            <button type="button" data-popup-open="authorization" class="_popup-open actions__button button actions__button_come-in">Войти</button>
           </div>
 
           <div class="chat__messages-area messages-area">
             <div class="messages-area__list">
-              <div class="messages-area__message message">
+
+              <template id="tmpl-message">
+                <div class="messages-area__message message">
+                  <span class="message__user-name"></span>
+                  <span class="message__text"></span>
+                  <time class="message__time" datetime=""></time>
+                </div>
+              </template>
+
+              <!-- <div class="messages-area__message message message_incoming">
+                <span class="message__user-name">Собеседник мой</span>
+                <span class="message__text">Добрый день!</span>
+                <time class="message__time" datetime="18:45">18:45</time>
+              </div> -->
+
+
+
+
+              <!-- <div class="messages-area__message message">
                 <span class="message__user-name">Alexander Shvets</span>
                 <span class="message__text">Добрый день!</span>
                 <time class="message__time" datetime="18:45">18:45</time>
@@ -45,33 +63,8 @@
                 <span class="message__user-name">Alexander Shvets</span>
                 <span class="message__text">Добрый день!</span>
                 <time class="message__time" datetime="18:45">18:45</time>
-              </div>
+              </div> -->
 
-
-
-              <div class="messages-area__message message">
-                <span class="message__user-name">Alexander Shvets</span>
-                <span class="message__text">Добрый день!</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div>
-  
-              <div class="messages-area__message message message_incoming">
-                <span class="message__user-name">Собеседник мой</span>
-                <span class="message__text">Добрый день!</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div>
-  
-              <div class="messages-area__message message message_incoming">
-                <span class="message__user-name">Собеседник мой</span>
-                <span class="message__text">А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div>
-  
-              <div class="messages-area__message message">
-                <span class="message__user-name">Alexander Shvets</span>
-                <span class="message__text">Добрый день!</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div>
             </div>
           </div>
 
