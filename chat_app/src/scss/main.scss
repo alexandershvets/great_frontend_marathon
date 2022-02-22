@@ -78,6 +78,8 @@ body {
   justify-content: space-between;
   padding: $gap;
   background-color: $palette_header_bg;
+  box-shadow: 0px 2px 13px rgba(#000, .99);
+  z-index: 5;
   // .actions__button
   &__button {
     // .actions__button_settings
@@ -98,9 +100,6 @@ body {
 }
 
 .messages-area {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: flex-end;
   flex: 1 1 auto;
   padding: $gap $gap $gap * 2;
   border-left: $border_width solid $palette_border;
@@ -136,6 +135,8 @@ body {
   &__user-name {
     display: block;
     margin-bottom: 2px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
     font-style: italic;
     font-size: 12px;
     line-height: 119%;
@@ -192,7 +193,6 @@ body {
     resize: none;
     font-size: 14px;
     background-color: #fff;
-    // resize: vertical;
     overflow: auto;
     &::placeholder {
       font-size: 13px;
@@ -207,15 +207,12 @@ body {
     right: 7px;
     height: 30px;
     width: 30px;
-    svg path {
-      fill: #000;
-      transition: fill .25s ease 0s;
-    }
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+    transition: color .25s ease 0s;
     &:hover {
-      svg path {
-        fill: $accent;
-      }
+      color: $accent;
     }
   }
 }
-

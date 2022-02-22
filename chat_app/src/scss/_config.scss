@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:regular&display=swap&subset=cyrillic-ext');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700&display=swap&subset=cyrillic-ext');
-// @import 'icons';
+@import 'icons';
 
 // COLORS
 $color_dark: #23262f;
@@ -53,3 +53,4 @@ $md4: 479.98;
 
 @import 'null';
 @import 'ui';
+@import 'components/modal';

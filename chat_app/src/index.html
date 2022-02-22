@@ -17,8 +17,8 @@
         
         <div class="page__chat chat">
           <div class="chat__actions actions">
-            <a href="#" class="actions__button button actions__button_settings">Настройки</a>
-            <a href="#" class="actions__button button actions__button_come-in">Войти</a>
+            <a href="#settings" class="_popup-link actions__button button actions__button_settings">Настройки</a>
+            <a href="#confirmation" class="_popup-link actions__button button actions__button_come-in">Войти</a>
           </div>
 
           <div class="chat__messages-area messages-area">
@@ -77,15 +77,8 @@
 
           <form class="chat__form-send-message form-send-message">
             <div class="form-send-message__field">
-              <!-- <input type="text" name="message" placeholder="сообщение" class="form-send-message__input"> -->
               <textarea name="message" placeholder="Сообщение.." class="form-send-message__textarea"></textarea>
-              <button type="submit" class="form-send-message__send-button">
-                <svg viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <g>
-                    <path d="M21.5,11.1l-17.9-9C2.7,1.7,1.7,2.5,2.1,3.4l2.5,6.7L16,12L4.6,13.9l-2.5,6.7c-0.3,0.9,0.6,1.7,1.5,1.2l17.9-9   C22.2,12.5,22.2,11.5,21.5,11.1z"/>
-                  </g>
-                </svg>
-              </button>
+              <button type="submit" class="form-send-message__send-button _icon-send"></button>
             </div>
           </form>
         </div>
@@ -93,6 +86,54 @@
       </div>
     </main>
    
+  </div>
+
+  <div data-popup="settings" class="popup popup-settings popup-anim-1">
+    <div class="popup__content">
+      <div class="popup__body">
+        <div class="popup__close _icon-close"></div>
+        <h3 class="popup__title">Настройки</h3>
+
+        <form class="popup__form form-popup">
+          <div class="form-popup__field">
+            <input type="text" name="username" placeholder="Ваше имя" class="form-popup__input">
+            <button type="submit" class="popup-settings__button _icon-arr"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div data-popup="authorization" class="popup popup-authorization popup-anim-1">
+    <div class="popup__content">
+      <div class="popup__body">
+        <div class="popup__close _icon-close"></div>
+        <h3 class="popup__title">Авторизация</h3>
+
+        <form class="popup__form form-popup">
+          <div class="form-popup__field">
+            <input type="text" name="email" placeholder="Ваш email" class="form-popup__input">
+          </div>
+          <button type="submit" class="form-popup__button">Получить код</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div data-popup="confirmation" class="popup popup-confirmation popup-anim-1">
+    <div class="popup__content">
+      <div class="popup__body">
+        <div class="popup__close _icon-close"></div>
+        <h3 class="popup__title">Подтверждение</h3>
+
+        <form class="popup__form form-popup">
+          <div class="form-popup__field">
+            <input type="text" name="token" placeholder="Код" class="form-popup__input">
+          </div>
+          <button type="submit" class="form-popup__button">Войти</button>
+        </form>
+      </div>
+    </div>
   </div>
   
   <script type="module" src="js/main.js"></script>

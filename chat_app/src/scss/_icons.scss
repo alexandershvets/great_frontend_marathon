@@ -26,9 +26,12 @@
   }
 }
 
-._icon-delete:before {
+._icon-close:before {
+  content: "\e902";
+}
+._icon-send:before {
   content: "\e900";
 }
-._icon-search:before {
+._icon-arr:before {
   content: "\e901";
 }
