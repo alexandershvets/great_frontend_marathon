@@ -26,8 +26,15 @@ class MaxStringLengthError extends ValidationError {
   }
 }
 
+class EmailValidError extends ValidationError {
+  constructor() {
+    super(`Email некорректен!`);
+  }
+}
+
 export {
   ValidationError,
   EmptyStringError,
-  MaxStringLengthError
+  MaxStringLengthError,
+  EmailValidError
 };

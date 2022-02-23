@@ -5,6 +5,7 @@ const UI = {
     FORM: document.querySelector('.form-send-message'),
     TEXTAREA: document.querySelector('.form-send-message__textarea'),
   },
+  FORM_AUTH: document.getElementById('form-authorization'),
   AREA_MESSAGES: document.querySelector('.messages-area__list'),
   TEMPLATES: {
     MESSAGE: document.getElementById('tmpl-message'),
@@ -18,6 +19,7 @@ const UI = {
 
 function renderMessage({userName, message, date}) {
   try {
+    
     if (message === '') {
       throw new EmptyStringError();
     }
@@ -41,11 +43,13 @@ function renderMessage({userName, message, date}) {
     UI.AREA_MESSAGES.append(messageElem);
 
   } catch (err) {
+
     if (err instanceof ValidationError) {
       console.log(err.message);
     } else {
       console.log(err);
     }
+
   }
 }
 

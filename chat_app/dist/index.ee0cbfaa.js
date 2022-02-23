@@ -523,6 +523,8 @@ var _mainScss = require("../scss/main.scss");
 var _popup = require("./popup");
 var _view = require("./view");
 var _data = require("./data");
+var _hellpers = require("./hellpers");
+var _error = require("./error");
 _view.UI.FORM_MESSAGE.FORM.addEventListener('submit', (event)=>{
     event.preventDefault();
     formMessageHundler(_view.UI.FORM_MESSAGE.TEXTAREA.value);
@@ -541,11 +543,34 @@ function formMessageHundler(data) {
 function formMessageReset() {
     _view.UI.FORM_MESSAGE.TEXTAREA.value = '';
 }
+_view.UI.FORM_AUTH.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    try {
+        const email = new FormData(this).get('email');
+        if (email === '') throw new _error.EmptyStringError();
+        if (!_hellpers.isValidEmail(email)) throw new _error.EmailValidError();
+        const json = JSON.stringify({
+            email: email
+        });
+        const params = {
+            'Content-type': 'application/json; charset=utf-8'
+        };
+        const response = await _data.sendRequest(_data.API_URI, 'POST', json, params);
+        console.log(response);
+    // ответ {"email":"all.shvets.st@gmail.com","name":"all.shvets.st@gmail.com"}
+    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsbC5zaHZldHMuc3RAZ21haWwuY29tIiwiaWF0IjoxNjQ1NTcxMzQwLCJleHAiOjE2NDYwMTc3NDB9.cqZ8QsoTzafzrmiQppCel17F1uZ8xX7KjuStKq7ZwnE
+    } catch (err) {
+        if (err instanceof _error.ValidationError) console.log(err.message);
+        else console.log(err);
+    } finally{
+        this.reset();
+    }
+});
 window.addEventListener('unhandledrejection', ()=>{
     alert('Произошла непредвиденная ошибка!');
 });
 
-},{"../scss/main.scss":"kOw5V","./popup":"jUySk","./view":"kALtk","./data":"4vWRQ"}],"kOw5V":[function() {},{}],"jUySk":[function(require,module,exports) {
+},{"../scss/main.scss":"kOw5V","./popup":"jUySk","./view":"kALtk","./data":"4vWRQ","./hellpers":"h8Oz6","./error":"iq6dU"}],"kOw5V":[function() {},{}],"jUySk":[function(require,module,exports) {
 var _view = require("./view");
 _view.UI.POPUP.OPEN_LINKS.forEach((openPopupLink)=>{
     openPopupLink.addEventListener('click', ()=>{
@@ -585,6 +610,7 @@ const UI = {
         FORM: document.querySelector('.form-send-message'),
         TEXTAREA: document.querySelector('.form-send-message__textarea')
     },
+    FORM_AUTH: document.getElementById('form-authorization'),
     AREA_MESSAGES: document.querySelector('.messages-area__list'),
     TEMPLATES: {
         MESSAGE: document.getElementById('tmpl-message')
@@ -624,6 +650,8 @@ parcelHelpers.export(exports, "EmptyStringError", ()=>EmptyStringError
 );
 parcelHelpers.export(exports, "MaxStringLengthError", ()=>MaxStringLengthError
 );
+parcelHelpers.export(exports, "EmailValidError", ()=>EmailValidError
+);
 class MyError extends Error {
     constructor(message){
         super(message);
@@ -646,6 +674,11 @@ class EmptyStringError extends ValidationError {
 class MaxStringLengthError extends ValidationError {
     constructor(){
         super(`Не больше 500 символов!`);
+    }
+}
+class EmailValidError extends ValidationError {
+    constructor(){
+        super(`Email некорректен!`);
     }
 }
 
@@ -684,22 +717,24 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DataMessage", ()=>DataMessage
 );
+parcelHelpers.export(exports, "API_URI", ()=>API_URI
+);
+parcelHelpers.export(exports, "sendRequest", ()=>sendRequest
+);
 var _dateFns = require("date-fns");
-/*
-После верстки вам нужно отправлять POST запрос на этот адрес
-https://chat1-341409.oa.r.appspot.com/api/user
-
-в теле запроса должен быть JSON с вашей почтой 
-{ email: ‘my@eamil.com’ }
-
-Если все хорошо - вам на почту придет письмо от ch4tservice@gmail.com
-p.s. скорее всего это письмо попадет в спам (проверьте ваши папки) 
-p.s.s.  пожалуйста, не отправляйте 999 писем в секунду
-*/ const API_URI = 'https://chat1-341409.oa.r.appspot.com/api/user';
+const API_URI = 'https://chat1-341409.oa.r.appspot.com/api/user';
 function DataMessage(message) {
     this.userName = 'Alexander Shvets';
     this.message = message;
     this.date = _dateFns.format(new Date(), 'H:m');
+}
+async function sendRequest(url, method, body, params) {
+    const response = await fetch(url, {
+        method: method,
+        body: body,
+        headers: params
+    });
+    if (response.ok) return await response.json();
 }
 
 },{"date-fns":"5VaJV","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"5VaJV":[function(require,module,exports) {
@@ -3724,6 +3759,15 @@ var monthsInYear = 12;
 var quartersInYear = 4;
 var secondsInHour = 3600;
 var secondsInMinute = 60;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"h8Oz6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "isValidEmail", ()=>isValidEmail
+);
+function isValidEmail(email) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(email);
+}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}]},["kzhsr","aKvBm"], "aKvBm", "parcelRequire6143")
 
