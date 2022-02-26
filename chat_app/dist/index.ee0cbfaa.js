@@ -526,6 +526,11 @@ var _data = require("./data");
 var _view = require("./view");
 var _popup = require("./popup");
 var _error = require("./error");
+const socket = _network.network.connectSocket();
+let socketIsOpen = false;
+socket.addEventListener('open', function() {
+    socketIsOpen = true;
+});
 const userData = new _data.UserData(_cookie.cookies.get(_cookie.cookies.names.userName));
 _view.UI.FORM_MESSAGE.TEXTAREA.onkeydown = (event)=>{
     if (event.code === 'Enter' && !event.shiftKey) return false;
@@ -549,6 +554,8 @@ function formMessageHundler(message) {
     if (_message === '') return;
     if (message.length > 500) return alert(_error.ERROR_MESSAGES.MAX_LENGTH_STRING);
     if (!_cookie.cookies.get(_cookie.cookies.names.userName)) return _popup.popupOpen(_popup.POPUP_NAMES.AUTH);
+    if (!socketIsOpen) return;
+    _network.network.sendMessageSocket(_message);
     userData.message = _message;
     _view.renderMessage(userData);
     _view.scrollToBottom();
@@ -586,18 +593,7 @@ async function formSettingsHundler(event) {
     userData.userName = userName;
     _popup.popupClose();
     this.reset();
-} // const socketUrl = `${network.endpoints.socket}?${cookies.get(cookies.names.token)}`;
- // const socket = new WebSocket(socketUrl);
- // console.log(socket);
- // socket.onopen = function(e) {
- //   socket.send(JSON.stringify({
- //     text: 'Hello, World!',
- //   }));
- // };
- // socket.onmessage = function(event) {
- //   console.log(event.data);
- // };
- // async function getUserData() {
+} // async function getUserData() {
  //   return await network.getUserData(cookies.get(cookies.names.token));
  // }
  // getUserData().then(console.log);
@@ -611,6 +607,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "network", ()=>network
 );
+var _cookie = require("./cookie");
 var _error = require("./error");
 // ws://chat1-341409.oa.r.appspot.com/websockets?TOKEN
 class Network {
@@ -623,6 +620,7 @@ class Network {
             messages: `${this.url.href}api/messages`,
             socket: `ws://${this.url.host}/websockets`
         };
+        this.socket = undefined;
     }
     async sendRequest(url, method, { body , token  } = {
     }) {
@@ -668,67 +666,20 @@ class Network {
             token
         });
     }
+    connectSocket() {
+        const socket = new WebSocket(`${this.endpoints.socket}?${_cookie.cookies.get(_cookie.cookies.names.token)}`);
+        this.socket = socket;
+        return socket;
+    }
+    sendMessageSocket(message) {
+        this.socket.send(JSON.stringify({
+            text: message
+        }));
+    }
 }
 const network = new Network();
 
-},{"./error":"iq6dU","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"iq6dU":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ERROR_MESSAGES", ()=>ERROR_MESSAGES
-);
-parcelHelpers.export(exports, "isValidEmail", ()=>isValidEmail
-);
-parcelHelpers.export(exports, "RequestError", ()=>RequestError
-);
-const ERROR_MESSAGES = {
-    EMAIL_VALID: 'Email некорректен!',
-    EMPTY_STRING: 'Поле не должно быть пустым!',
-    MAX_LENGTH_STRING: 'Не больше 500 символов!',
-    REQUEST_FAIL: 'Ошибка сети',
-    TOKEN: 'Вы уже авторизованы!',
-    UNHANDLED: 'Произошла непредвиденная ошибка!'
-};
-function isValidEmail(email) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(email);
-}
-class RequestError extends Error {
-    constructor(message){
-        super(message);
-        this.name = 'RequestError';
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"j7FRh":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"lfQWm":[function(require,module,exports) {
+},{"./cookie":"lfQWm","./error":"iq6dU","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lfQWm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "cookies", ()=>cookies
@@ -855,7 +806,64 @@ const cookies = new Cookie();
     /* eslint-enable no-var */ return api;
 });
 
-},{}],"4vWRQ":[function(require,module,exports) {
+},{}],"j7FRh":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"iq6dU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ERROR_MESSAGES", ()=>ERROR_MESSAGES
+);
+parcelHelpers.export(exports, "isValidEmail", ()=>isValidEmail
+);
+parcelHelpers.export(exports, "RequestError", ()=>RequestError
+);
+const ERROR_MESSAGES = {
+    EMAIL_VALID: 'Email некорректен!',
+    EMPTY_STRING: 'Поле не должно быть пустым!',
+    MAX_LENGTH_STRING: 'Не больше 500 символов!',
+    REQUEST_FAIL: 'Ошибка сети',
+    TOKEN: 'Вы уже авторизованы!',
+    UNHANDLED: 'Произошла непредвиденная ошибка!'
+};
+function isValidEmail(email) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(email);
+}
+class RequestError extends Error {
+    constructor(message){
+        super(message);
+        this.name = 'RequestError';
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"4vWRQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UserData", ()=>UserData
@@ -3928,7 +3936,7 @@ async function renderMessages() {
     const { messages  } = await _network.network.getHistoryMessages(_cookie.cookies.get(_cookie.cookies.names.token));
     const userData = new _data.UserData();
     messages.forEach(({ user , createdAt , text  }, index)=>{
-        if (index > 30) return;
+        // if(index > 30) return;
         userData.userName = user.name;
         userData.message = text;
         userData.date = _dateFns.format(new Date(createdAt), 'H:m');

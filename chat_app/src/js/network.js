@@ -1,3 +1,4 @@
+import { cookies } from './cookie';
 import { ERROR_MESSAGES, RequestError } from './error';
 
 // ws://chat1-341409.oa.r.appspot.com/websockets?TOKEN
@@ -11,6 +12,7 @@ class Network {
       messages: `${this.url.href}api/messages`,
       socket: `ws://${this.url.host}/websockets`,
     };
+    this.socket = undefined;
   }
 
   async sendRequest(url, method, { body, token } = {}) {
@@ -58,6 +60,19 @@ class Network {
 
   async getHistoryMessages(token) {
     return await this.sendRequest(this.endpoints.messages, 'GET', { token });
+  }
+
+  connectSocket() {
+    const socket = new WebSocket(`${this.endpoints.socket}?${cookies.get(cookies.names.token)}`);
+    this.socket = socket;
+
+    return socket;
+  }
+
+  sendMessageSocket(message) {
+    this.socket.send(JSON.stringify({
+      text: message,
+    }));
   }
 }
 

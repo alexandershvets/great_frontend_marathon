@@ -33,7 +33,7 @@ async function renderMessages() {
   const userData = new UserData();
 
   messages.forEach(({user, createdAt, text}, index) => {
-    if(index > 30) return;
+    // if(index > 30) return;
 
     userData.userName = user.name;
     userData.message = text;

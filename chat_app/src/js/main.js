@@ -6,6 +6,14 @@ import { UI, renderMessage, scrollToBottom } from './view';
 import { POPUP_NAMES, popupOpen, popupClose } from './popup';
 import { ERROR_MESSAGES, isValidEmail } from './error';
 
+
+const socket = network.connectSocket();
+let socketIsOpen = false;
+
+socket.addEventListener('open', function () {
+  socketIsOpen = true;
+});
+
 const userData = new UserData( cookies.get(cookies.names.userName) );
 
 UI.FORM_MESSAGE.TEXTAREA.onkeydown = (event) => {
@@ -43,6 +51,10 @@ function formMessageHundler(message) {
   if ( !cookies.get(cookies.names.userName) ) {
     return popupOpen(POPUP_NAMES.AUTH);
   }
+
+  if (!socketIsOpen) return;
+
+  network.sendMessageSocket(_message);
 
   userData.message = _message;
 
@@ -113,21 +125,6 @@ async function formSettingsHundler(event) {
   popupClose();
   this.reset();
 }
-
-// const socketUrl = `${network.endpoints.socket}?${cookies.get(cookies.names.token)}`;
-
-// const socket = new WebSocket(socketUrl);
-// console.log(socket);
-
-// socket.onopen = function(e) {
-//   socket.send(JSON.stringify({
-//     text: 'Hello, World!',
-//   }));
-// };
-
-// socket.onmessage = function(event) {
-//   console.log(event.data);
-// };
 
 
 // async function getUserData() {
