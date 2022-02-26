@@ -43,7 +43,7 @@ async function renderMessages() {
     renderMessage(userData);
   });
 }
-// renderMessages();
+renderMessages();
 
 function renderMessage({ userName, message, date, incoming}) {
   let messageElem = document.createElement('div');
