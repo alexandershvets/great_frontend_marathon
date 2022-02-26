@@ -32,39 +32,6 @@
                 </div>
               </template>
 
-              <!-- <div class="messages-area__message message message_incoming">
-                <span class="message__user-name">Собеседник мой</span>
-                <span class="message__text">Добрый день!</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div> -->
-
-
-
-
-              <!-- <div class="messages-area__message message">
-                <span class="message__user-name">Alexander Shvets</span>
-                <span class="message__text">Добрый день!</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div>
-  
-              <div class="messages-area__message message message_incoming">
-                <span class="message__user-name">Собеседник мой</span>
-                <span class="message__text">Добрый день!</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div>
-  
-              <div class="messages-area__message message message_incoming">
-                <span class="message__user-name">Собеседник мой</span>
-                <span class="message__text">А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div>
-  
-              <div class="messages-area__message message">
-                <span class="message__user-name">Alexander Shvets</span>
-                <span class="message__text">Добрый день!</span>
-                <time class="message__time" datetime="18:45">18:45</time>
-              </div> -->
-
             </div>
           </div>
 
@@ -87,7 +54,7 @@
         <div class="popup__close _icon-close"></div>
         <h3 class="popup__title">Настройки</h3>
 
-        <form class="popup__form form-popup">
+        <form id="form-settings" class="popup__form form-popup">
           <div class="form-popup__field">
             <input type="text" name="username" placeholder="Ваше имя" class="form-popup__input">
             <button type="submit" class="popup-settings__button _icon-arr"></button>
@@ -119,9 +86,9 @@
         <div class="popup__close _icon-close"></div>
         <h3 class="popup__title">Подтверждение</h3>
 
-        <form class="popup__form form-popup">
+        <form id="form-confirmation" class="popup__form form-popup">
           <div class="form-popup__field">
-            <input type="text" name="token" placeholder="Код" class="form-popup__input">
+            <input type="text" name="token" placeholder="Код" class="form-popup__input popup-confirmation__input">
           </div>
           <button type="submit" class="form-popup__button">Войти</button>
         </form>

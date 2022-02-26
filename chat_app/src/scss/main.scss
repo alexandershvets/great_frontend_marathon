@@ -105,7 +105,7 @@ body {
   border-left: $border_width solid $palette_border;
   border-right: $border_width solid $palette_border;
   background-color: #fff;
-  overflow: auto;
+  overflow-y: auto;
   @media (max-width: $md4 + px) {
     padding: $gap calc($gap / 2) $gap * 2;
   }
@@ -148,6 +148,7 @@ body {
     display: block;
     font-size: 16px;
     line-height: 119%;
+    word-break: break-all;
   }
   // .message__time
   &__time {
@@ -214,5 +215,12 @@ body {
     &:hover {
       color: $accent;
     }
+  }
+}
+
+.popup-confirmation {
+  // .popup-confirmation__input
+  &__input {
+    padding-right: 14px;
   }
 }

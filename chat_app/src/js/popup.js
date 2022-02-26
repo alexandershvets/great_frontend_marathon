@@ -1,5 +1,11 @@
 import { UI } from './view';
 
+const POPUP_NAMES = {
+  AUTH: 'authorization',
+  CONFIR: 'confirmation',
+  SETTINGS: 'settings',
+};
+
 UI.POPUP.OPEN_LINKS.forEach(openPopupLink => {
   openPopupLink.addEventListener('click', () => {
     const popupName = openPopupLink.dataset.popupOpen;
@@ -38,3 +44,9 @@ function popupClose(popupName) {
     popupName.classList.remove('_active');
   }
 }
+
+export {
+  POPUP_NAMES,
+  popupOpen,
+  popupClose
+};

@@ -1,4 +1,7 @@
-import { ValidationError, EmptyStringError, MaxStringLengthError } from './error';
+import { network } from "./network";
+import { UserData } from './data';
+import { format } from 'date-fns';
+import { cookies } from './cookie';
 
 const UI = {
   FORM_MESSAGE: {
@@ -6,10 +9,14 @@ const UI = {
     TEXTAREA: document.querySelector('.form-send-message__textarea'),
   },
   FORM_AUTH: document.getElementById('form-authorization'),
+  FORM_CONFIR: document.getElementById('form-confirmation'),
+  FORM_SETTINGS: document.getElementById('form-settings'),
+
   AREA_MESSAGES: document.querySelector('.messages-area__list'),
   TEMPLATES: {
     MESSAGE: document.getElementById('tmpl-message'),
   },
+
   POPUP: {
     WINDOWS: document.querySelectorAll('.popup'),
     OPEN_LINKS: document.querySelectorAll('._popup-open'),
@@ -17,40 +24,56 @@ const UI = {
   },
 };
 
-function renderMessage({userName, message, date}) {
-  try {
-    
-    if (message === '') {
-      throw new EmptyStringError();
-    }
+async function renderMessages() {
+  const userId = cookies.get(cookies.names.userId);
 
-    if (message.length > 500) {
-      throw new MaxStringLengthError();
-    }
+  if (!userId) return;
 
-    let messageElem = document.createElement('div');
-    messageElem = UI.TEMPLATES.MESSAGE.content.cloneNode(true);
+  const { messages } = await network.getHistoryMessages( cookies.get(cookies.names.token) );
+  const userData = new UserData();
 
-    const messageUserNameElem = messageElem.querySelector('.message__user-name');
-    const messageTextElem = messageElem.querySelector('.message__text');
-    const messageDateElem = messageElem.querySelector('.message__time');
+  messages.forEach(({user, createdAt, text, _id}, index) => {
+    if(index > 30) return;
 
-    messageUserNameElem.textContent = userName;
-    messageTextElem.textContent = message;
-    messageDateElem.textContent = date;
-    messageDateElem.setAttribute('datetime', date);
+    userData.userName = user.name;
+    userData.message = text;
+    userData.date = format(new Date(createdAt), 'H:m');
+    userData.incoming = (userId !== _id);
+    // console.log(userData);
 
-    UI.AREA_MESSAGES.append(messageElem);
+    renderMessage(userData);
+  });
+}
+renderMessages();
 
-  } catch (err) {
+function renderMessage({ userName, message, date, incoming}) {
+  let messageElem = document.createElement('div');
+  messageElem = UI.TEMPLATES.MESSAGE.content.cloneNode(true);
 
-    if (err instanceof ValidationError) {
-      console.log(err.message);
-    } else {
-      console.log(err);
-    }
+  const messageArea = messageElem.querySelector('.messages-area__message');
+  const messageUserNameElem = messageElem.querySelector('.message__user-name');
+  const messageTextElem = messageElem.querySelector('.message__text');
+  const messageDateElem = messageElem.querySelector('.message__time');
 
+  if (incoming) {
+    messageArea.classList.add('message_incoming');
   }
+
+  messageUserNameElem.textContent = userName;
+  messageTextElem.textContent = message;
+  messageDateElem.textContent = date;
+  messageDateElem.setAttribute('datetime', date);
+
+  UI.AREA_MESSAGES.append(messageElem);
 }
 
-export { UI, renderMessage };
+function scrollToBottom() {
+  const elem = document.querySelector('.message:last-child');
+  elem.scrollIntoView();
+}
+
+export {
+  UI,
+  renderMessage,
+  scrollToBottom
+};
