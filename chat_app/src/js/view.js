@@ -25,26 +25,25 @@ const UI = {
 };
 
 async function renderMessages() {
-  const userId = cookies.get(cookies.names.userId);
+  const email = cookies.get(cookies.names.email);
 
-  if (!userId) return;
+  if (!email) return;
 
   const { messages } = await network.getHistoryMessages( cookies.get(cookies.names.token) );
   const userData = new UserData();
 
-  messages.forEach(({user, createdAt, text, _id}, index) => {
+  messages.forEach(({user, createdAt, text}, index) => {
     if(index > 30) return;
 
     userData.userName = user.name;
     userData.message = text;
     userData.date = format(new Date(createdAt), 'H:m');
-    userData.incoming = (userId !== _id);
-    // console.log(userData);
+    userData.incoming = (email !== user.email);
 
     renderMessage(userData);
   });
 }
-renderMessages();
+// renderMessages();
 
 function renderMessage({ userName, message, date, incoming}) {
   let messageElem = document.createElement('div');

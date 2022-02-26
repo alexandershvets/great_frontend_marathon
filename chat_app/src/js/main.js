@@ -45,7 +45,7 @@ function formMessageHundler(message) {
   }
 
   userData.message = _message;
-  console.log(userData);
+
   renderMessage(userData);
   scrollToBottom();
 }
@@ -105,7 +105,7 @@ async function formSettingsHundler(event) {
   network.settingsRequest(userName, cookies.get(cookies.names.token));
   const response = await network.getUserData( cookies.get(cookies.names.token) );
   
-  cookies.set(cookies.names.userId, response._id);
+  cookies.set(cookies.names.email, response.email);
   cookies.set(cookies.names.userName, response.name);
 
   userData.userName = userName;
@@ -114,6 +114,20 @@ async function formSettingsHundler(event) {
   this.reset();
 }
 
+// const socketUrl = `${network.endpoints.socket}?${cookies.get(cookies.names.token)}`;
+
+// const socket = new WebSocket(socketUrl);
+// console.log(socket);
+
+// socket.onopen = function(e) {
+//   socket.send(JSON.stringify({
+//     text: 'Hello, World!',
+//   }));
+// };
+
+// socket.onmessage = function(event) {
+//   console.log(event.data);
+// };
 
 
 // async function getUserData() {

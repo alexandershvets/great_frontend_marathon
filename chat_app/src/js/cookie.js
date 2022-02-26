@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 class Cookie {
   constructor() {
     this.names = {
-      userId: 'userId',
+      email: 'email',
       token: 'token',
       userName: 'userName'
     };

@@ -1,5 +1,6 @@
 import { ERROR_MESSAGES, RequestError } from './error';
 
+// ws://chat1-341409.oa.r.appspot.com/websockets?TOKEN
 class Network {
   constructor() {
     this.url = new URL('https://chat1-341409.oa.r.appspot.com');
@@ -8,6 +9,7 @@ class Network {
       user: `${this.url.href}api/user`,
       me: `${this.url.href}api/user/me`,
       messages: `${this.url.href}api/messages`,
+      socket: `ws://${this.url.host}/websockets`,
     };
   }
 
