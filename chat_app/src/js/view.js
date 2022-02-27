@@ -74,5 +74,6 @@ function scrollToBottom() {
 export {
   UI,
   renderMessage,
+  renderMessages,
   scrollToBottom
 };

@@ -2,19 +2,35 @@ import '../scss/main.scss';
 import { network } from './network';
 import { cookies } from './cookie';
 import { UserData } from './data';
-import { UI, renderMessage, scrollToBottom } from './view';
+import { UI, renderMessage, renderMessages, scrollToBottom } from './view';
 import { POPUP_NAMES, popupOpen, popupClose } from './popup';
 import { ERROR_MESSAGES, isValidEmail } from './error';
+import { format } from 'date-fns';
 
+const userData = new UserData( cookies.get(cookies.names.userName), cookies.get(cookies.names.email) );
 
-const socket = network.connectSocket();
-let socketIsOpen = false;
+if ( cookies.get(cookies.names.email) ) {
+  network.socketInit(addMessageHundler);
+}
 
-socket.addEventListener('open', function () {
-  socketIsOpen = true;
-});
+function addMessageHundler(event) {
+  const { user, text, createdAt } = JSON.parse(event.data);
+  const incomingUserData = new UserData(
+    user.name,
+    user.email,
+    text,
+    format(new Date(createdAt), 'H:m'),
+    true
+  );
 
-const userData = new UserData( cookies.get(cookies.names.userName) );
+  if (userData.email === user.email) {
+    renderMessage(userData);
+  } else {
+    renderMessage(incomingUserData);
+  }
+
+  scrollToBottom();
+}
 
 UI.FORM_MESSAGE.TEXTAREA.onkeydown = (event) => {
   if (event.code === 'Enter' && !event.shiftKey) {
@@ -52,14 +68,9 @@ function formMessageHundler(message) {
     return popupOpen(POPUP_NAMES.AUTH);
   }
 
-  if (!socketIsOpen) return;
-
   network.sendMessageSocket(_message);
 
   userData.message = _message;
-
-  renderMessage(userData);
-  scrollToBottom();
 }
 
 function formAuthHundler(event) {
@@ -81,6 +92,7 @@ function formAuthHundler(event) {
   }
 
   network.authorizationRequest(email);
+  cookies.set(cookies.names.email, email);
 
   popupOpen(POPUP_NAMES.CONFIR);
   this.reset();
@@ -96,6 +108,10 @@ function formConfirHundler(event) {
   }
 
   cookies.set(cookies.names.token, token);
+
+  network.socketInit(addMessageHundler);
+  
+  renderMessages();
 
   popupOpen(POPUP_NAMES.SETTINGS);
   this.reset();
@@ -115,24 +131,10 @@ async function formSettingsHundler(event) {
   }
 
   network.settingsRequest(userName, cookies.get(cookies.names.token));
-  const response = await network.getUserData( cookies.get(cookies.names.token) );
-  
-  cookies.set(cookies.names.email, response.email);
-  cookies.set(cookies.names.userName, response.name);
+  cookies.set(cookies.names.userName, userName);
 
   userData.userName = userName;
 
   popupClose();
   this.reset();
 }
-
-
-// async function getUserData() {
-//   return await network.getUserData(cookies.get(cookies.names.token));
-// }
-// getUserData().then(console.log);
-
-// async function getHistoryMessages() {
-//   return await network.getHistoryMessages(cookies.get(cookies.names.token));
-// }
-// getHistoryMessages().then(console.log);

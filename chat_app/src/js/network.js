@@ -31,8 +31,6 @@ class Network {
       options.headers.Authorization = `Bearer ${token}`;
     }
   
-    console.log(options);
-  
     try {
       const response = await fetch(url, options);
     
@@ -62,9 +60,13 @@ class Network {
     return await this.sendRequest(this.endpoints.messages, 'GET', { token });
   }
 
-  connectSocket() {
+  socketInit(hundlerMessageEvent) {
     const socket = new WebSocket(`${this.endpoints.socket}?${cookies.get(cookies.names.token)}`);
     this.socket = socket;
+
+    this.socket.addEventListener('open', () => {
+      this.socket.addEventListener('message', hundlerMessageEvent);
+    });
 
     return socket;
   }
