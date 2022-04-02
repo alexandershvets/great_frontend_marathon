@@ -42,7 +42,7 @@ class App extends Component {
   }
   
   render() {
-    const { name, error } = this.state;
+    const { name, data, loaded, error } = this.state;
     
     return (
       <div className="wrapper">
@@ -59,7 +59,7 @@ class App extends Component {
                 onRequest={this.onRequest}
               />
 
-              <Info {...this.state} />
+              <Info data={data} loaded={loaded} error={error} />
 
             </div>
 
