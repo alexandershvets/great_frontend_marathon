@@ -1,3 +1,5 @@
+// import { Component } from 'react';
+
 import './form.scss';
 
 function Form(props) {
@@ -9,7 +11,7 @@ function Form(props) {
 
   const { name, onChangeName, error } = props;
   const errorClass = error ? '_error' : null;
-
+  
   return (
     <form className="gender__form form-gender" onSubmit={handleSubmit} >
       <div className="form-gender__field">

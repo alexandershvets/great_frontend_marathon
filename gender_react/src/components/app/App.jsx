@@ -59,7 +59,11 @@ class App extends Component {
                 onRequest={this.onRequest}
               />
 
-              <Info data={data} loaded={loaded} error={error} />
+              <Info
+                data={data}
+                loaded={loaded}
+                error={error}
+              />
 
             </div>
 
