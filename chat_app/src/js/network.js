@@ -1,7 +1,6 @@
 import { cookies } from './cookie';
 import { ERROR_MESSAGES, RequestError } from './error';
 
-// ws://chat1-341409.oa.r.appspot.com/websockets?TOKEN
 class Network {
   constructor() {
     this.url = new URL('https://chat1-341409.oa.r.appspot.com');
