@@ -1,0 +1,33 @@
+@import '../../style/variables.scss';
+
+.info-gender {
+  margin-top: calc($padding / 1.6);
+  padding: 0 $padding * 2 - 5;
+  background-color: $palette_app_bg;
+  &._active {
+    padding: $padding $padding * 2 - 5;
+  }
+  // .info-gender__body
+  &__body {
+    padding: 10px 20px;
+    border-radius: $radius;
+    background-color: #fff;
+  }
+  // .info-gender__item
+  &__item {
+    font-family: Consolas, sans-serif;
+    font-size: 16px;
+    span:first-child {
+      display: inline-block;
+      min-width: 80px;
+      padding-right: 10px;
+    }
+  }
+  // .info-gender__error
+  &__error {
+    border-radius: $radius;
+    padding: 2px 20px;
+    font-size: 16px;
+    background-color: $accent;
+  }
+}

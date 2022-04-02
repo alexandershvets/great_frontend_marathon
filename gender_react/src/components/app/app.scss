@@ -1,0 +1,39 @@
+@import '../../style/variables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+._container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page {
+  // .page__gender
+  &__gender {
+    margin: 50px auto 0;
+  }
+}
+
+
+.gender {
+  max-width: 685px;
+  // .gender__title
+  &__title {
+    margin-bottom: 5px;
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+  }
+  // .gender__form
+  &__form {
+  }
+  // .gender__info
+  &__info {
+  }
+}

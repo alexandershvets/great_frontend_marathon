@@ -1,0 +1,8 @@
+@import '../../style/variables.scss';
+
+.info-gender__error {
+  border-radius: $radius;
+  padding: 2px 20px;
+  font-size: 16px;
+  background-color: $accent;
+}

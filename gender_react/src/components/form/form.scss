@@ -1,0 +1,48 @@
+@import '../../style/variables.scss';
+
+.form-gender {
+  $button_width: 130px;
+  padding: $padding $padding * 2 - 5;
+  background-color: $palette_app_bg;
+  // .form-gender__field
+  &__field {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  // .form-gender__input
+  &__input {
+    width: calc(100% - $button_width);
+    height: 50px;
+    padding: 0px 20px;
+    border: 2px solid transparent;
+    border-radius: $radius 0 0 $radius;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    &._error {
+      border: 2px solid red;
+    }
+  }
+  // .form-gender__button
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    min-width: $button_width;
+    padding: 10px 20px;
+    border-radius: 0 $radius $radius 0;
+    font-family: Montserrat, sans-serif;
+    background-color: $palette_button_bg;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color .3s ease 0s;
+    &:hover {
+      background-color: darken($palette_button_bg, 13%);
+    }
+  }
+}
