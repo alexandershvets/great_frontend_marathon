@@ -1,6 +1,12 @@
 # The Great Frontend Marathon
 This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript and its ecosystem.
 
+## Gender React
+
+[Gender React](https://alexandershvets.github.io/great_frontend_marathon/gender_react/dist/)
+
+[Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/gender_react)
+
 ## Chat
 (...)
 
