@@ -1,0 +1,22 @@
+@import '../../style/variables';
+
+.form {
+  &__line {
+    position: relative;
+    display: flex;
+    align-items: center;
+    @extend %todo-item;
+    margin-bottom: 10px;
+  }
+  &__input {
+    width: 100%;
+    font-size: 18px;
+    font-family: inherit;
+  }
+  &__button {
+    position: absolute;
+    top: calc(50% - 11px);
+    right: 10px;
+    @extend %button;
+  }
+}

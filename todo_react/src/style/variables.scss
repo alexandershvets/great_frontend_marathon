@@ -1,21 +1,25 @@
 // COLORS
 $color_black: #373636;
 $color_white: #fff;
-$color_tomato: #FF6347;
+$color_grey: #E5E5E5;
+$color_darkgrey: #C4C4C4;
+$color_silver: #bbbbbb;
 
 // PALETTE COLORS
-$accent:          $color_tomato;
-$palette_main_bg: $color_white;
+$palette_main_bg:   $color_white;
+$palette_border:    $color_silver;
+$palette_button:    $color_darkgrey;
+$palette_task_done: $color_grey;
 
 // FONTS
-$font_family: Montserrat, sans-serif;
+$font_family: Roboto, sans-serif;
 $font_weight: 400;
 $font_size: 16px;
 $text_color: $color_black;
-$line_height: 1.65;
+$line_height: 1;
 
 // Size
-// $radius: 6px;
+$radius: 6px;
 
 // GRID
 $min_width: 320px;
@@ -25,3 +29,41 @@ $md1: $max_width_container + 12;
 $md2: 991.98;
 $md3: 767.98;
 $md4: 479.98;
+
+%todo-item {
+  min-height: 50px;
+  padding: 10px 12px;
+  border: 1px solid $palette_border;
+  border-radius: $radius;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+%button {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background-color: transparent;
+  cursor: pointer;
+  &::after {
+    transform: rotate(90deg);
+  }
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(100% - 11px);
+    width: calc(100% - 1px);
+    height: 1px;
+    background-color: $palette_button;
+    transition: background-color .25s ease 0s;
+  }
+  &:hover {
+    &::before,
+    &::after {
+      background-color: darken($palette_button, 50%);
+    }
+  }
+}

@@ -1,2 +1,23 @@
 @import '../../style/variables';
 
+.todo {
+  max-width: 450px;
+  margin: 0 auto;
+  &__row {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  &__title {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  &__form {
+
+  }
+  &__list {
+
+  }
+}

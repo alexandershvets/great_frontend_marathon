@@ -1,0 +1,80 @@
+@import '../../style/variables';
+
+.checkbox {
+  position: relative;
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    &:checked + .checkbox__text::after {
+      transform: scale(1);
+    }
+  }
+  &__text {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+    // Внешний квадрат
+    &::before {
+      content: "";
+      align-self: flex-start;
+      flex: 0 0 22px;
+      left: 0;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      margin: 0px 14px 0px 0px;
+      border: 1px solid #a7a9ac;
+      border-radius: 50%;
+      background: #fff;
+    }
+    // Внутренний квадрат
+    &::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      background-color: darken($color_grey, 5%);
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform .3s ease 0s;
+    }
+  }
+}
+
+.todo-task {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  @extend %todo-item;
+  height: 100%;
+  &_done {
+    background-color: lighten($color_grey, 5%);
+  }
+  &__checkbox {
+    position: absolute;
+    top: 12.5px;
+    left: 10px;
+  }
+  &__descr {
+    flex: 1 1 auto;
+    padding: 1px 26px 0 33px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 110%;
+  }
+  &__button {
+    position: absolute;
+    right: 10px;
+    top: 12.5px;
+    @extend %button;
+    flex: 0 0 22px;
+    transform: rotate(45deg);
+  }
+}
