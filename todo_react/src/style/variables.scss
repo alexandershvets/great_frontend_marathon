@@ -1,0 +1,27 @@
+// COLORS
+$color_black: #373636;
+$color_white: #fff;
+$color_tomato: #FF6347;
+
+// PALETTE COLORS
+$accent:          $color_tomato;
+$palette_main_bg: $color_white;
+
+// FONTS
+$font_family: Montserrat, sans-serif;
+$font_weight: 400;
+$font_size: 16px;
+$text_color: $color_black;
+$line_height: 1.65;
+
+// Size
+// $radius: 6px;
+
+// GRID
+$min_width: 320px;
+$max_width: 1920;
+$max_width_container: 1140;
+$md1: $max_width_container + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
