@@ -1,6 +1,12 @@
 # The Great Frontend Marathon
 This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript and its ecosystem.
 
+## Todo React
+
+[Todo React](https://alexandershvets.github.io/great_frontend_marathon/todo_react/build/)
+
+[Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/todo_react)
+
 ## Gender React
 
 [Gender React](https://alexandershvets.github.io/great_frontend_marathon/gender_react/dist/)
