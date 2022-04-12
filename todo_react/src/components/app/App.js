@@ -8,14 +8,22 @@ import Storage from '../../storage/Storage';
 
 import './app.scss';
 
+const storage = new Storage();
+
 function App() {
-  const storage = new Storage();
   const [taskList, setTaskList] = useState( storage.getTaskList() || [] );
 
   useEffect(() => storage.setTaskList(taskList), [taskList]);
 
   const onAddTask = (taskName, priority) => {
-    setTaskList(taskList => [...taskList, { taskName, priority, done: false, id: nanoid(5) }]);
+    const newTask = {
+      taskName,
+      priority,
+      done: false,
+      id: nanoid(5)
+    };
+
+    setTaskList([newTask, ...taskList]);
   };
 
   const onChangeTaskStatus = (id, done) => {

@@ -13,7 +13,7 @@ function getPlaceholder(priority) {
   }
 }
 
-function Form(props) {
+function Form({ priority, onAddTask }) {
   const [taskName, setTaskName] = useState('');
 
   const handleSubmit = e => {
@@ -21,16 +21,14 @@ function Form(props) {
 
     if (taskName === '') return;
     
-    props.onAddTask(taskName, e.target.dataset.priority);
+    onAddTask(taskName, e.target.dataset.priority);
 
     setTaskName('');
   };
 
-  const handleChange = e => setTaskName(e.target.value);
-
   return (
     <form
-      data-priority={props.priority}
+      data-priority={priority}
       className="todo__form form"
       onSubmit={handleSubmit}
     >
@@ -38,8 +36,8 @@ function Form(props) {
         <input
           type="text"
           className="form__input"
-          placeholder={getPlaceholder(props.priority)}
-          onChange={handleChange}
+          placeholder={getPlaceholder(priority)}
+          onChange={e => setTaskName(e.target.value)}
           value={taskName}
         />
         <button type="submit" className="form__button"></button>
