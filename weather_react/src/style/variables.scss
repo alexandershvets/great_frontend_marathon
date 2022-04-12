@@ -1,0 +1,46 @@
+// COLORS
+$color_black: #000;
+$color_white: #fff;
+$color_tomato: #EC6E4C;
+$color_lightgrey: #FAFAFD;
+$color_somegrey: #E5E5E5;
+$color_grey: #C0C4E5;
+$color_darkgrey: #6E6E71;
+
+// PALETTE COLORS
+$accent:                     $color_tomato;
+$palette_main_bg:            $color_white;
+$palette_border:             $color_black;
+
+$palette_btn_tab:            $color_white;
+$palette_btn_tab_active:     $color_black;
+$palette_btn_tab_hover:      $color_somegrey;
+
+$palette_btn_search:         $color_grey;
+$palette_btn_search_hover:   $color_black;
+
+$palette_location:           $color_lightgrey;
+$palette_location_del:       $color_darkgrey;
+$palette_location_del_hover: $color_black;
+
+$palette_like:               $color_black;
+
+// Size
+$radius: 6px;
+$border_width: 2px;
+
+// FONTS
+$font_family: Roboto, sans-serif;
+$font_weight: 400;
+$font_size: 16px;
+$text_color: $color_black;
+$line_height: 1;
+
+// GRID
+$min_width: 320px;
+$max_width: 1920;
+$max_width_container: 1140;
+$md1: $max_width_container + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;

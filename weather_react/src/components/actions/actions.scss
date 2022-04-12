@@ -1,0 +1,40 @@
+@import '../../style/variables';
+
+.actions-info-weather {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  border-top: 1px solid $palette_border;
+  @media (max-width: 560px) {
+    border-bottom: 1px solid $palette_border;
+  }
+  &__btn {
+    flex: 0 1 33.333%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background-color: $palette_btn_tab;
+    font-size: 18px;
+    color: $text_color;
+    line-height: 21px;
+    text-decoration: none;
+    letter-spacing: .1px;
+    cursor: pointer;
+    transition: background-color 0.2s ease 0s, color 0.2s ease 0s;
+    &.active {
+      background-color: $palette_btn_tab_active;
+      color: #fff;
+      &:hover {
+        background-color: $palette_btn_tab_active;
+      }
+    }
+    &:nth-child(2) {
+      border-right: 1px solid $palette_border;
+      border-left: 1px solid $palette_border;
+    }
+    &:hover {
+      background-color: $palette_btn_tab_hover;
+    }
+  }
+}

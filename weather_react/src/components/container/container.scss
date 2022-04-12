@@ -1,0 +1,11 @@
+@import '../../style/variables';
+
+.container {
+  max-width: $max_width_container + px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  @media (max-width: 560px) {
+    padding: 0 10px;
+  }
+}

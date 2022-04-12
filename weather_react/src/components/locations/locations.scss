@@ -1,0 +1,27 @@
+@import '../../style/variables';
+
+.locations-weather {
+  border-left: $border_width solid $palette_border;
+  @media (max-width: 560px) {
+    border-left: none;
+  }
+  &__header {
+    padding: 33px 18px 7px;
+    border-bottom: 1px solid $palette_border;
+    @media (max-width: 560px) {
+      padding-top: 12px;
+    }
+  }
+  &__title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 116%;
+  }
+  &__list {
+    // min-height: 320px;
+    max-height: 320px;
+    overflow: auto;
+  }
+  &__item {
+  }
+}

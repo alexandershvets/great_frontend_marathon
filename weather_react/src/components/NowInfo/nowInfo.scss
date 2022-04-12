@@ -1,0 +1,51 @@
+@import '../../style/variables';
+
+.now-info-weather {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 18px 26px 23px 14px;
+  &__temperature {
+    font-size: 70px;
+    line-height: 1;
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    font-size: 78px;
+    overflow: hidden;
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__town {
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 116%;
+  }
+  &__like {
+    width: 22px;
+    height: 22px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease 0s;
+    overflow: hidden;
+    svg {
+      fill: none;
+    }
+    path {
+      stroke-width: 2px;
+      stroke: $palette_like;
+    }
+    &.active {
+      svg {
+        fill: $palette_like;
+      }
+    }
+  }
+}

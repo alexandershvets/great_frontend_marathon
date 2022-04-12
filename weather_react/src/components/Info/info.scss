@@ -1,0 +1,15 @@
+@import '../../style/variables';
+
+.info-weather {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &__body {
+    flex: 1 1 auto;
+  }
+  &__item {
+    height: 343px;
+  }
+  &__actions {
+  }
+}

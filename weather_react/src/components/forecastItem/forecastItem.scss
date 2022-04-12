@@ -1,0 +1,45 @@
+@import '../../style/variables';
+
+.forecast-info-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  padding: 10px 10px 0px;
+  border: 1px solid $palette_border;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 9px;
+  &__top,
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__date {
+  }
+  &__time {
+  }
+  &__temp {
+  }
+  &__temp-current {
+  }
+  &__temp-feels-like {
+  }
+  &__icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__icon-descr {
+  }
+  &__icon-image {
+    width: 50px;
+    height: 31px;
+    overflow: hidden;
+    img {
+      margin-top: -13px;
+      max-width: 114%;
+      height: auto;
+    }
+  }
+}
