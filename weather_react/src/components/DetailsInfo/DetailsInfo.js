@@ -4,8 +4,8 @@ import useWeather from '../../hooks/weather.hook';
 
 import './detailsInfo.scss';
 
-function DetailsInfo() {
-  const { state: weather, spinner, errorMessage, isContent } = useWeather();
+function DetailsInfo({ cityName }) {
+  const { state: weather, spinner, errorMessage, isContent } = useWeather(cityName);
 
   const content = isContent ? <View {...weather} /> : null;
   

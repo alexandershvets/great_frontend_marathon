@@ -1,17 +1,19 @@
 import './location.scss';
 
-function Location() {
+function Location({ cityName, onDeleteCity, onRequest }) {
   return (
     <li className="locations-weather__item location-weather">
       <button
         type="button"
         className="location-weather__send"
+        onClick={() => onRequest(cityName)}
       >
-        Murmansk
+        {cityName}
       </button>
       <button
         type="button"
         className="location-weather__delete"
+        onClick={() => onDeleteCity(cityName)}
       >
         <svg width="14px" height="18px" viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">

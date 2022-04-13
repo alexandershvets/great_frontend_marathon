@@ -4,8 +4,8 @@ import ForecastItem from '../forecastItem/ForecastItem';
 
 import './forecastInfo.scss';
 
-function ForecastInfo() {
-  const { state: forecast, spinner, errorMessage, isContent } = useWeather('Cape Town', true);
+function ForecastInfo({ cityName }) {
+  const { state: forecast, spinner, errorMessage, isContent } = useWeather(cityName, true);
 
   const content = isContent ? <View forecast={forecast} /> : null;
 

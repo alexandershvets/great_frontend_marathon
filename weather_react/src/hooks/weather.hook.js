@@ -11,6 +11,8 @@ function useWeather(cityName = DEFAULT_CITY, isForecast = false) {
   const { loading, error, clearError, getWeather, getForecastWeather } = useWeatherService();
 
   useEffect(() => {
+    clearError();
+    
     isForecast
       ? getForecastWeather(cityName).then(setState)
       : getWeather(cityName).then(setState);

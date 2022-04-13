@@ -31,13 +31,13 @@ function useHttp() {
     
   }, []);
 
-  const clearRequest = useCallback(() => setError(null), []);
+  const clearError = useCallback(() => setError(null), []);
 
   return {
     loading,
     error,
     request,
-    clearRequest
+    clearError
   };
 }
 

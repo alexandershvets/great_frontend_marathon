@@ -1,13 +1,27 @@
+import { useState } from 'react';
+
 import './search.scss';
 
-function Search() {
+function Search({ onAddCityName }) {
+  const [cityName, setCityName] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onAddCityName(cityName);
+    
+    setCityName('');
+  };
+  
   return (
-    <form className="weather__search-form search-form-weather">
+    <form onSubmit={handleSubmit} className="weather__search-form search-form-weather">
       <div className="search-form-weather__line">
         <input
           type="text"
           placeholder="Enter city name"
           className="search-form-weather__input"
+          value={cityName}
+          onChange={e => setCityName(e.target.value)}
         />
         <button type="submit" className="search-form-weather__button">
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
