@@ -1,8 +1,10 @@
 import './spinner.scss';
 
+import spinner from './spinner.gif';
+
 function Spinner() {
   return (
-    <div>Spinner...</div>
+    <img src={spinner} className="weather__loading loading" alt="Loading" />
   );
 }
 

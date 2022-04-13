@@ -1,32 +1,46 @@
+import { useState } from 'react';
+
+import useWeather from '../../hooks/weather.hook';
+
 import './detailsInfo.scss';
 
 function DetailsInfo() {
+  const { state: weather, spinner, errorMessage, isContent } = useWeather();
+
+  const content = isContent ? <View {...weather} /> : null;
+  
   return (
     <div className="info-weather__item details-info-weather">
-      <div className="details-info-weather__town">Cape Town</div>
-      <ul className="details-info-weather__params">
-        <li className="details-info-weather__param">
-          <span className="details-info-weather__param-name">Temperature:</span>
-          <span className="details-info-weather__param-value _deg">17</span>
-        </li>
-        <li className="details-info-weather__param">
-          <span className="details-info-weather__param-name">Feels like:</span>
-          <span className="details-info-weather__param-value _deg">17</span>
-        </li>
-        <li className="details-info-weather__param">
-          <span className="details-info-weather__param-name">Weather:</span>
-          <span className="details-info-weather__param-value">Clouds</span>
-        </li>
-        <li className="details-info-weather__param">
-          <span className="details-info-weather__param-name">Sunrise:</span>
-          <span className="details-info-weather__param-value">8:06</span>
-        </li>
-        <li className="details-info-weather__param">
-          <span className="details-info-weather__param-name">Sunset:</span>
-          <span className="details-info-weather__param-value">19:27</span>
-        </li>
-      </ul>
+      {errorMessage}
+      {spinner}
+      {content}
     </div>
+  );
+}
+
+function View({ city, temp, feelsLike, descr, sunrise, sunset }) {
+  const [params, setParams] = useState([
+    { title: 'Temperature', param: temp, type: 'deg' },
+    { title: 'Feels like', param: feelsLike, type: 'deg' },
+    { title: 'Weather', param: descr, type: null },
+    { title: 'Sunrise', param: sunrise, type: null },
+    { title: 'Sunset', param: sunset, type: null },
+  ]);
+
+  const _params = params.map(({ title, param, type }, i) => (
+    <li key={i} className="details-info-weather__param">
+      <span className="details-info-weather__param-name">{title}:</span>
+      <span className={`details-info-weather__param-value ${type ? '_deg' : null}`}>{param}</span>
+    </li>
+  ));
+
+  return (
+    <>
+      <div className="details-info-weather__town">{city}</div>
+      <ul className="details-info-weather__params">
+        {_params}
+      </ul>
+    </>
   );
 }
 
