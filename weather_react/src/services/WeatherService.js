@@ -2,7 +2,7 @@ import useHttp from "../hooks/http.hook";
 import { convertTime, convertDate } from '../hellpers/hellpers';
 
 const API = {
-  BASE: 'http://api.openweathermap.org/data/2.5',
+  BASE: 'https://api.openweathermap.org/data/2.5',
   KEY: '8d205e2f51d2fa2c11b2c460a8bba879'
 };
 
