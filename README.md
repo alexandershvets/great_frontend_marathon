@@ -1,6 +1,12 @@
 # The Great Frontend Marathon
 This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript and its ecosystem.
 
+## Weather React
+
+[Weather React](https://alexandershvets.github.io/great_frontend_marathon/weather_react/build/)
+
+[Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather_react)
+
 ## Todo React
 
 [Todo React](https://alexandershvets.github.io/great_frontend_marathon/todo_react/build/)
