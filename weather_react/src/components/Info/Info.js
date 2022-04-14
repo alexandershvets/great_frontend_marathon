@@ -12,9 +12,9 @@ function Info(props) {
     <div className="weather__info info-weather">
         <div className="info-weather__body">
           <Routes>
-          <Route path="/now" element={<NowInfo {...props} />} />
-            <Route path="/details" element={<DetailsInfo cityName={props.cityName} />} />
-            <Route path="/forecast" element={<ForecastInfo cityName={props.cityName} />} />
+          <Route path="now" element={<NowInfo {...props} />} />
+            <Route path="details" element={<DetailsInfo cityName={props.cityName} />} />
+            <Route path="forecast" element={<ForecastInfo cityName={props.cityName} />} />
             <Route path="*" element={<NowInfo {...props} />} />
           </Routes>
         </div>

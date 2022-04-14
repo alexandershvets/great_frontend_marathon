@@ -10,9 +10,9 @@ function getClass({ isActive }) {
 function Actions() {
   return (
     <div className="info-weather__actions actions-info-weather">
-      <NavLink to="/now" className={getClass}>Now</NavLink>
-      <NavLink to="/details" className={getClass}>Details</NavLink>
-      <NavLink to="/forecast" className={getClass}>Forecast</NavLink>
+      <NavLink to="now" className={getClass}>Now</NavLink>
+      <NavLink to="details" className={getClass}>Details</NavLink>
+      <NavLink to="forecast" className={getClass}>Forecast</NavLink>
     </div>
   );
 }
