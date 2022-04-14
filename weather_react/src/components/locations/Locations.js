@@ -5,14 +5,14 @@ import Location from '../location/Location';
 
 import './locations.scss';
 
-function Locations({ favoriteList, onDeleteCity, onRequest }) {
+function Locations({ favoriteList, onDeleteCity, onChangeCityName }) {
   function renderFavoriteList(arr) {
     const favoriteList = arr.map(city => (
       <Location
         key={nanoid(5)}
         cityName={city}
         onDeleteCity={onDeleteCity}
-        onRequest={onRequest}
+        onChangeCityName={onChangeCityName}
       />
     ));
 

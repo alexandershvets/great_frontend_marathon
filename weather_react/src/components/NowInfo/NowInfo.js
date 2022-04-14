@@ -1,12 +1,14 @@
+import { useEffect } from 'react';
+
 import useWeather from '../../hooks/weather.hook';
 
 import './nowInfo.scss';
 
-function NowInfo({ cityName, onAddCityInFavorites }) {
+function NowInfo({ cityName, onAddCityInFavorites, isLike }) {
   const { state: weather, spinner, errorMessage, isContent } = useWeather(cityName);
   
   const content = isContent
-    ? <View {...weather} onAddCityInFavorites={onAddCityInFavorites} />
+    ? <View {...weather} onAddCityInFavorites={onAddCityInFavorites} isLike={isLike} />
     : null;
 
   return (
@@ -18,7 +20,7 @@ function NowInfo({ cityName, onAddCityInFavorites }) {
   );
 }
 
-function View({ temp, icon, city, onAddCityInFavorites }) {
+function View({ temp, icon, city, onAddCityInFavorites, isLike }) {
   return (
     <>
       <div className="now-info-weather__temperature _deg">{temp}</div>
@@ -29,7 +31,7 @@ function View({ temp, icon, city, onAddCityInFavorites }) {
         <div className="now-info-weather__town">{city}</div>
         <button
           type="button"
-          className="now-info-weather__like"
+          className={`now-info-weather__like ${isLike ? 'active' : null}`}
           onClick={() => onAddCityInFavorites(city)}
         > {/* active */}
           <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

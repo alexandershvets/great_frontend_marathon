@@ -7,9 +7,7 @@ function Search({ onAddCityName }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onAddCityName(cityName);
-    
     setCityName('');
   };
   

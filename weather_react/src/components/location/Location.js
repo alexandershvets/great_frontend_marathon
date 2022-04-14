@@ -1,12 +1,12 @@
 import './location.scss';
 
-function Location({ cityName, onDeleteCity, onRequest }) {
+function Location({ cityName, onDeleteCity, onChangeCityName }) {
   return (
     <li className="locations-weather__item location-weather">
       <button
         type="button"
         className="location-weather__send"
-        onClick={() => onRequest(cityName)}
+        onClick={() => onChangeCityName(cityName)}
       >
         {cityName}
       </button>
