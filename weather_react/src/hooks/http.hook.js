@@ -9,7 +9,7 @@ function useHttp() {
     
     try {
       const response = await fetch(url, { method, body, headers });
-      console.log('request');
+
       if (!response.ok) {
         throw new Error(`Coud not fetch ${url}, status ${response.status}`);
       }
