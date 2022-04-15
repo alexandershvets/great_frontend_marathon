@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useMemo } from 'react';
 
 import Container from '../container/Container';
 import Search from '../search/Serach';
@@ -7,6 +7,9 @@ import Locations from '../locations/Locations';
 import Storage from '../../storage/Storage';
 
 import './app.scss';
+
+export const FavoriteCityContext = createContext();
+export const IsLikeContext = createContext(false);
 
 const storage = new Storage();
 const currentCity = storage.getCurrentCity() || 'Cape Town';
@@ -37,25 +40,25 @@ function App() {
     setLike(true);
   };
 
-  const onDeleteCity = cityName => {
-    setFavoriteList(favoriteList => favoriteList.filter(item => item !== cityName));
-  };
-  
+  const actionsFavoriteCity = useMemo(() => ({
+    onDeleteCity: cityName => setFavoriteList(favoriteList => favoriteList.filter(item => item !== cityName)),
+    onChangeCityName: cityName => setCityName(cityName)
+  }), []);
+
   return (
     <Container>
       <div className="weather">
         <Search onAddCityName={onAddCityName} />
         <div className="weather__body">
-          <Info
-            cityName={cityName}
-            onAddCityInFavorites={onAddCityInFavorites}
-            isLike={isLike}
-          />
-          <Locations
-            favoriteList={favoriteList}
-            onDeleteCity={onDeleteCity}
-            onChangeCityName={cityName => setCityName(cityName)}
-          />
+          <IsLikeContext.Provider value={isLike} >
+            <Info
+              cityName={cityName}
+              onAddCityInFavorites={onAddCityInFavorites}
+            />
+          </IsLikeContext.Provider>
+          <FavoriteCityContext.Provider value={actionsFavoriteCity} >
+            <Locations favoriteList={favoriteList} />
+          </FavoriteCityContext.Provider>
         </div>
       </div>
     </Container>
