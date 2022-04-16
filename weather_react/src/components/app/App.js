@@ -22,10 +22,15 @@ function App() {
 
   useEffect(() => {
     favoriteList.includes(cityName) ? setLike(true) : setLike(false);
-    
-    storage.setCurrentCity(cityName);
-    storage.setFavoriteList(favoriteList);
   }, [cityName, favoriteList]);
+
+  useEffect(() => {
+    storage.setCurrentCity(cityName);
+  }, [cityName]);
+
+  useEffect(() => {
+    storage.setFavoriteList(favoriteList);
+  }, [favoriteList]);
 
   const onAddCityName = (cityName) => {
     if (!cityName.length) return;
