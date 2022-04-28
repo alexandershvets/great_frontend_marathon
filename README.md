@@ -1,6 +1,12 @@
 # The Great Frontend Marathon
 This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript and its ecosystem.
 
+## Weather React Redux
+
+[Weather React Redux](https://alexandershvets.github.io/great_frontend_marathon/weather_react_redux/build/)
+
+[Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather_react_redux)
+
 ## Weather React
 
 [Weather React](https://alexandershvets.github.io/great_frontend_marathon/weather_react/build/)

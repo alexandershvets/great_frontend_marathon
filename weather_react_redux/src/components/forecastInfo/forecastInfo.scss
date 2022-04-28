@@ -1,0 +1,18 @@
+@import '../../style/variables';
+
+.forecast-info-weather {
+  padding: 33px 0px;
+  &__town {
+    margin-bottom: 7px;
+    padding: 0px 18px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  &__list {
+    max-height: 275px;
+    padding: 0px 12px 0px 18px;
+    overflow: auto;
+  }
+}
