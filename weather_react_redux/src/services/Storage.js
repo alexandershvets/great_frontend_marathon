@@ -1,20 +1,16 @@
 
-class Storage {
-  getCurrentCity() {
-    return localStorage.getItem('currentCity');
-  }
-  
-  setCurrentCity(cityName) {
-    localStorage.setItem('currentCity', cityName);
-  }
-  
-  getFavoriteList() {
-    return JSON.parse( localStorage.getItem('favoriteList') );
-  }
-  
-  setFavoriteList(favoriteList) {
-    localStorage.setItem('favoriteList', JSON.stringify(favoriteList));
-  }
+export function getCurrentCity() {
+  return localStorage.getItem('currentCity');
 }
 
-export default Storage;
+export function setCurrentCity(cityName) {
+  localStorage.setItem('currentCity', cityName);
+}
+
+export function getFavoriteList() {
+  return JSON.parse( localStorage.getItem('favoriteList') );
+}
+
+export function setFavoriteList(favoriteList) {
+  localStorage.setItem('favoriteList', JSON.stringify(favoriteList));
+}

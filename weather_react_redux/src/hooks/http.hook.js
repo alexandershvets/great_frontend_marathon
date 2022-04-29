@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-function useHttp() {
+export function useHttp() {
   const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
 
     try {
@@ -26,5 +26,3 @@ function useHttp() {
     request
   };
 }
-
-export default useHttp;

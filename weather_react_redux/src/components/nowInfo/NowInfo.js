@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useWeather } from '../../hooks/weather.hook';
+import { useSelector, useDispatch } from 'react-redux';
+import { favoriteAddCity } from '../../actions/favorite'
+import { setFavoriteList } from '../../services/storage';
+import { getFavorite } from '../../selectors/selectors';
 import { setContent } from '../../utils/setContent';
-import { favoriteAddCity } from '../../actions'
-
-import Storage from '../../services/Storage';
 
 import './nowInfo.scss';
-
-const storage = new Storage();
 
 function NowInfo() {
   const { weatherLoadingStatus, weather } = useWeather('weather');
@@ -21,7 +19,7 @@ function NowInfo() {
 }
 
 function View({ data: { temp, icon, city } }) {
-  const { favoriteList } = useSelector(state => state.favorite);
+  const { favoriteList } = useSelector(getFavorite);
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -30,7 +28,7 @@ function View({ data: { temp, icon, city } }) {
   }, [city, favoriteList]);
 
   useEffect(() => {
-    storage.setFavoriteList(favoriteList);
+    setFavoriteList(favoriteList);
   }, [favoriteList]);
   
   const onAddCity = () => {
