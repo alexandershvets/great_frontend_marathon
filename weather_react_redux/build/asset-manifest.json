@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.9d99b6f4.css",
-    "main.js": "/static/js/main.c92ed229.js",
-    "static/media/spinner.gif": "/static/media/spinner.1054dba9434a7ca90e69.gif",
-    "index.html": "/index.html",
-    "main.9d99b6f4.css.map": "/static/css/main.9d99b6f4.css.map",
-    "main.c92ed229.js.map": "/static/js/main.c92ed229.js.map"
+    "main.css": "/great_frontend_marathon/weather_react_redux/static/css/main.9d99b6f4.css",
+    "main.js": "/great_frontend_marathon/weather_react_redux/static/js/main.73583038.js",
+    "static/media/spinner.gif": "/great_frontend_marathon/weather_react_redux/static/media/spinner.1054dba9434a7ca90e69.gif",
+    "index.html": "/great_frontend_marathon/weather_react_redux/index.html",
+    "main.9d99b6f4.css.map": "/great_frontend_marathon/weather_react_redux/static/css/main.9d99b6f4.css.map",
+    "main.73583038.js.map": "/great_frontend_marathon/weather_react_redux/static/js/main.73583038.js.map"
   },
   "entrypoints": [
     "static/css/main.9d99b6f4.css",
-    "static/js/main.c92ed229.js"
+    "static/js/main.73583038.js"
   ]
 }
