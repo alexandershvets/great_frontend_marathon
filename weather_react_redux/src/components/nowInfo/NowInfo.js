@@ -12,7 +12,7 @@ function NowInfo() {
   const { weatherLoadingStatus, weather } = useWeather('weather');
 
   return (
-    <div className="info-weather__item details-info-weather">
+    <div className="info-weather__item now-info-weather">
       {setContent(weatherLoadingStatus, View, weather)}
     </div>
   );
