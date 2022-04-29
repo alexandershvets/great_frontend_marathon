@@ -1,0 +1,31 @@
+@import '../../style/variables';
+
+.details-info-weather {
+  height: 100%;
+  padding: 33px 15px 15px;
+  &__town {
+    margin-bottom: 34px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 116%;
+  }
+  &__params {
+
+  }
+  &__param {
+    display: flex;
+    font-size: 24px;
+    line-height: 116%;
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+  }
+  &__param-name {
+    flex: 1 1 auto;
+  }
+  &__param-value {
+    flex: 0 0 60px;
+    text-align: right;
+  }
+}
