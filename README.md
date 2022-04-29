@@ -3,7 +3,7 @@ This is "The Great Frontend Marathon" - a 9 month long race learning JavaScript 
 
 ## Weather React Redux
 
-[Weather React Redux](https://alexandershvets.github.io/great_frontend_marathon/weather_react_redux/build/)
+[Weather React Redux](https://weather-react-redux-1.herokuapp.com/)
 
 [Репозиторий](https://github.com/alexandershvets/great_frontend_marathon/tree/main/weather_react_redux)
 
