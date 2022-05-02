@@ -1,5 +1,17 @@
 @import '../../style/variables';
 
+.container {
+  margin: 0 auto;
+  max-width: 1140px;
+  padding: 0 15px;
+  width: 100%;
+}
+@media (max-width: 560px) {
+  .container {
+    padding: 0 6px;
+  }
+}
+
 .weather {
   max-width: 596px;
   margin: 0 auto;

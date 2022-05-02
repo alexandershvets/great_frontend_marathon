@@ -1,18 +1,12 @@
+import initialState from '../initialState';
 import {
   WEATHER_FETCHING,
   WEATHER_FETCHED,
   WEATHER_FETCHING_ERROR,
   WEATHER_CHANGE_CURRENT_CITY
 } from '../actions/weather';
-import { getCurrentCity } from '../services/storage';
 
-const initialState = {
-  currentCity: getCurrentCity() || 'Cape Town',
-  weather: {},
-  weatherLoadingStatus: 'idle',
-};
-
-function weather(state = initialState, action) {
+function weather(state = initialState.weather, action) {
   switch (action.type) {
     case WEATHER_FETCHING:
       return {

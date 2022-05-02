@@ -1,15 +1,11 @@
+import initialState from '../initialState';
 import {
   FORECAST_FETCHING,
   FORECAST_FETCHED,
   FORECAST_FETCHING_ERROR
 } from '../actions/forecast';
 
-const initialState = {
-  forecast: [],
-  forecastLoadingStatus: 'idle'
-};
-
-function forecast(state = initialState, action) {
+function forecast(state = initialState.forecast, action) {
   switch (action.type) {
     case FORECAST_FETCHING:
       return {

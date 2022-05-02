@@ -1,7 +1,7 @@
-import { useCallback } from 'react';
+// import { useCallback } from 'react';
 
 export function useHttp() {
-  const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
+  const request = async (url, method = 'GET', body = null, headers = {}) => {
 
     try {
       const response = await fetch(url, {
@@ -20,7 +20,7 @@ export function useHttp() {
       throw err;
     }
     
-  }, []);
+  };
 
   return {
     request

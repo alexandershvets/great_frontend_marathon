@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { getFavorite } from '../../selectors/selectors';
+import { getFavorite } from '../../store/selectors/selectors';
 
 import Location from '../location/Location';
 

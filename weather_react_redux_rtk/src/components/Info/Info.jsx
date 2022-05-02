@@ -1,21 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
+import { routes } from '../../router';
 
-import NowInfo from '../nowInfo/NowInfo';
-import DetailsInfo from '../detailsInfo/DetailsInfo';
-import ForecastInfo from '../forecastInfo/ForecastInfo';
 import SwitchWeatherInfo from '../switchWeatherInfo/SwitchWeatherInfo';
 
 import './info.scss';
 
 function Info() {
+  const routesComponents = routes.map(({ path, component: Component }) => (
+    <Route key={path} path={path} element={<Component />} />
+  ));
+
   return (
     <div className="weather__info info-weather">
         <div className="info-weather__body">
           <Routes>
-            <Route path="/" element={<NowInfo />} />
-            <Route path="details" element={<DetailsInfo />} />
-            <Route path="forecast" element={<ForecastInfo />} />
-            <Route path="*" element={<NowInfo />} />
+            {routesComponents}
           </Routes>
         </div>
         <SwitchWeatherInfo />

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { weatherChangeCurrentCity } from '../../actions/weather';
-import { favoriteRemoveCity } from '../../actions/favorite';
+import { weatherChangeCurrentCity } from '../../store/slices/weatherSlice';
+import { favoriteRemoveCity } from '../../store/slices/favoriteSlice';
 
 import './location.scss';
 

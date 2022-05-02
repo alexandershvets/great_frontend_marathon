@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { weatherChangeCurrentCity } from '../../actions/weather';
-import { getWeather } from '../../selectors/selectors';
+import { weatherChangeCurrentCity } from '../../store/slices/weatherSlice';
+import { getWeather } from '../../store/selectors/selectors';
 import { setCurrentCity } from '../../services/storage';
 
 import Search from '../search/Serach';

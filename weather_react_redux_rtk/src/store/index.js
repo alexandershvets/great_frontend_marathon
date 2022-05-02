@@ -1,25 +1,17 @@
-import {
-  createStore,
-  compose,
-  combineReducers,
-  applyMiddleware
-} from 'redux';
-import ReduxThunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 
-import weather from '../reducers/weather';
-import forecast from '../reducers/forecast';
-import favorite from '../reducers/favorite';
+import weather from './slices/weatherSlice';
+import forecast from './slices/forecastSlice';
+import favorite from './slices/favoriteSlice';
 
-const store = createStore(
-  combineReducers({
+const store = configureStore({
+  reducer: {
     weather,
     forecast,
     favorite
-  }),
-  compose(
-    applyMiddleware(ReduxThunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  devTools: process.env.NODE_ENV !== 'production'
+});
 
 export default store;

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useWeather } from '../../hooks/weather.hook';
 import { useSelector, useDispatch } from 'react-redux';
-import { favoriteAddCity } from '../../actions/favorite'
-import { setFavoriteList } from '../../services/storage';
-import { getFavorite } from '../../selectors/selectors';
+import { favoriteAddCity } from '../../store/slices/favoriteSlice';
+import { getFavorite } from '../../store/selectors/selectors';
 import { setContent } from '../../utils/setContent';
+import { setFavoriteList } from '../../services/storage';
 
 import './nowInfo.scss';
 
@@ -12,7 +12,7 @@ function NowInfo() {
   const { weatherLoadingStatus, weather } = useWeather('weather');
 
   return (
-    <div className="info-weather__item details-info-weather">
+    <div className="info-weather__item now-info-weather">
       {setContent(weatherLoadingStatus, View, weather)}
     </div>
   );
